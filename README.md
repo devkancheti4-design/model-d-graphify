@@ -1,11 +1,14 @@
 # Model D and Graphify: a retrieval study
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23289068.svg)](https://doi.org/10.5281/zenodo.23289068)
+
 **Model D** is a local retrieval kit. For a question, it ranks the code, config and docs an AI assistant should read
 first. It also learns from every answered question, so a team's repeated questions get cheaper. This artifact compares
 its retrieval with [Graphify](https://github.com/Graphify-Labs/graphify) on two tests, and ships everything needed to
 rerun them.
 
-The kit is a compiled evaluation build (`wheels/`). Its method and its learning layer are not described or included.
+Model D is open source under the Apache License 2.0: [source](https://github.com/devkancheti4-design/optimal-context-mapping),
+[Zenodo DOI 10.5281/zenodo.23289068](https://doi.org/10.5281/zenodo.23289068). `wheels/` holds builds of version 0.2.1.
 
 ## Results
 
@@ -124,10 +127,15 @@ Both runs above reproduce the tables exactly. Per-question results are in `bench
 
 ## Licences
 
-- `wheels/`: the compiled package is under the evaluation licence in `LICENSE`. Third-party notices are in
-  `THIRD_PARTY_NOTICES`.
-- `bench/` scripts and results: may be used to reproduce and discuss this study.
-- `bench/data/corpus`: MIT, see its own `LICENSE`.
+- Everything here, including `wheels/`, is under the Apache License 2.0 (`LICENSE`, `NOTICE`). The source is at
+  https://github.com/devkancheti4-design/optimal-context-mapping.
+- Third-party notices are in `THIRD_PARTY_NOTICES`.
+- `bench/data/corpus` is MIT (see its own `LICENSE`).
 - LOCOMO is not included.
+
+## Cite
+
+Kancheti, D. (2026). *Optimal Context Mapping (Model D): a shared, learning retrieval layer for AI coding agents*
+(Version 0.2.1) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.23289068
 
 Contact: [@devkancheti4-design](https://github.com/devkancheti4-design) on GitHub.

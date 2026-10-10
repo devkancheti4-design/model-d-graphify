@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/devkancheti4-design/model-d-graphify",
   "repository": "https://github.com/devkancheti4-design/model-d-graphify",
-  "license": "LicenseRef-Proprietary",
+  "license": "Apache-2.0",
   "keywords": [
     "retrieval",
     "code-search",
