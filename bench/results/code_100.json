@@ -1,0 +1,3014 @@
+[
+ {
+  "id": "q01",
+  "gold": [
+   "backend/app/api/main.py",
+   "backend/app/api/routes/private.py"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/README.md",
+   "deployment.md",
+   "development.md",
+   "release-notes.md",
+   "frontend/tests/utils/privateApi.ts"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/settings.tsx",
+   "backend/app/api/main.py",
+   "frontend/src/routeTree.gen.ts",
+   "backend/app/api/routes/users.py",
+   "frontend/src/components/UserSettings/UserInformation.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "backend/app/api/routes/login.py",
+   "frontend/src/components/UserSettings/ChangePassword.tsx",
+   "backend/app/core/config.py",
+   "backend/app/api/routes/items.py"
+  ],
+  "md chars": 1203,
+  "gf chars": 6469,
+  "md s": 4.479,
+  "gf s": 0.272
+ },
+ {
+  "id": "q02",
+  "gold": [
+   "backend/app/main.py"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/README.md",
+   "development.md",
+   "release-notes.md",
+   "frontend/src/client/schemas.gen.ts",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/client/types.gen.ts"
+  ],
+  "gf": [
+   "frontend/src/client/core/OpenAPI.ts",
+   "backend/tests/conftest.py",
+   "frontend/package.json",
+   "frontend/biome.json",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/client/index.ts",
+   "frontend/src/main.tsx",
+   "backend/app/api/routes/items.py",
+   "frontend/tests/utils/privateApi.ts",
+   "frontend/src/client/types.gen.ts"
+  ],
+  "md chars": 1158,
+  "gf chars": 6509,
+  "md s": 0.03,
+  "gf s": 0.173
+ },
+ {
+  "id": "q03",
+  "gold": [
+   ".github/workflows/labeler.yml"
+  ],
+  "kind": "config",
+  "md": [
+   ".github/workflows/labeler.yml",
+   ".github/DISCUSSION_TEMPLATE/questions.yml",
+   "release-notes.md",
+   "compose.override.yml",
+   "deployment.md",
+   "compose.traefik.yml"
+  ],
+  "gf": [
+   "frontend/src/components/ui/label.tsx",
+   "frontend/src/client/core/request.ts",
+   "frontend/src/components/ui/checkbox.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/package.json",
+   "frontend/src/client/core/CancelablePromise.ts",
+   "frontend/src/components/ui/form.tsx"
+  ],
+  "md chars": 2397,
+  "gf chars": 6522,
+  "md s": 0.027,
+  "gf s": 0.186
+ },
+ {
+  "id": "q04",
+  "gold": [
+   ".github/workflows/deploy-production.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "release-notes.md",
+   "deployment.md",
+   "development.md",
+   ".github/workflows/deploy-production.yml",
+   "frontend/biome.json",
+   "README.md"
+  ],
+  "gf": [
+   "backend/app/alembic/env.py",
+   "backend/app/models.py",
+   "backend/app/core/config.py"
+  ],
+  "md chars": 1656,
+  "gf chars": 2640,
+  "md s": 0.027,
+  "gf s": 0.158
+ },
+ {
+  "id": "q05",
+  "gold": [
+   ".github/workflows/smokeshow.yml",
+   ".github/workflows/test-backend.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "backend/README.md",
+   ".github/workflows/test-backend.yml",
+   "README.md",
+   "release-notes.md",
+   "backend/scripts/test.sh",
+   "backend/pyproject.toml"
+  ],
+  "gf": [
+   "backend/scripts/test.sh",
+   "frontend/package.json",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "backend/app/backend_pre_start.py",
+   "backend/app/core/db.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/models.py",
+   "backend/app/api/routes/users.py",
+   "backend/tests/api/routes/test_login.py",
+   "backend/app/crud.py"
+  ],
+  "md chars": 1257,
+  "gf chars": 25945,
+  "md s": 0.026,
+  "gf s": 0.165
+ },
+ {
+  "id": "q06",
+  "gold": [
+   ".pre-commit-config.yaml",
+   "scripts/add_latest_release_date.py"
+  ],
+  "kind": "code",
+  "md": [
+   "README.md",
+   "scripts/add_latest_release_date.py",
+   "release-notes.md",
+   ".pre-commit-config.yaml"
+  ],
+  "gf": [
+   "frontend/package.json",
+   "frontend/src/components/ui/dropdown-menu.tsx",
+   "scripts/add_latest_release_date.py",
+   "frontend/src/lib/utils.ts",
+   "backend/app/models.py",
+   "backend/app/api/routes/login.py",
+   "backend/app/utils.py",
+   "backend/app/core/security.py",
+   "frontend/src/components/ui/sidebar.tsx",
+   "frontend/src/components/Admin/EditUser.tsx"
+  ],
+  "md chars": 816,
+  "gf chars": 6604,
+  "md s": 0.028,
+  "gf s": 0.181
+ },
+ {
+  "id": "q07",
+  "gold": [
+   "backend/app/core/config.py"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   ".github/workflows/deploy-staging.yml",
+   ".github/workflows/pre-commit.yml",
+   "deployment.md",
+   ".github/workflows/deploy-production.yml",
+   "copier.yml",
+   ".github/DISCUSSION_TEMPLATE/questions.yml"
+  ],
+  "gf": [
+   "backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+   "backend/app/core/config.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/models.py",
+   "backend/app/api/routes/users.py",
+   "backend/app/api/routes/login.py",
+   "backend/tests/api/routes/test_login.py",
+   "backend/app/utils.py",
+   "backend/app/api/deps.py",
+   "backend/app/core/security.py"
+  ],
+  "md chars": 2408,
+  "gf chars": 17660,
+  "md s": 0.026,
+  "gf s": 0.161
+ },
+ {
+  "id": "q08",
+  "gold": [
+   "backend/app/api/routes/login.py",
+   "backend/app/core/config.py"
+  ],
+  "kind": "code",
+  "md": [
+   "README.md",
+   "backend/app/core/security.py",
+   "backend/app/api/deps.py",
+   "release-notes.md",
+   "backend/tests/api/routes/test_login.py",
+   "frontend/tests/login.spec.ts",
+   "backend/app/utils.py"
+  ],
+  "gf": [
+   "frontend/src/routes/login.tsx",
+   "frontend/src/client/types.gen.ts",
+   "frontend/src/components/ui/loading-button.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "backend/app/utils.py",
+   "frontend/src/components/ui/form.tsx",
+   "backend/app/api/deps.py",
+   "frontend/src/components/ui/input.tsx",
+   "backend/app/core/security.py",
+   "frontend/src/components/Common/AuthLayout.tsx"
+  ],
+  "md chars": 1904,
+  "gf chars": 6481,
+  "md s": 0.026,
+  "gf s": 0.158
+ },
+ {
+  "id": "q09",
+  "gold": [
+   "backend/app/backend_pre_start.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/backend_pre_start.py",
+   "backend/app/tests_pre_start.py",
+   "backend/README.md",
+   "release-notes.md"
+  ],
+  "gf": [
+   "frontend/src/components/ui/checkbox.tsx",
+   "backend/app/core/config.py",
+   "backend/app/tests_pre_start.py",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/package.json",
+   "backend/app/core/db.py",
+   "backend/app/backend_pre_start.py",
+   "backend/tests/scripts/test_test_pre_start.py"
+  ],
+  "md chars": 1764,
+  "gf chars": 6493,
+  "md s": 0.03,
+  "gf s": 0.158
+ },
+ {
+  "id": "q10",
+  "gold": [
+   "backend/app/core/config.py"
+  ],
+  "kind": "code",
+  "md": [
+   "README.md",
+   "deployment.md",
+   ".github/workflows/deploy-staging.yml",
+   "backend/app/core/config.py",
+   "frontend/src/client/core/request.ts"
+  ],
+  "gf": [
+   "frontend/src/components/UserSettings/ChangePassword.tsx",
+   "frontend/biome.json",
+   "backend/app/api/main.py",
+   "backend/app/utils.py",
+   "frontend/src/components/ui/select.tsx"
+  ],
+  "md chars": 1977,
+  "gf chars": 962,
+  "md s": 0.026,
+  "gf s": 0.158
+ },
+ {
+  "id": "q11",
+  "gold": [
+   "backend/app/api/routes/users.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/routes/users.py",
+   "frontend/src/client/sdk.gen.ts",
+   "backend/tests/api/routes/test_users.py",
+   "release-notes.md"
+  ],
+  "gf": [
+   "frontend/src/components/UserSettings/DeleteAccount.tsx",
+   "frontend/src/components/ui/dropdown-menu.tsx",
+   "backend/tests/conftest.py",
+   "frontend/tsconfig.json",
+   "backend/app/api/routes/users.py",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Items/EditItem.tsx",
+   "backend/app/models.py",
+   "frontend/package.json"
+  ],
+  "md chars": 2084,
+  "gf chars": 6565,
+  "md s": 0.024,
+  "gf s": 0.16
+ },
+ {
+  "id": "q12",
+  "gold": [
+   "backend/app/main.py"
+  ],
+  "kind": "code",
+  "md": [
+   "development.md",
+   "release-notes.md",
+   "frontend/README.md",
+   "backend/app/api/routes/users.py",
+   "backend/app/api/routes/login.py",
+   "backend/app/api/routes/items.py"
+  ],
+  "gf": [
+   "frontend/src/client/core/OpenAPI.ts",
+   "frontend/src/main.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "backend/app/models.py",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/components/ui/button.tsx",
+   "frontend/package.json",
+   "frontend/src/client/index.ts",
+   "backend/app/api/routes/login.py",
+   "frontend/src/components/ui/form.tsx"
+  ],
+  "md chars": 1543,
+  "gf chars": 6531,
+  "md s": 0.027,
+  "gf s": 0.161
+ },
+ {
+  "id": "q13",
+  "gold": [
+   "backend/app/api/routes/items.py"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "backend/app/api/routes/items.py",
+   "backend/app/api/routes/users.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/api/deps.py",
+   "backend/tests/api/routes/test_items.py"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/items.tsx",
+   "backend/tests/utils/utils.py",
+   "backend/app/api/deps.py",
+   "backend/tests/conftest.py",
+   "backend/tests/utils/user.py",
+   "frontend/src/components/Sidebar/User.tsx",
+   "backend/app/models.py",
+   "backend/app/crud.py"
+  ],
+  "md chars": 3400,
+  "gf chars": 2082,
+  "md s": 0.027,
+  "gf s": 0.159
+ },
+ {
+  "id": "q14",
+  "gold": [
+   ".github/workflows/smokeshow.yml",
+   ".github/workflows/test-backend.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "backend/README.md",
+   ".github/workflows/test-backend.yml",
+   "CONTRIBUTING.md",
+   "development.md",
+   "release-notes.md",
+   "backend/scripts/test.sh"
+  ],
+  "gf": [
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "backend/scripts/tests-start.sh",
+   "backend/tests/__init__.py",
+   "backend/app/backend_pre_start.py",
+   "backend/app/api/routes/users.py",
+   "frontend/src/components/ui/password-input.tsx",
+   "backend/app/tests_pre_start.py",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/ui/button.tsx",
+   "frontend/package.json"
+  ],
+  "md chars": 1103,
+  "gf chars": 6650,
+  "md s": 0.027,
+  "gf s": 0.16
+ },
+ {
+  "id": "q15",
+  "gold": [
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/main.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "backend/app/api/deps.py",
+   "frontend/src/client/sdk.gen.ts",
+   "deployment.md",
+   "backend/app/api/routes/users.py",
+   "backend/app/api/routes/login.py",
+   "backend/tests/api/routes/test_users.py"
+  ],
+  "gf": [
+   "backend/pyproject.toml",
+   "backend/app/models.py",
+   "backend/app/api/__init__.py",
+   "backend/app/api/main.py",
+   "backend/app/backend_pre_start.py",
+   "backend/tests/api/routes/test_login.py",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/components/Sidebar/User.tsx",
+   "backend/tests/utils/utils.py",
+   "frontend/src/components/Sidebar/AppSidebar.tsx"
+  ],
+  "md chars": 1995,
+  "gf chars": 6574,
+  "md s": 0.028,
+  "gf s": 0.161
+ },
+ {
+  "id": "q16",
+  "gold": [
+   "backend/app/api/main.py",
+   "frontend/tests/utils/privateApi.ts"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/tests/utils/privateApi.ts",
+   "frontend/src/client/sdk.gen.ts",
+   "release-notes.md"
+  ],
+  "gf": [
+   "frontend/src/client/sdk.gen.ts",
+   "backend/tests/conftest.py",
+   "backend/app/crud.py",
+   "frontend/src/utils.ts",
+   "backend/app/api/routes/users.py",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/components/Items/EditItem.tsx",
+   "frontend/src/components/Items/AddItem.tsx",
+   "frontend/src/components/UserSettings/UserInformation.tsx"
+  ],
+  "md chars": 1094,
+  "gf chars": 6522,
+  "md s": 0.033,
+  "gf s": 0.182
+ },
+ {
+  "id": "q17",
+  "gold": [
+   "frontend/package.json",
+   "scripts/generate-client.sh"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "frontend/README.md"
+  ],
+  "gf": [
+   "frontend/package.json",
+   "backend/tests/conftest.py",
+   "backend/app/api/main.py",
+   "backend/app/backend_pre_start.py",
+   "frontend/src/components/UserSettings/ChangePassword.tsx",
+   "backend/app/api/routes/users.py",
+   "frontend/src/client/index.ts",
+   "backend/app/api/routes/login.py",
+   "frontend/src/components/ui/form.tsx",
+   "frontend/src/components/ui/loading-button.tsx"
+  ],
+  "md chars": 705,
+  "gf chars": 6537,
+  "md s": 0.036,
+  "gf s": 0.175
+ },
+ {
+  "id": "q18",
+  "gold": [
+   "backend/app/api/routes/login.py",
+   "backend/app/core/config.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/routes/login.py",
+   "deployment.md",
+   "frontend/src/components/UserSettings/DeleteConfirmation.tsx",
+   "backend/app/core/config.py",
+   "frontend/src/client/sdk.gen.ts",
+   "backend/tests/utils/utils.py",
+   "backend/tests/api/routes/test_login.py"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/index.tsx",
+   "backend/app/models.py",
+   "frontend/src/routes/login.tsx",
+   "backend/app/backend_pre_start.py",
+   "backend/app/api/routes/login.py",
+   "frontend/src/components/ui/loading-button.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/components/ui/form.tsx",
+   "frontend/src/components/ui/input.tsx",
+   "backend/app/core/db.py"
+  ],
+  "md chars": 2749,
+  "gf chars": 6484,
+  "md s": 0.032,
+  "gf s": 0.173
+ },
+ {
+  "id": "q19",
+  "gold": [
+   "frontend/playwright.config.ts"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/playwright.config.ts",
+   "release-notes.md"
+  ],
+  "gf": [
+   "frontend/components.json",
+   "frontend/playwright.config.ts",
+   "frontend/biome.json",
+   "frontend/package.json",
+   "frontend/tests/user-settings.spec.ts",
+   "frontend/tests/config.ts",
+   "frontend/tests/admin.spec.ts",
+   "frontend/tests/reset-password.spec.ts",
+   "frontend/tests/items.spec.ts",
+   "frontend/tests/login.spec.ts"
+  ],
+  "md chars": 1619,
+  "gf chars": 5300,
+  "md s": 0.035,
+  "gf s": 0.158
+ },
+ {
+  "id": "q20",
+  "gold": [
+   "frontend/src/components/Sidebar/AppSidebar.tsx",
+   "frontend/src/routes/_layout/admin.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "README.md",
+   "frontend/tests/admin.spec.ts"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/admin.tsx",
+   "backend/app/api/routes/users.py",
+   "backend/app/models.py",
+   "backend/app/crud.py",
+   "backend/app/core/config.py",
+   "backend/app/utils.py",
+   "backend/app/api/deps.py",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "backend/app/core/security.py",
+   "backend/app/api/main.py"
+  ],
+  "md chars": 1260,
+  "gf chars": 6485,
+  "md s": 0.032,
+  "gf s": 0.159
+ },
+ {
+  "id": "q21",
+  "gold": [
+   "backend/app/api/routes/items.py",
+   "frontend/src/routes/_layout/items.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "README.md",
+   "frontend/tests/login.spec.ts",
+   "frontend/tests/utils/user.ts",
+   "backend/app/models.py"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/admin.tsx",
+   "frontend/src/routes/_layout/items.tsx",
+   "backend/app/backend_pre_start.py",
+   "backend/app/alembic/env.py",
+   "frontend/src/components/ui/dropdown-menu.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Items/EditItem.tsx",
+   "frontend/package.json",
+   "frontend/src/components/Admin/DeleteUser.tsx"
+  ],
+  "md chars": 1369,
+  "gf chars": 6577,
+  "md s": 0.023,
+  "gf s": 0.177
+ },
+ {
+  "id": "q22",
+  "gold": [
+   "compose.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "compose.yml",
+   "README.md",
+   "release-notes.md",
+   "development.md"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/admin.tsx",
+   "backend/app/backend_pre_start.py",
+   "backend/scripts/test.sh",
+   "frontend/package.json",
+   "frontend/src/routeTree.gen.ts",
+   "backend/app/core/db.py",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/components/ui/sidebar.tsx",
+   "frontend/src/components/Admin/EditUser.tsx"
+  ],
+  "md chars": 2100,
+  "gf chars": 6561,
+  "md s": 0.036,
+  "gf s": 0.173
+ },
+ {
+  "id": "q23",
+  "gold": [
+   ".github/workflows/deploy-production.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "deployment.md",
+   ".github/workflows/labeler.yml",
+   ".github/workflows/deploy-staging.yml",
+   ".github/workflows/pre-commit.yml",
+   ".github/workflows/deploy-production.yml"
+  ],
+  "gf": [
+   "frontend/src/components/ui/label.tsx",
+   "frontend/src/components/ui/checkbox.tsx",
+   "img/github-social-preview.png",
+   "frontend/src/utils.ts",
+   "backend/app/api/routes/users.py",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/components/Items/EditItem.tsx",
+   "frontend/src/components/Items/AddItem.tsx"
+  ],
+  "md chars": 2519,
+  "gf chars": 6556,
+  "md s": 0.033,
+  "gf s": 0.157
+ },
+ {
+  "id": "q24",
+  "gold": [
+   "backend/app/api/routes/utils.py",
+   "compose.yml"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "backend/app/api/routes/utils.py",
+   "frontend/src/client/sdk.gen.ts",
+   "backend/README.md",
+   "compose.yml"
+  ],
+  "gf": [
+   "backend/app/backend_pre_start.py",
+   "backend/scripts/test.sh",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/client/core/CancelablePromise.ts",
+   "backend/app/core/db.py",
+   "frontend/src/client/types.gen.ts",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/models.py",
+   "backend/app/api/routes/users.py"
+  ],
+  "md chars": 1308,
+  "gf chars": 6570,
+  "md s": 0.038,
+  "gf s": 0.158
+ },
+ {
+  "id": "q25",
+  "gold": [
+   "backend/app/backend_pre_start.py",
+   "backend/scripts/prestart.sh"
+  ],
+  "kind": "code",
+  "md": [
+   "development.md",
+   "release-notes.md",
+   "backend/app/backend_pre_start.py",
+   "compose.yml"
+  ],
+  "gf": [
+   "backend/scripts/prestart.sh",
+   "backend/tests/api/routes/test_login.py",
+   "backend/tests/utils/utils.py",
+   "backend/app/models.py",
+   "backend/app/core/security.py",
+   "backend/app/core/config.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/api/routes/users.py",
+   "backend/app/crud.py",
+   "backend/app/utils.py"
+  ],
+  "md chars": 2062,
+  "gf chars": 6481,
+  "md s": 0.03,
+  "gf s": 0.166
+ },
+ {
+  "id": "q26",
+  "gold": [
+   "backend/Dockerfile",
+   "compose.override.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "backend/README.md",
+   "compose.yml",
+   ".github/workflows/test-backend.yml",
+   "frontend/README.md",
+   "backend/Dockerfile",
+   "release-notes.md"
+  ],
+  "gf": [
+   "backend/app/backend_pre_start.py",
+   "backend/scripts/test.sh",
+   "backend/app/alembic/env.py",
+   "backend/app/core/config.py",
+   "frontend/src/components/ui/avatar.tsx",
+   "frontend/src/lib/utils.ts",
+   "backend/app/core/db.py",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/models.py"
+  ],
+  "md chars": 1564,
+  "gf chars": 6599,
+  "md s": 0.037,
+  "gf s": 0.168
+ },
+ {
+  "id": "q27",
+  "gold": [
+   "frontend/playwright.config.ts"
+  ],
+  "kind": "code",
+  "md": [
+   ".github/workflows/playwright.yml",
+   "frontend/playwright.config.ts",
+   "release-notes.md"
+  ],
+  "gf": [
+   "frontend/tests/user-settings.spec.ts",
+   "frontend/src/routes/_layout/settings.tsx",
+   "frontend/src/components/theme-provider.tsx",
+   "frontend/package.json",
+   "frontend/biome.json",
+   "backend/tests/api/routes/test_users.py",
+   "frontend/playwright.config.ts",
+   "backend/tests/utils/utils.py",
+   "frontend/src/routeTree.gen.ts",
+   "backend/app/models.py"
+  ],
+  "md chars": 3020,
+  "gf chars": 6641,
+  "md s": 0.029,
+  "gf s": 0.166
+ },
+ {
+  "id": "q28",
+  "gold": [
+   "compose.traefik.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "deployment.md",
+   "compose.traefik.yml",
+   "README.md",
+   "compose.yml"
+  ],
+  "gf": [
+   "frontend/src/client/types.gen.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/routes/_layout/admin.tsx",
+   "frontend/src/components/Admin/UserActionsMenu.tsx",
+   "frontend/src/components/Admin/columns.tsx",
+   "backend/app/api/routes/items.py",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/routeTree.gen.ts"
+  ],
+  "md chars": 1512,
+  "gf chars": 6465,
+  "md s": 0.025,
+  "gf s": 0.157
+ },
+ {
+  "id": "q29",
+  "gold": [
+   "development.md"
+  ],
+  "kind": "docs",
+  "md": [
+   "frontend/README.md",
+   "development.md",
+   "release-notes.md"
+  ],
+  "gf": [
+   "backend/app/backend_pre_start.py",
+   "backend/scripts/test.sh",
+   "frontend/package.json",
+   "frontend/components.json",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/components/Items/EditItem.tsx",
+   "frontend/src/components/Items/AddItem.tsx",
+   "frontend/src/components/UserSettings/UserInformation.tsx",
+   "frontend/src/routes/reset-password.tsx"
+  ],
+  "md chars": 1020,
+  "gf chars": 6607,
+  "md s": 0.029,
+  "gf s": 0.164
+ },
+ {
+  "id": "q30",
+  "gold": [
+   "frontend/src/main.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/README.md",
+   "release-notes.md",
+   "backend/app/api/routes/users.py",
+   "backend/app/backend_pre_start.py",
+   "backend/app/api/routes/login.py",
+   "frontend/tests/login.spec.ts"
+  ],
+  "gf": [
+   "frontend/src/routes/login.tsx",
+   "frontend/src/routeTree.gen.ts",
+   "backend/app/backend_pre_start.py",
+   "backend/tests/api/routes/test_login.py",
+   "img/dashboard.png",
+   "backend/tests/utils/utils.py",
+   "backend/app/models.py",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/routes/recover-password.tsx",
+   "frontend/src/components/ui/loading-button.tsx"
+  ],
+  "md chars": 1974,
+  "gf chars": 6612,
+  "md s": 0.026,
+  "gf s": 0.163
+ },
+ {
+  "id": "q31",
+  "gold": [
+   "compose.override.yml",
+   "development.md"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/routes/login.py",
+   "README.md",
+   "backend/tests/api/routes/test_login.py",
+   "backend/README.md",
+   "release-notes.md"
+  ],
+  "gf": [
+   "frontend/tests/utils/mailcatcher.ts",
+   "frontend/src/components/ui/password-input.tsx",
+   "backend/tests/api/routes/test_login.py",
+   "frontend/src/components/ui/dropdown-menu.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/ui/button.tsx",
+   "frontend/package.json",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/routes/login.tsx",
+   "frontend/src/components/UserSettings/ChangePassword.tsx"
+  ],
+  "md chars": 1351,
+  "gf chars": 6529,
+  "md s": 0.025,
+  "gf s": 0.158
+ },
+ {
+  "id": "q32",
+  "gold": [
+   "backend/app/core/config.py",
+   "backend/app/utils.py"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "frontend/tests/reset-password.spec.ts",
+   "backend/app/email-templates/src/reset_password.mjml",
+   "backend/app/utils.py",
+   "frontend/tests/login.spec.ts"
+  ],
+  "gf": [
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/tests/reset-password.spec.ts",
+   "frontend/src/components/ui/pagination.tsx",
+   "frontend/src/client/core/OpenAPI.ts",
+   "frontend/src/components/ui/password-input.tsx",
+   "frontend/src/client/types.gen.ts",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/routeTree.gen.ts",
+   "frontend/src/components/ui/button.tsx"
+  ],
+  "md chars": 1807,
+  "gf chars": 6522,
+  "md s": 0.026,
+  "gf s": 0.156
+ },
+ {
+  "id": "q33",
+  "gold": [
+   "compose.yml",
+   "deployment.md"
+  ],
+  "kind": "code",
+  "md": [
+   "development.md",
+   "release-notes.md",
+   "README.md",
+   "compose.traefik.yml"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/index.tsx",
+   "frontend/src/client/core/OpenAPI.ts",
+   "backend/app/api/main.py",
+   "frontend/components.json",
+   "frontend/src/client/sdk.gen.ts",
+   "backend/app/api/routes/users.py",
+   "frontend/src/client/index.ts",
+   "frontend/src/client/core/request.ts",
+   "backend/app/api/routes/login.py",
+   "frontend/src/hooks/useAuth.ts"
+  ],
+  "md chars": 1437,
+  "gf chars": 6543,
+  "md s": 0.026,
+  "gf s": 0.159
+ },
+ {
+  "id": "q34",
+  "gold": [
+   "backend/README.md",
+   "backend/scripts/tests-start.sh"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/README.md",
+   "frontend/README.md",
+   ".github/workflows/test-backend.yml",
+   "deployment.md"
+  ],
+  "gf": [
+   "backend/scripts/test.sh",
+   "frontend/package.json",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/backend_pre_start.py",
+   "backend/tests/utils/utils.py",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/routes/recover-password.tsx",
+   "frontend/src/routes/login.tsx",
+   "frontend/src/routes/signup.tsx"
+  ],
+  "md chars": 1223,
+  "gf chars": 6557,
+  "md s": 0.026,
+  "gf s": 0.162
+ },
+ {
+  "id": "q35",
+  "gold": [
+   "frontend/src/components/Sidebar/AppSidebar.tsx",
+   "frontend/src/routes/_layout/admin.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/routes/items.py",
+   "backend/tests/api/routes/test_items.py",
+   "release-notes.md",
+   "frontend/src/components/Admin/UserActionsMenu.tsx",
+   "CONTRIBUTING.md",
+   "README.md",
+   "frontend/src/components/ui/sidebar.tsx"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/admin.tsx",
+   "frontend/src/components/ui/sidebar.tsx",
+   "frontend/src/components/Sidebar/Main.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/components/Sidebar/AppSidebar.tsx",
+   "frontend/src/components/ui/sheet.tsx",
+   "frontend/src/routeTree.gen.ts",
+   "frontend/src/components/ui/button.tsx",
+   "frontend/package.json"
+  ],
+  "md chars": 2316,
+  "gf chars": 6451,
+  "md s": 0.027,
+  "gf s": 0.157
+ },
+ {
+  "id": "r01",
+  "gold": [
+   "backend/app/core/security.py",
+   "backend/app/crud.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/core/security.py",
+   "backend/tests/api/routes/test_login.py",
+   "README.md",
+   "backend/tests/crud/test_user.py",
+   "release-notes.md"
+  ],
+  "gf": [
+   "backend/tests/api/routes/test_login.py",
+   "backend/tests/crud/test_user.py",
+   "frontend/src/components/ui/password-input.tsx",
+   "frontend/src/lib/utils.ts",
+   "backend/tests/utils/utils.py",
+   "backend/app/models.py",
+   "frontend/src/components/ui/button.tsx",
+   "frontend/package.json",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/routes/login.tsx"
+  ],
+  "md chars": 1145,
+  "gf chars": 6702,
+  "md s": 0.027,
+  "gf s": 0.156
+ },
+ {
+  "id": "r02",
+  "gold": [
+   "backend/app/api/routes/login.py",
+   "backend/app/crud.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/crud.py",
+   "README.md",
+   "backend/tests/crud/test_user.py",
+   "release-notes.md",
+   "backend/app/api/routes/users.py",
+   "frontend/tests/login.spec.ts",
+   "backend/tests/api/routes/test_login.py"
+  ],
+  "gf": [
+   "frontend/src/routes/login.tsx",
+   "frontend/src/routeTree.gen.ts",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/routes/recover-password.tsx",
+   "frontend/src/components/ui/loading-button.tsx",
+   "frontend/src/routes/signup.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/routes/_layout/admin.tsx",
+   "backend/app/utils.py",
+   "frontend/src/components/ui/form.tsx"
+  ],
+  "md chars": 1989,
+  "gf chars": 6473,
+  "md s": 0.025,
+  "gf s": 0.16
+ },
+ {
+  "id": "r03",
+  "gold": [
+   "backend/app/api/routes/login.py"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "README.md",
+   "backend/app/utils.py",
+   "backend/app/api/routes/login.py",
+   "deployment.md",
+   "frontend/tests/login.spec.ts",
+   "backend/app/crud.py"
+  ],
+  "gf": [
+   "frontend/tests/utils/mailcatcher.ts",
+   "frontend/src/components/UserSettings/DeleteAccount.tsx",
+   "frontend/src/components/ui/password-input.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/ui/button.tsx",
+   "frontend/package.json",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/routes/login.tsx",
+   "frontend/src/components/UserSettings/ChangePassword.tsx",
+   "frontend/src/routes/signup.tsx"
+  ],
+  "md chars": 2155,
+  "gf chars": 6458,
+  "md s": 0.026,
+  "gf s": 0.156
+ },
+ {
+  "id": "r04",
+  "gold": [
+   "backend/app/main.py"
+  ],
+  "kind": "code",
+  "md": [
+   "development.md",
+   "release-notes.md",
+   "backend/README.md",
+   "backend/app/main.py",
+   "README.md",
+   ".github/workflows/deploy-production.yml"
+  ],
+  "gf": [
+   "backend/app/backend_pre_start.py",
+   "backend/scripts/test.sh",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "frontend/package.json",
+   "frontend/src/client/schemas.gen.ts",
+   "frontend/biome.json",
+   "hooks/post_gen_project.py",
+   "backend/app/core/db.py",
+   "backend/app/main.py",
+   "frontend/src/components/ui/sidebar.tsx"
+  ],
+  "md chars": 1307,
+  "gf chars": 6567,
+  "md s": 0.026,
+  "gf s": 0.161
+ },
+ {
+  "id": "r05",
+  "gold": [
+   ".github/workflows/deploy-staging.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "deployment.md",
+   "release-notes.md",
+   ".github/workflows/deploy-staging.yml",
+   "README.md"
+  ],
+  "gf": [
+   "backend/app/alembic/env.py",
+   "backend/app/models.py",
+   "backend/app/core/config.py"
+  ],
+  "md chars": 1610,
+  "gf chars": 2640,
+  "md s": 0.027,
+  "gf s": 0.15
+ },
+ {
+  "id": "r06",
+  "gold": [
+   ".github/dependabot.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "release-notes.md",
+   "CONTRIBUTING.md"
+  ],
+  "gf": [
+   "frontend/src/client/core/OpenAPI.ts",
+   ".copier/update_dotenv.py",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/client/index.ts",
+   "frontend/src/client/core/request.ts",
+   "frontend/src/main.tsx",
+   "frontend/tests/utils/privateApi.ts",
+   "frontend/src/client/core/ApiRequestOptions.ts",
+   "frontend/package.json",
+   "frontend/src/client/types.gen.ts"
+  ],
+  "md chars": 717,
+  "gf chars": 6489,
+  "md s": 0.035,
+  "gf s": 0.151
+ },
+ {
+  "id": "r07",
+  "gold": [
+   ".github/workflows/playwright.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "frontend/playwright.config.ts",
+   ".github/workflows/playwright.yml",
+   "frontend/README.md",
+   "README.md",
+   "release-notes.md"
+  ],
+  "gf": [
+   "frontend/playwright.config.ts",
+   "backend/app/alembic/env.py",
+   "frontend/package.json",
+   "frontend/src/components/ui/sidebar.tsx",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/components/Items/EditItem.tsx",
+   "backend/app/models.py",
+   "frontend/src/components/Items/AddItem.tsx",
+   "frontend/src/components/UserSettings/UserInformation.tsx"
+  ],
+  "md chars": 1743,
+  "gf chars": 6542,
+  "md s": 0.025,
+  "gf s": 0.156
+ },
+ {
+  "id": "r08",
+  "gold": [
+   "backend/pyproject.toml",
+   "backend/scripts/lint.sh"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/scripts/lint.sh",
+   ".pre-commit-config.yaml",
+   "release-notes.md",
+   "backend/alembic.ini",
+   "frontend/index.html"
+  ],
+  "gf": [
+   "frontend/package.json",
+   "backend/scripts/test.sh",
+   "backend/scripts/lint.sh",
+   "backend/app/backend_pre_start.py",
+   "backend/app/core/config.py",
+   "scripts/test.sh",
+   "backend/app/core/db.py",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/models.py"
+  ],
+  "md chars": 1085,
+  "gf chars": 6553,
+  "md s": 0.031,
+  "gf s": 0.155
+ },
+ {
+  "id": "r09",
+  "gold": [
+   "backend/app/core/config.py",
+   "backend/app/main.py"
+  ],
+  "kind": "code",
+  "md": [
+   "deployment.md",
+   "README.md",
+   "backend/app/core/config.py",
+   "development.md",
+   "backend/app/main.py"
+  ],
+  "gf": [
+   "backend/app/core/config.py",
+   "frontend/src/client/core/ApiError.ts",
+   "frontend/src/client/core/ApiResult.ts",
+   "backend/app/api/main.py",
+   "backend/app/api/routes/login.py",
+   "backend/app/api/routes/users.py",
+   "frontend/src/client/index.ts",
+   "frontend/src/client/core/request.ts",
+   "frontend/src/main.tsx",
+   "frontend/src/utils.ts"
+  ],
+  "md chars": 1544,
+  "gf chars": 6617,
+  "md s": 0.03,
+  "gf s": 0.154
+ },
+ {
+  "id": "r10",
+  "gold": [
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/main.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/deps.py",
+   "frontend/src/client/sdk.gen.ts",
+   "backend/app/utils.py",
+   "backend/app/api/routes/users.py",
+   "SECURITY.md",
+   "backend/app/api/routes/login.py"
+  ],
+  "gf": [
+   "frontend/biome.json",
+   "backend/app/models.py",
+   "backend/app/api/routes/items.py",
+   "img/github-social-preview.png",
+   "backend/app/core/security.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/api/routes/users.py",
+   "backend/app/api/routes/login.py",
+   "backend/tests/api/routes/test_login.py",
+   "backend/app/crud.py"
+  ],
+  "md chars": 3239,
+  "gf chars": 6585,
+  "md s": 0.027,
+  "gf s": 0.153
+ },
+ {
+  "id": "r11",
+  "gold": [
+   "compose.traefik.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "compose.traefik.yml",
+   "deployment.md",
+   "README.md"
+  ],
+  "gf": [
+   "frontend/biome.json",
+   "backend/tests/crud/test_user.py",
+   "frontend/src/components/ui/sheet.tsx",
+   "frontend/src/components/ui/dialog.tsx",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/components/Items/EditItem.tsx",
+   "frontend/src/components/Items/AddItem.tsx",
+   "frontend/src/components/Admin/DeleteUser.tsx",
+   "frontend/src/components/Items/DeleteItem.tsx"
+  ],
+  "md chars": 1203,
+  "gf chars": 6554,
+  "md s": 0.028,
+  "gf s": 0.151
+ },
+ {
+  "id": "r12",
+  "gold": [
+   "backend/app/api/routes/users.py",
+   "backend/app/models.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/routes/items.py",
+   "frontend/src/components/Admin/DeleteUser.tsx",
+   "backend/app/api/routes/users.py",
+   "release-notes.md"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/items.tsx",
+   "frontend/src/components/Sidebar/User.tsx",
+   "frontend/src/components/UserSettings/DeleteAccount.tsx",
+   "frontend/src/components/UserSettings/DeleteConfirmation.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/components/Items/AddItem.tsx",
+   "frontend/src/components/Sidebar/AppSidebar.tsx",
+   "frontend/src/routes/_layout/settings.tsx",
+   "frontend/src/components/ui/dropdown-menu.tsx",
+   "frontend/src/components/ui/sidebar.tsx"
+  ],
+  "md chars": 2144,
+  "gf chars": 6501,
+  "md s": 0.024,
+  "gf s": 0.157
+ },
+ {
+  "id": "r13",
+  "gold": [
+   "backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+   "backend/app/models.py"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+   "frontend/src/client/core/ApiRequestOptions.ts"
+  ],
+  "gf": [
+   "backend/app/alembic/versions/d98dd8ec85a3_edit_replace_id_integers_in_all_models_.py",
+   "frontend/src/components/Sidebar/User.tsx",
+   "backend/tests/utils/user.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/models.py",
+   "backend/tests/utils/utils.py",
+   "backend/tests/api/routes/test_login.py",
+   "backend/app/crud.py",
+   "frontend/src/hooks/useAuth.ts",
+   "backend/app/core/config.py"
+  ],
+  "md chars": 1501,
+  "gf chars": 6481,
+  "md s": 0.024,
+  "gf s": 0.158
+ },
+ {
+  "id": "r17",
+  "gold": [
+   "backend/app/api/deps.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/deps.py",
+   "frontend/src/client/sdk.gen.ts",
+   "backend/app/core/security.py",
+   "backend/app/api/routes/login.py",
+   "frontend/src/client/core/request.ts",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/api/routes/users.py"
+  ],
+  "gf": [
+   "frontend/src/client/core/request.ts",
+   "backend/app/models.py",
+   "backend/app/api/deps.py",
+   "frontend/src/components/Sidebar/User.tsx",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/client/core/CancelablePromise.ts",
+   "backend/app/api/routes/login.py",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/components/Sidebar/AppSidebar.tsx",
+   "frontend/src/components/ui/dropdown-menu.tsx"
+  ],
+  "md chars": 3070,
+  "gf chars": 6509,
+  "md s": 0.027,
+  "gf s": 0.158
+ },
+ {
+  "id": "r18",
+  "gold": [
+   "backend/app/core/security.py",
+   "backend/app/crud.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/tests/crud/test_user.py",
+   "backend/app/core/security.py",
+   "backend/tests/api/routes/test_login.py",
+   "deployment.md",
+   "backend/app/api/routes/users.py",
+   "backend/tests/api/routes/test_users.py"
+  ],
+  "gf": [
+   "frontend/src/client/types.gen.ts",
+   "frontend/src/components/UserSettings/ChangePassword.tsx",
+   "backend/tests/api/routes/test_login.py",
+   "frontend/components.json",
+   "frontend/src/components/ui/password-input.tsx",
+   "backend/app/api/routes/users.py",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/client/sdk.gen.ts",
+   "backend/app/models.py",
+   "backend/tests/utils/utils.py"
+  ],
+  "md chars": 2156,
+  "gf chars": 6645,
+  "md s": 0.026,
+  "gf s": 0.163
+ },
+ {
+  "id": "r19",
+  "gold": [
+   "backend/app/core/config.py"
+  ],
+  "kind": "code",
+  "md": [
+   "README.md",
+   "deployment.md",
+   "backend/app/core/config.py",
+   ".github/workflows/deploy-production.yml",
+   ".github/workflows/deploy-staging.yml",
+   "compose.yml"
+  ],
+  "gf": [
+   "backend/app/core/config.py",
+   "backend/app/backend_pre_start.py",
+   "frontend/src/components/ui/avatar.tsx",
+   "frontend/biome.json",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Sidebar/User.tsx",
+   "backend/app/core/db.py",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "frontend/src/components/ui/sidebar.tsx",
+   "backend/tests/api/routes/test_users.py"
+  ],
+  "md chars": 2641,
+  "gf chars": 6450,
+  "md s": 0.026,
+  "gf s": 0.157
+ },
+ {
+  "id": "r20",
+  "gold": [
+   "backend/app/core/config.py",
+   "backend/app/utils.py"
+  ],
+  "kind": "code",
+  "md": [
+   "README.md",
+   "development.md",
+   "frontend/tests/utils/mailcatcher.ts",
+   "deployment.md",
+   "backend/app/utils.py"
+  ],
+  "gf": [
+   "backend/app/backend_pre_start.py",
+   "backend/app/utils.py",
+   "backend/app/api/routes/users.py",
+   "backend/app/api/routes/login.py",
+   "backend/app/core/db.py",
+   "backend/app/api/routes/utils.py",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/models.py",
+   "backend/app/crud.py"
+  ],
+  "md chars": 1311,
+  "gf chars": 6480,
+  "md s": 0.031,
+  "gf s": 0.155
+ },
+ {
+  "id": "r21",
+  "gold": [
+   "backend/app/core/config.py",
+   "backend/app/utils.py"
+  ],
+  "kind": "code",
+  "md": [
+   "README.md",
+   "deployment.md",
+   "backend/app/utils.py",
+   "backend/app/core/config.py",
+   "release-notes.md",
+   ".github/DISCUSSION_TEMPLATE/questions.yml",
+   "compose.override.yml"
+  ],
+  "gf": [
+   "frontend/components.json",
+   "frontend/src/components/Common/ErrorComponent.tsx",
+   "frontend/src/components/ui/button.tsx",
+   "frontend/src/routes/__root.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/ui/sidebar.tsx",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/components/Items/EditItem.tsx",
+   "frontend/src/components/Items/AddItem.tsx"
+  ],
+  "md chars": 1912,
+  "gf chars": 21419,
+  "md s": 0.029,
+  "gf s": 0.158
+ },
+ {
+  "id": "r22",
+  "gold": [
+   "backend/app/models.py"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "backend/app/models.py"
+  ],
+  "gf": [
+   "frontend/src/client/core/request.ts",
+   "backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py",
+   "backend/app/models.py",
+   "frontend/biome.json",
+   "frontend/src/client/schemas.gen.ts",
+   "frontend/src/client/sdk.gen.ts",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/api/routes/users.py",
+   "frontend/src/client/core/CancelablePromise.ts",
+   "backend/app/api/routes/login.py"
+  ],
+  "md chars": 1131,
+  "gf chars": 6536,
+  "md s": 0.032,
+  "gf s": 0.153
+ },
+ {
+  "id": "r23",
+  "gold": [
+   "backend/app/api/routes/users.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/routes/users.py",
+   "backend/tests/api/routes/test_users.py",
+   "frontend/src/client/sdk.gen.ts",
+   "release-notes.md",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "backend/tests/scripts/test_test_pre_start.py"
+  ],
+  "gf": [
+   "frontend/src/client/types.gen.ts",
+   "frontend/src/client/schemas.gen.ts",
+   "frontend/src/components/ui/password-input.tsx",
+   "backend/tests/utils/user.py",
+   "backend/app/api/routes/users.py"
+  ],
+  "md chars": 3436,
+  "gf chars": 981,
+  "md s": 0.029,
+  "gf s": 0.158
+ },
+ {
+  "id": "r24",
+  "gold": [
+   "backend/app/api/routes/users.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/routes/users.py",
+   "README.md",
+   "deployment.md",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/utils.py"
+  ],
+  "gf": [
+   "frontend/tests/utils/mailcatcher.ts",
+   "frontend/src/components/UserSettings/DeleteAccount.tsx",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/models.py",
+   "backend/app/api/routes/users.py",
+   "backend/tests/utils/utils.py",
+   "backend/app/api/routes/login.py",
+   "frontend/src/components/UserSettings/DeleteConfirmation.tsx",
+   "backend/app/crud.py",
+   "backend/app/core/config.py"
+  ],
+  "md chars": 2682,
+  "gf chars": 6517,
+  "md s": 0.024,
+  "gf s": 0.157
+ },
+ {
+  "id": "r25",
+  "gold": [
+   "backend/app/api/routes/items.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/routes/items.py",
+   "release-notes.md",
+   "backend/app/api/routes/users.py",
+   "backend/app/models.py"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/items.tsx",
+   "frontend/src/client/types.gen.ts",
+   "backend/app/backend_pre_start.py",
+   "frontend/biome.json",
+   "backend/app/models.py",
+   "frontend/src/components/Sidebar/User.tsx",
+   "frontend/src/components/Items/AddItem.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/components/Sidebar/AppSidebar.tsx",
+   "frontend/src/components/ui/sidebar.tsx"
+  ],
+  "md chars": 2078,
+  "gf chars": 6614,
+  "md s": 0.028,
+  "gf s": 0.16
+ },
+ {
+  "id": "r26",
+  "gold": [
+   "backend/app/api/routes/users.py",
+   "backend/app/models.py"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/src/client/sdk.gen.ts",
+   "backend/app/api/routes/users.py",
+   "backend/app/api/routes/login.py",
+   "release-notes.md",
+   "deployment.md"
+  ],
+  "gf": [
+   "frontend/tests/utils/mailcatcher.ts",
+   "backend/tests/api/routes/test_users.py",
+   "frontend/src/client/types.gen.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "backend/tests/utils/utils.py",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/routes/_layout/admin.tsx",
+   "frontend/src/components/Admin/UserActionsMenu.tsx",
+   "frontend/src/components/Admin/columns.tsx",
+   "frontend/src/lib/utils.ts"
+  ],
+  "md chars": 1808,
+  "gf chars": 6503,
+  "md s": 0.027,
+  "gf s": 0.156
+ },
+ {
+  "id": "r27",
+  "gold": [
+   ".pre-commit-config.yaml",
+   "scripts/generate-client.sh"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "frontend/src/client/types.gen.ts",
+   "backend/README.md"
+  ],
+  "gf": [
+   "frontend/package.json",
+   "frontend/src/routes/_layout/items.tsx",
+   "frontend/src/components/UserSettings/ChangePassword.tsx",
+   "backend/tests/conftest.py",
+   "backend/app/alembic/env.py",
+   "frontend/src/components/Items/EditItem.tsx",
+   "frontend/src/components/Items/AddItem.tsx",
+   "frontend/src/client/index.ts",
+   "frontend/src/components/ui/form.tsx",
+   "frontend/src/components/ui/loading-button.tsx"
+  ],
+  "md chars": 1129,
+  "gf chars": 6612,
+  "md s": 0.034,
+  "gf s": 0.16
+ },
+ {
+  "id": "r28",
+  "gold": [
+   "compose.override.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "backend/tests/api/routes/test_login.py",
+   "release-notes.md",
+   "README.md",
+   "backend/app/api/routes/login.py",
+   "backend/app/utils.py",
+   "frontend/README.md"
+  ],
+  "gf": [
+   "backend/app/core/config.py",
+   "frontend/src/routes/_layout/settings.tsx",
+   "frontend/tests/utils/mailcatcher.ts",
+   "frontend/package.json",
+   "scripts/test-local.sh",
+   "frontend/src/components/ui/password-input.tsx",
+   "backend/tests/api/routes/test_login.py",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/routeTree.gen.ts",
+   "frontend/src/components/ui/button.tsx"
+  ],
+  "md chars": 2010,
+  "gf chars": 6577,
+  "md s": 0.03,
+  "gf s": 0.162
+ },
+ {
+  "id": "r29",
+  "gold": [
+   "backend/tests/conftest.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/README.md",
+   "release-notes.md",
+   "backend/tests/crud/test_user.py",
+   "backend/tests/api/routes/test_users.py",
+   "frontend/README.md",
+   "backend/tests/scripts/test_backend_pre_start.py"
+  ],
+  "gf": [
+   "backend/app/backend_pre_start.py",
+   "backend/scripts/test.sh",
+   "backend/scripts/tests-start.sh",
+   "backend/app/core/config.py",
+   "backend/app/tests_pre_start.py",
+   "backend/app/core/db.py",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "backend/tests/scripts/test_test_pre_start.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/models.py"
+  ],
+  "md chars": 1341,
+  "gf chars": 6506,
+  "md s": 0.029,
+  "gf s": 0.154
+ },
+ {
+  "id": "r33",
+  "gold": [
+   "frontend/openapi-ts.config.ts"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/README.md",
+   "frontend/src/components/Items/ItemActionsMenu.tsx",
+   "frontend/src/client/types.gen.ts",
+   "frontend/openapi-ts.config.ts",
+   "frontend/src/components/ui/select.tsx",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/client/core/OpenAPI.ts",
+   "frontend/src/routes/_layout/items.tsx"
+  ],
+  "gf": [
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/client/core/OpenAPI.ts",
+   "backend/tests/conftest.py",
+   "frontend/package.json",
+   "frontend/src/utils.ts",
+   "frontend/src/components/ui/sidebar.tsx",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/components/Items/EditItem.tsx",
+   "frontend/src/components/Items/AddItem.tsx"
+  ],
+  "md chars": 2152,
+  "gf chars": 6548,
+  "md s": 0.03,
+  "gf s": 0.168
+ },
+ {
+  "id": "r34",
+  "gold": [
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/routes/_layout.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/README.md",
+   "frontend/src/routes/_layout/settings.tsx",
+   "release-notes.md",
+   "backend/README.md",
+   "development.md",
+   ".github/DISCUSSION_TEMPLATE/questions.yml",
+   ".github/workflows/pre-commit.yml",
+   "backend/app/api/routes/utils.py",
+   ".pre-commit-config.yaml"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout.tsx",
+   "frontend/src/main.tsx",
+   "backend/app/models.py",
+   "frontend/src/components/ui/checkbox.tsx",
+   "frontend/src/client/types.gen.ts",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/package.json",
+   "backend/app/api/routes/login.py"
+  ],
+  "md chars": 1760,
+  "gf chars": 6528,
+  "md s": 0.024,
+  "gf s": 0.158
+ },
+ {
+  "id": "r35",
+  "gold": [
+   "frontend/src/routes/login.tsx",
+   "frontend/src/routes/signup.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "deployment.md",
+   "release-notes.md",
+   "backend/app/api/routes/users.py",
+   "frontend/tests/login.spec.ts",
+   "frontend/src/routes/signup.tsx",
+   "frontend/src/routeTree.gen.ts",
+   ".github/DISCUSSION_TEMPLATE/questions.yml"
+  ],
+  "gf": [
+   "frontend/src/routes/signup.tsx",
+   "frontend/src/routes/login.tsx",
+   "backend/tests/api/routes/test_users.py",
+   "frontend/src/hooks/useAuth.ts",
+   "backend/tests/utils/utils.py",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/routes/recover-password.tsx",
+   "frontend/src/components/ui/loading-button.tsx",
+   "frontend/src/components/ui/form.tsx",
+   "frontend/src/components/ui/input.tsx"
+  ],
+  "md chars": 2065,
+  "gf chars": 6513,
+  "md s": 0.031,
+  "gf s": 0.152
+ },
+ {
+  "id": "r36",
+  "gold": [
+   "frontend/src/routes/reset-password.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/src/routes/reset-password.tsx",
+   "backend/app/utils.py",
+   "backend/app/api/routes/login.py",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/tests/reset-password.spec.ts"
+  ],
+  "gf": [
+   "frontend/src/routeTree.gen.ts",
+   "backend/app/models.py",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/components/ui/password-input.tsx",
+   "frontend/src/client/core/request.ts",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/ui/button.tsx",
+   "frontend/package.json",
+   "frontend/src/client/index.ts",
+   "frontend/src/hooks/useAuth.ts"
+  ],
+  "md chars": 2935,
+  "gf chars": 6551,
+  "md s": 0.027,
+  "gf s": 0.16
+ },
+ {
+  "id": "r37",
+  "gold": [
+   "backend/app/core/config.py",
+   "backend/app/utils.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/routes/login.py",
+   "backend/app/utils.py",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/tests/reset-password.spec.ts",
+   "frontend/src/client/core/ApiRequestOptions.ts"
+  ],
+  "gf": [
+   "backend/app/models.py",
+   "backend/app/backend_pre_start.py",
+   "frontend/tests/utils/mailcatcher.ts",
+   "frontend/src/main.tsx",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/client/core/request.ts",
+   "frontend/src/routeTree.gen.ts",
+   "frontend/src/client/index.ts",
+   "frontend/src/hooks/useAuth.ts",
+   "backend/app/api/routes/login.py"
+  ],
+  "md chars": 2647,
+  "gf chars": 6540,
+  "md s": 0.029,
+  "gf s": 0.16
+ },
+ {
+  "id": "r38",
+  "gold": [
+   "frontend/src/components/theme-provider.tsx",
+   "frontend/src/main.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "README.md",
+   "deployment.md",
+   "release-notes.md",
+   "backend/README.md",
+   "development.md",
+   "frontend/src/components/theme-provider.tsx"
+  ],
+  "gf": [
+   "frontend/src/components/theme-provider.tsx",
+   "backend/app/models.py",
+   "frontend/tests/config.ts",
+   "frontend/src/components/Common/Appearance.tsx",
+   "frontend/tests/user-settings.spec.ts",
+   "frontend/tests/admin.spec.ts",
+   "backend/app/api/routes/items.py",
+   "frontend/tests/login.spec.ts",
+   "backend/app/core/security.py",
+   "frontend/tests/auth.setup.ts"
+  ],
+  "md chars": 1480,
+  "gf chars": 6495,
+  "md s": 0.026,
+  "gf s": 0.151
+ },
+ {
+  "id": "r39",
+  "gold": [
+   "frontend/src/components/Common/DataTable.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/src/components/Common/DataTable.tsx"
+  ],
+  "gf": [
+   "frontend/src/components/Common/DataTable.tsx",
+   "frontend/src/components/ui/pagination.tsx",
+   "frontend/src/components/Common/Appearance.tsx",
+   "frontend/src/client/core/ApiRequestOptions.ts",
+   "backend/tests/api/routes/test_users.py",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/ui/sidebar.tsx",
+   "backend/tests/utils/utils.py",
+   "backend/app/models.py",
+   "frontend/src/components/ui/button.tsx"
+  ],
+  "md chars": 3509,
+  "gf chars": 6548,
+  "md s": 0.025,
+  "gf s": 0.153
+ },
+ {
+  "id": "r40",
+  "gold": [
+   "frontend/src/components/Items/AddItem.tsx",
+   "frontend/src/components/Items/DeleteItem.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/api/routes/items.py",
+   "backend/tests/crud/test_user.py",
+   "frontend/src/components/Items/DeleteItem.tsx",
+   "backend/tests/api/routes/test_items.py",
+   "release-notes.md"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/items.tsx",
+   "frontend/package.json",
+   "backend/app/models.py",
+   "frontend/components.json",
+   "frontend/src/main.tsx",
+   "backend/app/api/routes/users.py",
+   "backend/app/crud.py",
+   "backend/tests/conftest.py",
+   "backend/app/api/routes/items.py",
+   "backend/tests/utils/item.py"
+  ],
+  "md chars": 2410,
+  "gf chars": 6532,
+  "md s": 0.024,
+  "gf s": 0.158
+ },
+ {
+  "id": "r41",
+  "gold": [
+   "frontend/src/hooks/useCustomToast.ts",
+   "frontend/src/utils.ts"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/src/hooks/useCustomToast.ts",
+   "frontend/src/utils.ts",
+   "backend/README.md",
+   "frontend/src/client/core/ApiError.ts",
+   "frontend/src/components/ui/form.tsx",
+   "deployment.md"
+  ],
+  "gf": [
+   "frontend/src/client/core/ApiError.ts",
+   "frontend/src/components/ui/sonner.tsx",
+   "backend/app/api/main.py",
+   "frontend/src/components/Common/ErrorComponent.tsx",
+   "frontend/src/components/ui/button-group.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/ui/button.tsx",
+   "backend/app/api/routes/users.py",
+   "frontend/src/client/index.ts",
+   "frontend/src/client/core/request.ts"
+  ],
+  "md chars": 1533,
+  "gf chars": 6546,
+  "md s": 0.03,
+  "gf s": 0.157
+ },
+ {
+  "id": "r42",
+  "gold": [
+   "frontend/src/routes/_layout/settings.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/src/routes/_layout/settings.tsx",
+   "frontend/tests/user-settings.spec.ts",
+   "deployment.md",
+   "release-notes.md"
+  ],
+  "gf": [
+   "backend/app/core/config.py",
+   "frontend/tests/user-settings.spec.ts",
+   "frontend/src/components/ui/tabs.tsx",
+   "frontend/src/routes/_layout/settings.tsx",
+   "frontend/src/components/Sidebar/User.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/routeTree.gen.ts",
+   "frontend/src/components/UserSettings/UserInformation.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/components/UserSettings/ChangePassword.tsx"
+  ],
+  "md chars": 1545,
+  "gf chars": 6465,
+  "md s": 0.027,
+  "gf s": 0.157
+ },
+ {
+  "id": "r43",
+  "gold": [
+   "backend/app/api/routes/users.py",
+   "frontend/src/main.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/src/components/Admin/DeleteUser.tsx",
+   "frontend/src/components/UserSettings/DeleteConfirmation.tsx",
+   "backend/app/api/routes/users.py",
+   "backend/app/api/routes/items.py",
+   "frontend/src/routes/_layout/settings.tsx",
+   "frontend/tests/user-settings.spec.ts",
+   "release-notes.md"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/admin.tsx",
+   "backend/pyproject.toml",
+   "frontend/src/components/UserSettings/DeleteAccount.tsx",
+   "backend/app/api/main.py",
+   "frontend/src/components/ui/table.tsx",
+   "frontend/src/lib/utils.ts",
+   "backend/app/api/routes/users.py",
+   "frontend/package.json",
+   "backend/app/api/routes/login.py",
+   "frontend/src/components/UserSettings/DeleteConfirmation.tsx"
+  ],
+  "md chars": 2360,
+  "gf chars": 6536,
+  "md s": 0.028,
+  "gf s": 0.16
+ },
+ {
+  "id": "r44",
+  "gold": [
+   "backend/app/models.py",
+   "frontend/src/components/UserSettings/UserInformation.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/alembic.ini",
+   "backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py",
+   "release-notes.md",
+   "development.md",
+   "backend/app/models.py",
+   "frontend/src/client/sdk.gen.ts"
+  ],
+  "gf": [
+   "frontend/package.json",
+   "backend/app/api/main.py",
+   "frontend/src/components/ui/form.tsx",
+   "frontend/src/routeTree.gen.ts",
+   "backend/app/alembic/versions/9c0a54914c78_add_max_length_for_string_varchar_.py",
+   "img/docs.png",
+   "backend/tests/api/routes/test_users.py",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx"
+  ],
+  "md chars": 1867,
+  "gf chars": 6663,
+  "md s": 0.033,
+  "gf s": 0.158
+ },
+ {
+  "id": "r45",
+  "gold": [
+   "frontend/src/components/Admin/UserActionsMenu.tsx",
+   "frontend/src/components/Admin/columns.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "frontend/src/components/Admin/UserActionsMenu.tsx",
+   "frontend/src/components/Admin/columns.tsx",
+   "frontend/src/components/Common/DataTable.tsx"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/admin.tsx",
+   "frontend/biome.json",
+   "frontend/src/components/ui/table.tsx",
+   "frontend/src/components/ui/dropdown-menu.tsx",
+   "backend/app/api/routes/users.py",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Items/EditItem.tsx",
+   "backend/app/models.py",
+   "frontend/package.json"
+  ],
+  "md chars": 2837,
+  "gf chars": 6505,
+  "md s": 0.024,
+  "gf s": 0.158
+ },
+ {
+  "id": "r49",
+  "gold": [
+   "backend/scripts/prestart.sh",
+   "compose.yml"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/backend_pre_start.py",
+   "development.md",
+   "backend/app/tests_pre_start.py",
+   "backend/README.md",
+   "release-notes.md",
+   "backend/scripts/prestart.sh",
+   "compose.yml"
+  ],
+  "gf": [
+   "backend/scripts/prestart.sh",
+   "backend/app/backend_pre_start.py",
+   "backend/app/alembic/env.py",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/components/UserSettings/UserInformation.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/components/Admin/DeleteUser.tsx",
+   "frontend/src/components/UserSettings/ChangePassword.tsx"
+  ],
+  "md chars": 1687,
+  "gf chars": 6555,
+  "md s": 0.025,
+  "gf s": 0.157
+ },
+ {
+  "id": "r50",
+  "gold": [
+   "compose.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "compose.yml",
+   "deployment.md",
+   "README.md",
+   "backend/README.md",
+   "frontend/README.md",
+   ".github/workflows/test-docker-compose.yml",
+   "frontend/src/components/ui/checkbox.tsx"
+  ],
+  "gf": [
+   "backend/app/api/routes/utils.py",
+   "backend/app/alembic/env.py",
+   "frontend/src/components/Common/DataTable.tsx",
+   "frontend/src/components/ui/avatar.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/ui/button.tsx",
+   "frontend/package.json",
+   "frontend/src/routes/_layout/admin.tsx",
+   "frontend/src/routes/_layout/items.tsx",
+   "frontend/src/components/ui/select.tsx"
+  ],
+  "md chars": 1881,
+  "gf chars": 6522,
+  "md s": 0.026,
+  "gf s": 0.151
+ },
+ {
+  "id": "r51",
+  "gold": [
+   ".github/workflows/deploy-staging.yml",
+   "backend/app/main.py"
+  ],
+  "kind": "code",
+  "md": [
+   "deployment.md",
+   "README.md",
+   ".github/workflows/deploy-production.yml",
+   "copier.yml",
+   ".github/workflows/deploy-staging.yml",
+   "backend/app/main.py"
+  ],
+  "gf": [
+   "backend/app/backend_pre_start.py",
+   "backend/app/core/config.py",
+   "backend/app/core/db.py",
+   "backend/app/main.py",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/models.py",
+   "backend/app/api/routes/users.py",
+   "backend/app/api/routes/login.py",
+   "backend/tests/api/routes/test_login.py"
+  ],
+  "md chars": 1376,
+  "gf chars": 6530,
+  "md s": 0.026,
+  "gf s": 0.156
+ },
+ {
+  "id": "r52",
+  "gold": [
+   "compose.override.yml",
+   "compose.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "frontend/README.md",
+   "development.md",
+   "compose.yml",
+   "release-notes.md",
+   "compose.override.yml"
+  ],
+  "gf": [
+   "frontend/tests/auth.setup.ts",
+   "frontend/src/client/core/ApiError.ts",
+   "frontend/src/client/core/ApiResult.ts",
+   "backend/app/api/main.py",
+   "frontend/package.json",
+   "backend/tests/crud/test_user.py",
+   "frontend/src/components/ui/avatar.tsx",
+   "frontend/src/client/core/request.ts",
+   "frontend/src/lib/utils.ts",
+   "backend/app/api/routes/users.py"
+  ],
+  "md chars": 1411,
+  "gf chars": 6612,
+  "md s": 0.026,
+  "gf s": 0.159
+ },
+ {
+  "id": "r53",
+  "gold": [
+   "frontend/nginx-backend-not-found.conf",
+   "frontend/nginx.conf"
+  ],
+  "kind": "config",
+  "md": [
+   "frontend/nginx-backend-not-found.conf",
+   "release-notes.md",
+   "deployment.md",
+   "development.md",
+   "README.md"
+  ],
+  "gf": [
+   "frontend/src/main.tsx",
+   "frontend/src/components/Common/Footer.tsx",
+   "img/docs.png",
+   "backend/app/api/main.py",
+   "frontend/package.json",
+   "frontend/src/utils.ts",
+   "backend/tests/utils/user.py"
+  ],
+  "md chars": 1227,
+  "gf chars": 919,
+  "md s": 0.032,
+  "gf s": 0.157
+ },
+ {
+  "id": "r54",
+  "gold": [
+   "compose.traefik.yml",
+   "deployment.md"
+  ],
+  "kind": "code",
+  "md": [
+   "development.md",
+   "README.md",
+   "deployment.md",
+   "compose.traefik.yml",
+   "compose.yml"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/index.tsx",
+   "frontend/src/client/types.gen.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/routes/_layout/admin.tsx",
+   "frontend/src/components/Admin/UserActionsMenu.tsx",
+   "frontend/src/components/Admin/columns.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/routeTree.gen.ts"
+  ],
+  "md chars": 1820,
+  "gf chars": 6478,
+  "md s": 0.025,
+  "gf s": 0.152
+ },
+ {
+  "id": "r55",
+  "gold": [
+   "compose.yml",
+   "deployment.md"
+  ],
+  "kind": "code",
+  "md": [
+   "deployment.md",
+   "compose.yml"
+  ],
+  "gf": [
+   "backend/tests/api/routes/test_users.py",
+   "frontend/tests/utils/privateApi.ts",
+   "backend/app/crud.py",
+   "frontend/package.json",
+   "backend/tests/utils/utils.py",
+   "backend/app/models.py",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/routes/recover-password.tsx",
+   "frontend/src/routes/login.tsx"
+  ],
+  "md chars": 1133,
+  "gf chars": 6575,
+  "md s": 0.025,
+  "gf s": 0.154
+ },
+ {
+  "id": "r56",
+  "gold": [
+   ".github/workflows/deploy-staging.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "deployment.md",
+   "compose.traefik.yml",
+   ".github/workflows/deploy-staging.yml",
+   "release-notes.md",
+   "README.md"
+  ],
+  "gf": [
+   "frontend/src/components/ui/label.tsx",
+   "backend/app/api/routes/users.py",
+   "backend/app/utils.py",
+   "frontend/src/routes/_layout/settings.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/routeTree.gen.ts",
+   "frontend/src/components/UserSettings/UserInformation.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "backend/app/api/routes/login.py",
+   "frontend/src/components/ui/form.tsx"
+  ],
+  "md chars": 2044,
+  "gf chars": 6537,
+  "md s": 0.026,
+  "gf s": 0.153
+ },
+ {
+  "id": "r57",
+  "gold": [
+   ".github/workflows/deploy-production.yml",
+   "backend/app/api/main.py"
+  ],
+  "kind": "code",
+  "md": [
+   "release-notes.md",
+   "deployment.md",
+   "compose.traefik.yml",
+   "backend/tests/api/routes/test_users.py",
+   "frontend/tests/admin.spec.ts",
+   ".github/workflows/deploy-production.yml",
+   "README.md"
+  ],
+  "gf": [
+   "frontend/src/components/Sidebar/User.tsx",
+   "backend/app/models.py",
+   "frontend/biome.json",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/api/routes/users.py",
+   "backend/app/crud.py",
+   "backend/tests/api/routes/test_login.py",
+   "frontend/src/hooks/useAuth.ts",
+   "backend/tests/crud/test_user.py",
+   "backend/app/api/deps.py"
+  ],
+  "md chars": 1939,
+  "gf chars": 6473,
+  "md s": 0.024,
+  "gf s": 0.158
+ },
+ {
+  "id": "r58",
+  "gold": [
+   "compose.override.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "development.md",
+   "backend/README.md",
+   "release-notes.md"
+  ],
+  "gf": [
+   "backend/app/backend_pre_start.py",
+   "backend/scripts/test.sh",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/components/UserSettings/UserInformation.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/components/Admin/DeleteUser.tsx",
+   "frontend/src/components/UserSettings/ChangePassword.tsx"
+  ],
+  "md chars": 429,
+  "gf chars": 6562,
+  "md s": 0.025,
+  "gf s": 0.158
+ },
+ {
+  "id": "r59",
+  "gold": [
+   "compose.override.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "development.md",
+   "release-notes.md",
+   "compose.override.yml",
+   "backend/app/core/config.py"
+  ],
+  "gf": [
+   "scripts/test-local.sh",
+   "frontend/biome.json",
+   "frontend/package.json",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/routes/recover-password.tsx",
+   "frontend/src/routes/login.tsx",
+   "frontend/src/routes/signup.tsx",
+   "frontend/src/components/Sidebar/User.tsx",
+   "frontend/src/routes/_layout/admin.tsx"
+  ],
+  "md chars": 1538,
+  "gf chars": 6501,
+  "md s": 0.029,
+  "gf s": 0.152
+ },
+ {
+  "id": "r60",
+  "gold": [
+   ".github/workflows/test-docker-compose.yml"
+  ],
+  "kind": "config",
+  "md": [
+   ".github/workflows/test-docker-compose.yml",
+   "README.md",
+   "frontend/README.md",
+   "scripts/test-local.sh"
+  ],
+  "gf": [
+   "frontend/package.json",
+   "scripts/add_latest_release_date.py",
+   "backend/tests/crud/test_user.py",
+   "frontend/src/components/ui/checkbox.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "backend/tests/utils/utils.py",
+   "backend/app/models.py",
+   "backend/app/crud.py"
+  ],
+  "md chars": 1423,
+  "gf chars": 6550,
+  "md s": 0.028,
+  "gf s": 0.157
+ },
+ {
+  "id": "r61",
+  "gold": [
+   ".github/workflows/test-backend.yml"
+  ],
+  "kind": "config",
+  "md": [
+   ".github/workflows/test-backend.yml",
+   "backend/README.md",
+   ".github/workflows/smokeshow.yml",
+   "deployment.md",
+   "release-notes.md",
+   "backend/tests/crud/test_user.py"
+  ],
+  "gf": [
+   "backend/scripts/test.sh",
+   "frontend/package.json",
+   "backend/tests/scripts/test_backend_pre_start.py",
+   "backend/app/backend_pre_start.py",
+   "backend/app/core/db.py",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/models.py",
+   "backend/app/api/routes/users.py",
+   "backend/tests/api/routes/test_login.py",
+   "backend/app/crud.py"
+  ],
+  "md chars": 1922,
+  "gf chars": 25945,
+  "md s": 0.026,
+  "gf s": 0.156
+ },
+ {
+  "id": "r65",
+  "gold": [
+   "development.md"
+  ],
+  "kind": "docs",
+  "md": [
+   "development.md",
+   "release-notes.md",
+   "backend/README.md"
+  ],
+  "gf": [
+   "backend/app/alembic/env.py",
+   "backend/scripts/prestart.sh",
+   "backend/app/backend_pre_start.py",
+   "img/dashboard.png",
+   "frontend/package.json",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/routes/recover-password.tsx",
+   "frontend/src/routes/login.tsx",
+   "frontend/src/routes/signup.tsx"
+  ],
+  "md chars": 1448,
+  "gf chars": 6700,
+  "md s": 0.027,
+  "gf s": 0.159
+ },
+ {
+  "id": "r66",
+  "gold": [
+   "compose.override.yml",
+   "development.md"
+  ],
+  "kind": "code",
+  "md": [
+   "development.md",
+   "release-notes.md",
+   "README.md",
+   "deployment.md"
+  ],
+  "gf": [
+   "scripts/test-local.sh",
+   "backend/app/api/routes/login.py",
+   "backend/app/main.py",
+   "backend/app/core/config.py",
+   "backend/tests/conftest.py",
+   "backend/app/api/main.py",
+   "backend/app/crud.py",
+   "backend/app/core/security.py",
+   "backend/app/models.py"
+  ],
+  "md chars": 969,
+  "gf chars": 4328,
+  "md s": 0.025,
+  "gf s": 0.148
+ },
+ {
+  "id": "r67",
+  "gold": [
+   "development.md"
+  ],
+  "kind": "docs",
+  "md": [
+   "development.md",
+   "deployment.md",
+   "release-notes.md",
+   "compose.traefik.yml",
+   "compose.override.yml"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/index.tsx",
+   "backend/app/api/main.py",
+   "frontend/tests/reset-password.spec.ts",
+   "frontend/src/components/ui/sheet.tsx",
+   "backend/app/api/routes/users.py",
+   "backend/app/api/routes/login.py",
+   "frontend/src/hooks/useAuth.ts",
+   "backend/app/core/config.py",
+   "backend/app/api/routes/items.py",
+   "backend/app/api/routes/private.py"
+  ],
+  "md chars": 1963,
+  "gf chars": 6520,
+  "md s": 0.026,
+  "gf s": 0.16
+ },
+ {
+  "id": "r68",
+  "gold": [
+   "development.md"
+  ],
+  "kind": "docs",
+  "md": [
+   "development.md",
+   "release-notes.md",
+   ".github/workflows/pre-commit.yml"
+  ],
+  "gf": [
+   "backend/scripts/prestart.sh",
+   "backend/app/alembic/env.py",
+   "backend/app/api/routes/items.py",
+   "backend/app/models.py",
+   "backend/app/core/config.py"
+  ],
+  "md chars": 1176,
+  "gf chars": 5382,
+  "md s": 0.025,
+  "gf s": 0.15
+ },
+ {
+  "id": "r69",
+  "gold": [
+   "backend/README.md"
+  ],
+  "kind": "docs",
+  "md": [
+   "release-notes.md",
+   "backend/app/core/db.py",
+   "backend/README.md",
+   "backend/alembic.ini"
+  ],
+  "gf": [
+   "backend/app/models.py",
+   "frontend/tests/utils/privateApi.ts",
+   "backend/app/crud.py",
+   "frontend/src/components/ui/form.tsx",
+   "backend/app/alembic/env.py"
+  ],
+  "md chars": 1029,
+  "gf chars": 663,
+  "md s": 0.024,
+  "gf s": 0.156
+ },
+ {
+  "id": "r70",
+  "gold": [
+   "backend/README.md",
+   "compose.override.yml"
+  ],
+  "kind": "code",
+  "md": [
+   ".github/workflows/test-backend.yml",
+   "backend/scripts/test.sh",
+   "backend/README.md",
+   ".github/workflows/smokeshow.yml",
+   "backend/pyproject.toml"
+  ],
+  "gf": [
+   "backend/scripts/tests-start.sh",
+   "backend/tests/__init__.py",
+   "backend/app/tests_pre_start.py",
+   "backend/app/backend_pre_start.py",
+   "frontend/src/client/core/OpenAPI.ts",
+   "backend/app/alembic/env.py",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/client/index.ts",
+   "frontend/src/client/core/request.ts",
+   "backend/app/core/db.py"
+  ],
+  "md chars": 1374,
+  "gf chars": 6530,
+  "md s": 0.028,
+  "gf s": 0.157
+ },
+ {
+  "id": "r71",
+  "gold": [
+   ".vscode/launch.json"
+  ],
+  "kind": "config",
+  "md": [
+   "release-notes.md",
+   "backend/README.md"
+  ],
+  "gf": [
+   "backend/tests/api/routes/test_users.py",
+   "frontend/src/client/core/request.ts",
+   "backend/tests/utils/utils.py",
+   "backend/tests/crud/test_user.py",
+   "frontend/src/client/core/ApiError.ts",
+   "frontend/src/client/sdk.gen.ts",
+   "backend/app/models.py",
+   "frontend/src/client/core/CancelablePromise.ts",
+   "frontend/src/client/index.ts",
+   "backend/tests/api/routes/test_login.py"
+  ],
+  "md chars": 806,
+  "gf chars": 6478,
+  "md s": 0.031,
+  "gf s": 0.151
+ },
+ {
+  "id": "r72",
+  "gold": [
+   "backend/README.md",
+   "backend/app/utils.py"
+  ],
+  "kind": "code",
+  "md": [
+   "backend/app/email-templates/src/reset_password.mjml",
+   "backend/app/utils.py",
+   "development.md",
+   "backend/app/api/routes/login.py"
+  ],
+  "gf": [
+   "frontend/tests/utils/mailcatcher.ts",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/routeTree.gen.ts",
+   "frontend/src/components/ui/password-input.tsx",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/ui/button.tsx",
+   "frontend/package.json",
+   "frontend/src/client/index.ts",
+   "frontend/src/hooks/useAuth.ts"
+  ],
+  "md chars": 3211,
+  "gf chars": 6552,
+  "md s": 0.025,
+  "gf s": 0.154
+ },
+ {
+  "id": "r73",
+  "gold": [
+   "copier.yml"
+  ],
+  "kind": "config",
+  "md": [
+   "README.md",
+   "deployment.md",
+   "backend/app/utils.py",
+   "copier.yml"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/admin.tsx",
+   "frontend/package.json",
+   "frontend/src/routes/login.tsx",
+   ".copier/update_dotenv.py",
+   "scripts/generate-client.sh",
+   "backend/app/models.py",
+   "hooks/post_gen_project.py",
+   "backend/app/api/routes/login.py",
+   "frontend/src/components/ui/loading-button.tsx",
+   "frontend/src/hooks/useAuth.ts"
+  ],
+  "md chars": 1476,
+  "gf chars": 6543,
+  "md s": 0.033,
+  "gf s": 0.153
+ },
+ {
+  "id": "r74",
+  "gold": [
+   ".github/labeler.yml",
+   ".github/workflows/labeler.yml"
+  ],
+  "kind": "config",
+  "md": [
+   ".github/workflows/labeler.yml",
+   "deployment.md",
+   "CONTRIBUTING.md",
+   "release-notes.md",
+   "README.md",
+   "development.md",
+   "backend/app/core/config.py",
+   ".github/DISCUSSION_TEMPLATE/questions.yml"
+  ],
+  "gf": [
+   "frontend/src/components/ui/label.tsx",
+   "scripts/add_latest_release_date.py",
+   "frontend/src/components/Admin/AddUser.tsx",
+   "frontend/src/components/ui/checkbox.tsx",
+   "frontend/tests/config.ts",
+   "frontend/src/lib/utils.ts",
+   "frontend/src/components/Admin/EditUser.tsx",
+   "frontend/src/components/ui/button.tsx",
+   "frontend/package.json",
+   "frontend/src/client/index.ts"
+  ],
+  "md chars": 1709,
+  "gf chars": 6521,
+  "md s": 0.027,
+  "gf s": 0.154
+ },
+ {
+  "id": "r75",
+  "gold": [
+   "backend/app/core/db.py",
+   "backend/scripts/prestart.sh"
+  ],
+  "kind": "code",
+  "md": [
+   "development.md",
+   "deployment.md",
+   "frontend/README.md",
+   "README.md",
+   "copier.yml",
+   "CONTRIBUTING.md",
+   "backend/README.md"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/admin.tsx",
+   "frontend/src/components/UserSettings/DeleteAccount.tsx",
+   "frontend/src/client/schemas.gen.ts",
+   "frontend/tests/config.ts",
+   "frontend/package.json",
+   "backend/app/tests_pre_start.py",
+   "frontend/src/routes/reset-password.tsx",
+   "frontend/src/hooks/useAuth.ts",
+   "frontend/src/routes/recover-password.tsx",
+   "frontend/src/routes/login.tsx"
+  ],
+  "md chars": 1049,
+  "gf chars": 6558,
+  "md s": 0.024,
+  "gf s": 0.154
+ },
+ {
+  "id": "r76",
+  "gold": [
+   "frontend/src/components/Common/Appearance.tsx",
+   "frontend/src/components/theme-provider.tsx"
+  ],
+  "kind": "code",
+  "md": [
+   "README.md",
+   "deployment.md",
+   "release-notes.md",
+   "frontend/tests/user-settings.spec.ts",
+   "frontend/src/components/Common/Appearance.tsx"
+  ],
+  "gf": [
+   "frontend/src/routes/_layout/index.tsx",
+   "backend/app/models.py",
+   "frontend/tsconfig.json",
+   "backend/tests/api/routes/test_users.py",
+   "backend/app/api/routes/users.py",
+   "backend/app/api/routes/login.py",
+   "backend/tests/api/routes/test_login.py",
+   "backend/app/crud.py",
+   "frontend/src/hooks/useAuth.ts",
+   "backend/tests/crud/test_user.py"
+  ],
+  "md chars": 1617,
+  "gf chars": 6464,
+  "md s": 0.026,
+  "gf s": 0.153
+ },
+ {
+  "id": "r77",
+  "gold": [
+   ".github/workflows/deploy-production.yml",
+   "deployment.md"
+  ],
+  "kind": "code",
+  "md": [
+   "deployment.md",
+   "README.md",
+   "backend/README.md",
+   "frontend/README.md"
+  ],
+  "gf": [
+   "frontend/src/components/UserSettings/ChangePassword.tsx",
+   "frontend/src/client/index.ts",
+   "frontend/src/components/ui/form.tsx",
+   "frontend/src/components/ui/loading-button.tsx",
+   "frontend/src/hooks/useCustomToast.ts",
+   "frontend/src/client/sdk.gen.ts",
+   "frontend/src/utils.ts",
+   "frontend/src/routes/_layout/settings.tsx",
+   "frontend/package.json",
+   "frontend/src/components/ui/password-input.tsx"
+  ],
+  "md chars": 924,
+  "gf chars": 6451,
+  "md s": 0.023,
+  "gf s": 0.151
+ }
+]
