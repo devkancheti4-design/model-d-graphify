@@ -1,0 +1,45 @@
+{
+  "name": "model-d",
+  "version": "0.2.1",
+  "description": "Ranks the code, config and docs Claude should read first for a question, and learns from every answered question. Runs on your machine: needs the Model D package (wheels/ in this repo) and a running workspace server (ocm serve).",
+  "author": {
+    "name": "Devieswar Kancheti",
+    "url": "https://github.com/devkancheti4-design"
+  },
+  "homepage": "https://github.com/devkancheti4-design/model-d-graphify",
+  "repository": "https://github.com/devkancheti4-design/model-d-graphify",
+  "license": "LicenseRef-Proprietary",
+  "keywords": [
+    "retrieval",
+    "code-search",
+    "context",
+    "mcp"
+  ],
+  "userConfig": {
+    "python": {
+      "type": "string",
+      "title": "Python with Model D installed",
+      "description": "Absolute path to the Python interpreter where optimal-context-mapping is installed, for example /Users/you/modeld/bin/python",
+      "default": "python3"
+    },
+    "workspace_url": {
+      "type": "string",
+      "title": "Model D workspace server",
+      "description": "Where `ocm serve` is running",
+      "default": "http://127.0.0.1:7700"
+    }
+  },
+  "mcpServers": {
+    "model-d": {
+      "command": "${user_config.python}",
+      "args": [
+        "-m",
+        "ocm",
+        "mcp"
+      ],
+      "env": {
+        "OCM_URL": "${user_config.workspace_url}"
+      }
+    }
+  }
+}

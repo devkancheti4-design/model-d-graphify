@@ -1,0 +1,17 @@
+{
+  "name": "model-d",
+  "owner": {
+    "name": "Devieswar Kancheti",
+    "url": "https://github.com/devkancheti4-design"
+  },
+  "plugins": [
+    {
+      "name": "model-d",
+      "source": "./",
+      "description": "Ranks the code Claude should read first for a question, and learns from every answered question."
+    }
+  ],
+  "metadata": {
+    "description": "Model D for Claude Code: local retrieval that ranks the code to read first and learns from answered questions."
+  }
+}

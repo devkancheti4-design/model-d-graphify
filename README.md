@@ -78,6 +78,30 @@ right code.
 **Writing bug fixes** (SWE-ContextBench, Django tasks): **no saving.** Those issues already name the code, so there is
 little "where" to decide.
 
+## Use it in Claude Code (plugin)
+
+This repository is also a Claude Code plugin. It gives Claude Model D's tools (`workspace_ask`, `workspace_next`,
+`workspace_recall`, `workspace_teach`) and a skill that tells Claude to ask Model D before searching.
+
+1. **Install the package and map your repository, once:**
+   ```bash
+   python3 -m venv ~/modeld && ~/modeld/bin/pip install "numpy>=2.0" "torch>=2.1" "transformers>=4.40"
+   ~/modeld/bin/pip install --no-index --find-links wheels optimal-context-mapping   # from this repository's folder
+   ~/modeld/bin/ocm build /path/to/your/repo --out ~/modeld-ws
+   ~/modeld/bin/ocm serve ~/modeld-ws        # leave running
+   ```
+2. **Add the plugin in Claude Code:**
+   ```
+   /plugin marketplace add devkancheti4-design/model-d-graphify
+   /plugin install model-d@model-d
+   ```
+   Or run `claude --plugin-dir /path/to/model-d-graphify` from a local clone.
+3. **Point the plugin at your Python.** When asked, set **Python with Model D installed** to
+   `/Users/you/modeld/bin/python` (an absolute path), then restart Claude Code.
+
+Model D runs as a local process, so the plugin works in Claude Code and the desktop app. Uploading this repository's ZIP
+to claude.ai's plugin page passes its check, but the tools cannot start in claude.ai on the web.
+
 ## Reproduce
 
 ```bash
