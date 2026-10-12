@@ -10,7 +10,7 @@ The test, offline with no API: for each question, which tool lists the file that
 | set | questions | Model D top-1 / 3 / 5 | Graphify top-1 / 3 / 5 | tokens per question (Model D / Graphify) |
 |---|---|---|---|---|
 | Django, SWE-bench Lite issues, title | 114 | **54 / 74 / 84** | 31 / 46 / 54 | ~667 / ~1,457 |
-| Django, SWE-bench Lite issues, title + 400 characters | 114 | **63 / 84 / 93** | 39 / 53 / 53 | ~719 / ~1,640 |
+| Django, SWE-bench Lite issues, title + 400 characters | 114 | **63 / 84 / 93** | 39 / 53 / 53 | ~719 / ~1,470 |
 | full-stack-fastapi-template, 100 questions | 100 | **32 / 61 / 75** | 16 / 29 / 36 | ~441 / ~1,644 |
 
 **Snapshots:**
@@ -19,9 +19,10 @@ The test, offline with no API: for each question, which tool lists the file that
 - FastAPI: `../data/corpus`, with answer files marked in `../questions_100.json`.
 
 **Reproduce:**
-- Django, Model D: `python django_modeld.py <index>` (this folder).
-- Django, Graphify: `../graphify-seed/eval_seeds.py`.
-- FastAPI, both tools: `../graphify_vs.py`.
+- Model D, Django: `python django_modeld.py <index>` (this folder).
+- Model D, FastAPI: `../graphify_vs.py`.
+- Graphify, both sets: `../graphify-seed/eval_seeds.py`, with graphify 0.9.86 (upstream v8 `a5ba60d`) importable.
+  Tokens are the length of `graphify query`'s answer divided by 4.
 
 **Not tested:**
 - Graphify's LLM extraction of docs, papers and images.
