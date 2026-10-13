@@ -13,6 +13,9 @@ The test, offline with no API: for each question, which tool lists the file that
 | Django, SWE-bench Lite issues, title + 400 characters | 114 | **63 / 84 / 93** | 39 / 53 / 53 | ~719 / ~1,470 |
 | full-stack-fastapi-template, 100 questions | 100 | **32 / 61 / 75** | 16 / 29 / 36 | ~441 / ~1,644 |
 
+**The larger test:** the Django rows index only the `django/` code package. With whole repositories, documentation
+included, see `../swe-bench-lite/`: 285 issues in 12 repositories, Graphify 0.9.87, and Model D's code scope.
+
 **Snapshots:**
 - Django: the `django/` package at `4a72da7`, SWE-bench Lite's Django snapshot. The answer is the file the official
   fix changed.
