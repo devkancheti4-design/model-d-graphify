@@ -58,7 +58,27 @@ How to read this table:
 - **The folder name matters slightly.** The kit indexes each file's path, so it uses the study's folder name,
   `corpus`. Named `fastapi-template`, the same build scores 69/100 overall and 46/71 on code.
 
-### 3. A plug point: `graphify query --seed`
+### 3. Finding the file a fix changed: SWE-bench Lite, 285 issues in 12 full repositories
+
+Both tools index each whole repository, offline. Model D 0.2.2 with `"scope": "code"` (documentation left out) runs
+against Graphify 0.9.87, and the plan was fixed before the run. Each cell counts the issues where a tool's first *k*
+files include the file the fix changed.
+
+| query | Model D, code scope | Model D, full scope | Graphify 0.9.87 |
+|---|---|---|---|
+| issue title, top-1 / 3 / 5 | **80 / 154 / 176** | 32 / 80 / 117 | 78 / 115 / 131 |
+| title + 400 characters, top-1 / 3 / 5 | **96 / 161 / 183** | 64 / 129 / 157 | 67 / 99 / 122 |
+| tokens per issue | 634 / 700 | 524 / 620 | 1,520 / 1,652 |
+
+- **Significance:** paired top-5 against Graphify gives exact McNemar p = 6.9e-6 (titles) and 1.1e-9 (title + 400
+  characters).
+- **Where Model D does not win:**
+  - The full scope, which ranks documentation too, lost on titles.
+  - Top-1 on titles is level.
+  - Graphify is ahead on three small repositories.
+- **Details and every row:** `bench/swe-bench-lite/`.
+
+### 4. A plug point: `graphify query --seed`
 
 [Graphify-Labs/graphify#4289](https://github.com/Graphify-Labs/graphify/pull/4289) (issue
 [#4293](https://github.com/Graphify-Labs/graphify/issues/4293)) lets any external ranker choose where `graphify query`
