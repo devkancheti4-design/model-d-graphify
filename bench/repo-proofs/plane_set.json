@@ -1,0 +1,571 @@
+{
+ "repo": "makeplane/plane",
+ "snapshot": "3618ffc2c38eb793a0b6c04e6fbac6d6b1f14eef",
+ "items": [
+  {
+   "issue": 7373,
+   "pr": 7381,
+   "merged": "2025-07-10T09:56:43Z",
+   "title": "[bug]: yarn dev broken with command not found errors",
+   "q_title": "[bug]: yarn dev broken with command not found errors",
+   "q_400": "[bug]: yarn dev broken with command not found errors\n- [x] I have searched the existing issues When I do `yarn dev` after `yarn install`, I see the error message: ``` @plane/logger:dev: command not found: tsup @plane/types:build: command not found: tsc ``` and the command exited (127). 1. Run `./setup.sh` to install dependencies. 2. Run `yarn dev` to replicate the issue. Deploy preview None Local ",
+   "q_body": "- [x] I have searched the existing issues When I do `yarn dev` after `yarn install`, I see the error message: ``` @plane/logger:dev: command not found: tsup @plane/types:build: command not found: tsc ``` and the command exited (127). 1. Run `./setup.sh` to install dependencies. 2. Run `yarn dev` to replicate the issue. Deploy preview None Local preview",
+   "gold": [
+    "packages/logger/package.json",
+    "packages/types/package.json",
+    "packages/ui/package.json"
+   ],
+   "teach_at": "packages/logger/package.json:30"
+  },
+  {
+   "issue": 7369,
+   "pr": 7370,
+   "merged": "2025-07-12T14:00:39Z",
+   "title": "[feature]:  Add Asia/Kabul To The List Of Timezones",
+   "q_title": "[feature]:  Add Asia/Kabul To The List Of Timezones",
+   "q_400": "[feature]:  Add Asia/Kabul To The List Of Timezones\n- [x] I have searched the existing issues The Asia/Kabul timezone (UTC+4:30) is currently missing from the list of available timezones in Plane. This timezone is essential for users in Afghanistan, and its absence may hinder accurate scheduling and planning for users in that region. Please add support for the Asia/Kabul timezone in the timezone d",
+   "q_body": "- [x] I have searched the existing issues The Asia/Kabul timezone (UTC+4:30) is currently missing from the list of available timezones in Plane. This timezone is essential for users in Afghanistan, and its absence may hinder accurate scheduling and planning for users in that region. Please add support for the Asia/Kabul timezone in the timezone dropdown or configuration settings to ensure inclusiv",
+   "gold": [
+    "apps/api/plane/app/views/timezone/base.py"
+   ],
+   "teach_at": "apps/api/plane/app/views/timezone/base.py:116"
+  },
+  {
+   "issue": 5037,
+   "pr": 7336,
+   "merged": "2025-07-15T19:34:59Z",
+   "title": "[bug]: Cyrillic characters in email notifications",
+   "q_title": "[bug]: Cyrillic characters in email notifications",
+   "q_400": "[bug]: Cyrillic characters in email notifications\n- [X] I have searched the existing issues Email notifications from the Plane display only Latin characters in the subject line when the task title contains Cyrillic characters. The Cyrillic characters are missing in the subject line but are displayed correctly in the email body. - Create a new task with a title that includes Cyrillic characters (e.",
+   "q_body": "- [X] I have searched the existing issues Email notifications from the Plane display only Latin characters in the subject line when the task title contains Cyrillic characters. The Cyrillic characters are missing in the subject line but are displayed correctly in the email body. - Create a new task with a title that includes Cyrillic characters (e.g., \"\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f TEST \u0437\u0430\u0434\u0430\u0447\u0430\"). - Assign the task to ",
+   "gold": [
+    "apps/api/plane/bgtasks/email_notification_task.py"
+   ],
+   "teach_at": "apps/api/plane/bgtasks/email_notification_task.py:21"
+  },
+  {
+   "issue": 7372,
+   "pr": 7423,
+   "merged": "2025-07-17T07:23:04Z",
+   "title": "[bug]: 500 - Internal Server Error In List Cycle Issues API",
+   "q_title": "[bug]: 500 - Internal Server Error In List Cycle Issues API",
+   "q_400": "[bug]: 500 - Internal Server Error In List Cycle Issues API\n- [x] I have searched the existing issues When I try to send a request to [Plane API - List Cycle Issues](https://developers.plane.so/api-reference/cycle-issue/list-cycle-issues?playground=open) using: ```bash curl --request GET \\ --url https://api.plane.so/api/v1/workspaces/{{WORKSPACE_SLUG}}/projects/{{PROJECT_ID}}/cycles/{{CYCLE_ID}}/c",
+   "q_body": "- [x] I have searched the existing issues When I try to send a request to [Plane API - List Cycle Issues](https://developers.plane.so/api-reference/cycle-issue/list-cycle-issues?playground=open) using: ```bash curl --request GET \\ --url https://api.plane.so/api/v1/workspaces/{{WORKSPACE_SLUG}}/projects/{{PROJECT_ID}}/cycles/{{CYCLE_ID}}/cycle-issues/ \\ --header 'x-api-key: {{API_KEY}}' ``` The req",
+   "gold": [
+    "apps/api/plane/api/views/cycle.py"
+   ],
+   "teach_at": "apps/api/plane/api/views/cycle.py:25"
+  },
+  {
+   "issue": 7432,
+   "pr": 7437,
+   "merged": "2025-07-18T08:55:08Z",
+   "title": "[bug]: Unable to view weekends for teamspace calendars",
+   "q_title": "[bug]: Unable to view weekends for teamspace calendars",
+   "q_400": "[bug]: Unable to view weekends for teamspace calendars\n- [x] I have searched the existing issues When I use the calendar view for work items in a teamspace, I can't view items scheduled over the weekend as the `Show weekends` toggle doesn't work. 1. Go to a teamspace. 2. Click work items. 3. Open the calendar view. 4. Click `Options` and click the `Show weekends` toggle. Production Mozilla Firefox",
+   "q_body": "- [x] I have searched the existing issues When I use the calendar view for work items in a teamspace, I can't view items scheduled over the weekend as the `Show weekends` toggle doesn't work. 1. Go to a teamspace. 2. Click work items. 3. Open the calendar view. 4. Click `Options` and click the `Show weekends` toggle. Production Mozilla Firefox Cloud ??",
+   "gold": [
+    "apps/web/core/components/issues/issue-layouts/calendar/dropdowns/options-dropdown.tsx"
+   ],
+   "teach_at": "apps/web/core/components/issues/issue-layouts/calendar/dropdowns/options-dropdown.tsx:73"
+  },
+  {
+   "issue": 7243,
+   "pr": 7337,
+   "merged": "2025-07-18T14:38:01Z",
+   "title": "[bug]: Assigned labels get re-appended when adding new ones",
+   "q_title": "[bug]: Assigned labels get re-appended when adding new ones",
+   "q_400": "[bug]: Assigned labels get re-appended when adding new ones\n- [x] I have searched the existing issues When I update a work item and add a new label, the JSON body doesn't re-create \"labels\" but instead appends them all over again, causing duplicates. ![Image](https://github.com/user-attachments/assets/6bbf6ee1-d431-4d1f-b4b6-5c95efc320db) This is after adding \"design\" label to a work item containi",
+   "q_body": "- [x] I have searched the existing issues When I update a work item and add a new label, the JSON body doesn't re-create \"labels\" but instead appends them all over again, causing duplicates. ![Image](https://github.com/user-attachments/assets/6bbf6ee1-d431-4d1f-b4b6-5c95efc320db) This is after adding \"design\" label to a work item containing \"code\" label. ![Image](https://github.com/user-attachment",
+   "gold": [
+    "apps/api/plane/api/serializers/issue.py",
+    "apps/api/plane/bgtasks/webhook_task.py"
+   ],
+   "teach_at": "apps/api/plane/api/serializers/issue.py:448"
+  },
+  {
+   "issue": 5381,
+   "pr": 7521,
+   "merged": "2025-07-31T07:32:42Z",
+   "title": "[feature]: Option to enable Email notification to all new users by default?",
+   "q_title": "[feature]: Option to enable Email notification to all new users by default?",
+   "q_400": "[feature]: Option to enable Email notification to all new users by default?\n- [X] I have searched the existing issues We have email notification system while the notification actually need end users to enable by themselves if I'm not understanding it wrong, and there seems to be no option to enable that to all users by default? Since new users might not always remember to check what's going on fro",
+   "q_body": "- [X] I have searched the existing issues We have email notification system while the notification actually need end users to enable by themselves if I'm not understanding it wrong, and there seems to be no option to enable that to all users by default? Since new users might not always remember to check what's going on from the web interface, and might not remember to enable the email notification",
+   "gold": [
+    "apps/api/plane/db/models/user.py"
+   ],
+   "teach_at": "apps/api/plane/db/models/user.py:276"
+  },
+  {
+   "issue": 7505,
+   "pr": 7532,
+   "merged": "2025-08-04T09:57:06Z",
+   "title": "[bug]: API Call [POST COMMENTS] Gets Error 400 - But it is Woking",
+   "q_title": "[bug]: API Call [POST COMMENTS] Gets Error 400 - But it is Woking",
+   "q_400": "[bug]: API Call [POST COMMENTS] Gets Error 400 - But it is Woking\n- [x] I have searched the existing issues We are having some problems with the PLANE API. What is happening: The API response is sending us an error, and we are trying to repeat the request. But it is a bug on Plane\u2019s side. Even with an error, the updates are being made in Plane. Try to create a comment in a Issue, you should get 40",
+   "q_body": "- [x] I have searched the existing issues We are having some problems with the PLANE API. What is happening: The API response is sending us an error, and we are trying to repeat the request. But it is a bug on Plane\u2019s side. Even with an error, the updates are being made in Plane. Try to create a comment in a Issue, you should get 400 - \"{\\\"error\\\":\\\"The required key does not exist.\\\"}\" But the com",
+   "gold": [
+    "apps/api/plane/api/views/issue.py"
+   ],
+   "teach_at": "apps/api/plane/api/views/issue.py:1465"
+  },
+  {
+   "issue": 7616,
+   "pr": 7635,
+   "merged": "2025-08-24T20:02:15Z",
+   "title": "[bug]: No option to close Analytics of a project",
+   "q_title": "[bug]: No option to close Analytics of a project",
+   "q_400": "[bug]: No option to close Analytics of a project\n- [x] I have searched the existing issues When we visit a project and click on Analytics button, there is no close analytics button. And when we try to click on a work item, it is not getting closed. We have to refresh the browser or change to another section and come back. Tested on both Firefox and Chrome 1. Go to a project 2. click on analytics 3",
+   "q_body": "- [x] I have searched the existing issues When we visit a project and click on Analytics button, there is no close analytics button. And when we try to click on a work item, it is not getting closed. We have to refresh the browser or change to another section and come back. Tested on both Firefox and Chrome 1. Go to a project 2. click on analytics 3. click outside analytics section Production Mozi",
+   "gold": [
+    "apps/web/core/components/analytics/work-items/modal/index.tsx",
+    "apps/web/core/components/issues/peek-overview/view.tsx"
+   ],
+   "teach_at": "apps/web/core/components/analytics/work-items/modal/index.tsx:20"
+  },
+  {
+   "issue": 7690,
+   "pr": 7699,
+   "merged": "2025-09-02T12:32:10Z",
+   "title": "[bug]: Start of the week setting isn't respected",
+   "q_title": "[bug]: Start of the week setting isn't respected",
+   "q_400": "[bug]: Start of the week setting isn't respected\n- [x] I have searched the existing issues I set the first day of the week to be Monday and in some places like the new cycle modal it still starts with Sunday. <img width=\"923\" height=\"293\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/16e04065-db3f-453f-abb5-9bcd58a1fab9\" /> <img width=\"703\" height=\"391\" alt=\"Image\" src=\"https://githu",
+   "q_body": "- [x] I have searched the existing issues I set the first day of the week to be Monday and in some places like the new cycle modal it still starts with Sunday. <img width=\"923\" height=\"293\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/16e04065-db3f-453f-abb5-9bcd58a1fab9\" /> <img width=\"703\" height=\"391\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/505db584-6f6b-43ad-",
+   "gold": [
+    "apps/web/core/components/dropdowns/date-range.tsx"
+   ],
+   "teach_at": "apps/web/core/components/dropdowns/date-range.tsx:2"
+  },
+  {
+   "issue": 7751,
+   "pr": 7775,
+   "merged": "2025-09-11T12:22:51Z",
+   "title": "[bug]: unsubscribed work items showing up in workspace subscribed view",
+   "q_title": "[bug]: unsubscribed work items showing up in workspace subscribed view",
+   "q_400": "[bug]: unsubscribed work items showing up in workspace subscribed view\n- [x] I have searched the existing issues When I unsubscribe from a work item, it still shows up in my (default) workspace subscribed items view. 1. Go to any work item 2. Click \"unsubscribe\" 3. Observe the \"unsubscribed successfully\" toast 4. Go to workspace -> views -> subscribed 5. Observe the unsubscribed item in the list P",
+   "q_body": "- [x] I have searched the existing issues When I unsubscribe from a work item, it still shows up in my (default) workspace subscribed items view. 1. Go to any work item 2. Click \"unsubscribe\" 3. Observe the \"unsubscribed successfully\" toast 4. Go to workspace -> views -> subscribed 5. Observe the unsubscribed item in the list Production Mozilla Firefox Self-hosted 0.28.0",
+   "gold": [
+    "apps/api/plane/utils/issue_filters.py"
+   ],
+   "teach_at": "apps/api/plane/utils/issue_filters.py:476"
+  },
+  {
+   "issue": 7829,
+   "pr": 7842,
+   "merged": "2025-09-23T13:12:54Z",
+   "title": "[bug]: project page doesn't show public, private and archived tabs on refresh",
+   "q_title": "[bug]: project page doesn't show public, private and archived tabs on refresh",
+   "q_400": "[bug]: project page doesn't show public, private and archived tabs on refresh\n- [x] I have searched the existing issues When clicked on pages menu of a project, the pages route loads but the tabs for public, private and archived pages is not shown. - In the side bar, open the menu list under a project. - select the pages option. - the tabs appear for a quick flash and then dissappears [ <img width",
+   "q_body": "- [x] I have searched the existing issues When clicked on pages menu of a project, the pages route loads but the tabs for public, private and archived pages is not shown. - In the side bar, open the menu list under a project. - select the pages option. - the tabs appear for a quick flash and then dissappears [ <img width=\"1486\" height=\"859\" alt=\"Image\" src=\"https://github.com/user-attachments/asse",
+   "gold": [
+    "apps/api/plane/app/urls/page.py",
+    "apps/api/plane/app/views/page/base.py"
+   ],
+   "teach_at": "apps/api/plane/app/urls/page.py:10"
+  },
+  {
+   "issue": 7974,
+   "pr": 7978,
+   "merged": "2025-10-23T08:29:29Z",
+   "title": "[bug]: \u041d\u0435 \u0432\u0435\u0440\u043d\u043e\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u044f",
+   "q_title": "[bug]: \u041d\u0435 \u0432\u0435\u0440\u043d\u043e\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u044f",
+   "q_400": "[bug]: \u041d\u0435 \u0432\u0435\u0440\u043d\u043e\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u044f\n- [ ] I have searched the existing issues **\u041d\u0435 \u0432\u0435\u0440\u043d\u043e\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u044f** \u0415\u0441\u043b\u0438 \u0432 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u0435 \u0432\u043a\u043b\u044e\u0447\u0438\u0442\u044c `Month layout` \u0438 `Show weekends`, \u0442\u043e \u0432\u043e\u0441\u043a\u0440\u0435\u0441\u0435\u043d\u044c\u0435 \u0441\u044a\u0435\u0437\u0436\u0430\u0435\u0442 \u043d\u0430 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0443\u044e \u043d\u0435\u0434\u0435\u043b\u044e, \u0447\u0442\u043e \u043d\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e \u0438 \u043d\u0435 \u043b\u043e\u0433\u0438\u0447\u043d\u043e. \u0414\u0435\u043c\u043e\u043d\u0441\u0442\u0440\u0430\u0446\u0438\u044f \u043f\u0440\u043e\u0431\u043b\u0435\u043c\u044b: <img width=\"1639\" height=\"950\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a0dcdec0-0c2b-4177-b28d-6fe96d640",
+   "q_body": "- [ ] I have searched the existing issues **\u041d\u0435 \u0432\u0435\u0440\u043d\u043e\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u044f** \u0415\u0441\u043b\u0438 \u0432 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u0435 \u0432\u043a\u043b\u044e\u0447\u0438\u0442\u044c `Month layout` \u0438 `Show weekends`, \u0442\u043e \u0432\u043e\u0441\u043a\u0440\u0435\u0441\u0435\u043d\u044c\u0435 \u0441\u044a\u0435\u0437\u0436\u0430\u0435\u0442 \u043d\u0430 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0443\u044e \u043d\u0435\u0434\u0435\u043b\u044e, \u0447\u0442\u043e \u043d\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e \u0438 \u043d\u0435 \u043b\u043e\u0433\u0438\u0447\u043d\u043e. \u0414\u0435\u043c\u043e\u043d\u0441\u0442\u0440\u0430\u0446\u0438\u044f \u043f\u0440\u043e\u0431\u043b\u0435\u043c\u044b: <img width=\"1639\" height=\"950\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a0dcdec0-0c2b-4177-b28d-6fe96d640e07\" /> \u0414\u043e\u043b\u0436\u043d\u043e \u0438\u0434\u0442\u0438 \u0442\u0430\u043a: 13, 14, 15, 16",
+   "gold": [
+    "apps/web/core/store/issue/issue_calendar_view.store.ts",
+    "apps/web/core/store/issue/root.store.ts",
+    "packages/utils/src/calendar.ts"
+   ],
+   "teach_at": "apps/web/core/store/issue/issue_calendar_view.store.ts:1"
+  },
+  {
+   "issue": 8170,
+   "pr": 8260,
+   "merged": "2025-12-08T12:55:48Z",
+   "title": "[bug]: Incorrect capitalization of GitHub in useMemberColumns",
+   "q_title": "[bug]: Incorrect capitalization of GitHub in useMemberColumns",
+   "q_400": "[bug]: Incorrect capitalization of GitHub in useMemberColumns\n- [x] I have searched the existing issues <img width=\"148\" height=\"87\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/46073927-fb50-4746-a14f-0eca7bc83caf\" /> Correct capitalization is \"GitHub\", not \"Github\" https://github.com/makeplane/plane/blob/preview/apps/web/ce/components/workspace/settings/useMemberColumns.tsx#L107-L",
+   "q_body": "- [x] I have searched the existing issues <img width=\"148\" height=\"87\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/46073927-fb50-4746-a14f-0eca7bc83caf\" /> Correct capitalization is \"GitHub\", not \"Github\" https://github.com/makeplane/plane/blob/preview/apps/web/ce/components/workspace/settings/useMemberColumns.tsx#L107-L114 1. Sign into your Plane account using GitHub 2. Observe th",
+   "gold": [
+    "apps/web/ce/components/workspace/settings/useMemberColumns.tsx",
+    "packages/types/src/instance/auth.ts",
+    "packages/types/src/instance/base.ts",
+    "packages/types/src/instance/index.ts",
+    "packages/types/src/users.ts",
+    "packages/types/src/workspace.ts"
+   ],
+   "teach_at": "apps/web/ce/components/workspace/settings/useMemberColumns.tsx:1"
+  },
+  {
+   "issue": 8192,
+   "pr": 8298,
+   "merged": "2025-12-10T17:50:41Z",
+   "title": "[bug]: Race condition causes duplicate sequence_id when creating issues concurrently via API",
+   "q_title": "[bug]: Race condition causes duplicate sequence_id when creating issues concurrently via API",
+   "q_400": "[bug]: Race condition causes duplicate sequence_id when creating issues concurrently via API\n- [x] I have searched the existing issues <img width=\"1392\" height=\"1616\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3fb7fcfb-ae22-4116-a2a5-957f9d1e8c75\" /> When I create multiple issues concurrently via the Plane API (MCP integration), the `sequence_id` field gets duplicated across diffe",
+   "q_body": "- [x] I have searched the existing issues <img width=\"1392\" height=\"1616\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3fb7fcfb-ae22-4116-a2a5-957f9d1e8c75\" /> When I create multiple issues concurrently via the Plane API (MCP integration), the `sequence_id` field gets duplicated across different issues. This causes: 1. Multiple issues share the same readable identifier (e.g., two is",
+   "gold": [
+    "apps/api/plane/db/models/issue.py"
+   ],
+   "teach_at": "apps/api/plane/db/models/issue.py:207"
+  },
+  {
+   "issue": 8224,
+   "pr": 8340,
+   "merged": "2025-12-16T15:16:53Z",
+   "title": "[feature]: Option to change the default initial timezone of newly created projects.",
+   "q_title": "[feature]: Option to change the default initial timezone of newly created projects.",
+   "q_400": "[feature]: Option to change the default initial timezone of newly created projects.\n- [x] I have searched the existing issues An option on workspace level to change the default initial timezone of newly created projects. There seems to be no way to change the default initial timezone of a newly created project. The timezone is always initially set to UTC. Each time I create a project, I go into it",
+   "q_body": "- [x] I have searched the existing issues An option on workspace level to change the default initial timezone of newly created projects. There seems to be no way to change the default initial timezone of a newly created project. The timezone is always initially set to UTC. Each time I create a project, I go into its settings to change the timezone manually.",
+   "gold": [
+    "apps/api/plane/api/serializers/project.py",
+    "apps/api/plane/api/views/project.py",
+    "apps/api/plane/app/serializers/project.py",
+    "apps/api/plane/db/models/project.py"
+   ],
+   "teach_at": "apps/api/plane/api/serializers/project.py:3"
+  },
+  {
+   "issue": 8444,
+   "pr": 8457,
+   "merged": "2025-12-26T14:58:33Z",
+   "title": "[bug]: Can't delete custom project states",
+   "q_title": "[bug]: Can't delete custom project states",
+   "q_400": "[bug]: Can't delete custom project states\n- [x] I have searched the existing issues When I delete a workflow state from a project in a workspace, it disappears from the list, but when I refresh the page, the deleted state reappears. What should happen is the workflow state gets deleted and does not reappear on subsequent page refreshes. I believe the state is merely getting removed from the web UI",
+   "q_body": "- [x] I have searched the existing issues When I delete a workflow state from a project in a workspace, it disappears from the list, but when I refresh the page, the deleted state reappears. What should happen is the workflow state gets deleted and does not reappear on subsequent page refreshes. I believe the state is merely getting removed from the web UI when deleted, but is not actually getting",
+   "gold": [
+    "apps/api/plane/db/models/issue.py",
+    "apps/api/plane/db/models/state.py"
+   ],
+   "teach_at": "apps/api/plane/db/models/issue.py:90"
+  },
+  {
+   "issue": 8519,
+   "pr": 8524,
+   "merged": "2026-01-23T08:08:48Z",
+   "title": "[bug]: cannot attach markdown file",
+   "q_title": "[bug]: cannot attach markdown file",
+   "q_400": "[bug]: cannot attach markdown file\n- [x] I have searched the existing issues When I try to attach .md file to my work items, I get the following error: { \"error\": \"Invalid file type.\", \"status\": false } I don't want to write the whole architecture right in the epic \u2013 this way my LLM coding agent will spend tokens every time it refers to the task via MCP. It would be way easier for me to upload mar",
+   "q_body": "- [x] I have searched the existing issues When I try to attach .md file to my work items, I get the following error: { \"error\": \"Invalid file type.\", \"status\": false } I don't want to write the whole architecture right in the epic \u2013 this way my LLM coding agent will spend tokens every time it refers to the task via MCP. It would be way easier for me to upload markdown to an epic so my claude code ",
+   "gold": [
+    "apps/api/plane/settings/common.py",
+    "packages/editor/src/core/constants/config.ts"
+   ],
+   "teach_at": "apps/api/plane/settings/common.py:380"
+  },
+  {
+   "issue": 8583,
+   "pr": 8595,
+   "merged": "2026-01-29T09:18:43Z",
+   "title": "[bug]: Inconsistent module completion percentages",
+   "q_title": "[bug]: Inconsistent module completion percentages",
+   "q_400": "[bug]: Inconsistent module completion percentages\n- [x] I have searched the existing issues When I go to the `modules` page, I see a module completion percentage of 2%. If I click on the module and then the browser `back` button, I instead see 6%. Reloading the page makes it show 2% again. 1. Go to `Modules` 2. Look at the module completion percentage (Does not vary when it is 0) 3. Click on the m",
+   "q_body": "- [x] I have searched the existing issues When I go to the `modules` page, I see a module completion percentage of 2%. If I click on the module and then the browser `back` button, I instead see 6%. Reloading the page makes it show 2% again. 1. Go to `Modules` 2. Look at the module completion percentage (Does not vary when it is 0) 3. Click on the module 4. Click `back` on the browser 5. Look at th",
+   "gold": [
+    "apps/api/plane/app/views/workspace/module.py"
+   ],
+   "teach_at": "apps/api/plane/app/views/workspace/module.py:46"
+  },
+  {
+   "issue": 6746,
+   "pr": 8792,
+   "merged": "2026-03-25T08:01:16Z",
+   "title": "[bug]: webhook not triggered when created the task via API",
+   "q_title": "[bug]: webhook not triggered when created the task via API",
+   "q_400": "[bug]: webhook not triggered when created the task via API\n- [x] I have searched the existing issues When I create/update the issue via API, it doesn't trigger the webhook. make an API call to create issue endpoint Production None Self-hosted v0.25.2",
+   "q_body": "- [x] I have searched the existing issues When I create/update the issue via API, it doesn't trigger the webhook. make an API call to create issue endpoint Production None Self-hosted v0.25.2",
+   "gold": [
+    "apps/api/plane/api/views/issue.py"
+   ],
+   "teach_at": "apps/api/plane/api/views/issue.py:629"
+  },
+  {
+   "issue": 8791,
+   "pr": 8813,
+   "merged": "2026-03-27T10:29:55Z",
+   "title": "[bug]: tsdown --watch cleans dist/ on startup causing race condition in dev mode",
+   "q_title": "[bug]: tsdown --watch cleans dist/ on startup causing race condition in dev mode",
+   "q_400": "[bug]: tsdown --watch cleans dist/ on startup causing race condition in dev mode\n- [x] I have searched the existing issues When running `pnpm dev`, the `dev` tasks for all packages use `tsdown --watch`, which cleans the `dist/` directory on startup. Since turbo's `dev` task depends on `^build` to pre-populate `dist/`, the clean step wipes those outputs before the apps (admin, space, live) can reso",
+   "q_body": "- [x] I have searched the existing issues When running `pnpm dev`, the `dev` tasks for all packages use `tsdown --watch`, which cleans the `dist/` directory on startup. Since turbo's `dev` task depends on `^build` to pre-populate `dist/`, the clean step wipes those outputs before the apps (admin, space, live) can resolve them. This causes errors like: Failed to resolve entry for package \"@plane/ut",
+   "gold": [
+    "apps/live/package.json",
+    "package.json",
+    "packages/constants/package.json",
+    "packages/decorators/package.json",
+    "packages/editor/package.json",
+    "packages/hooks/package.json",
+    "packages/logger/package.json",
+    "packages/propel/package.json",
+    "packages/services/package.json",
+    "packages/shared-state/package.json",
+    "packages/tailwind-config/package.json",
+    "packages/types/package.json",
+    "packages/ui/package.json",
+    "packages/utils/package.json"
+   ],
+   "teach_at": "apps/live/package.json:14"
+  },
+  {
+   "issue": 8785,
+   "pr": 8790,
+   "merged": "2026-04-07T10:04:54Z",
+   "title": "change the twitter icon to X",
+   "q_title": "change the twitter icon to X",
+   "q_400": "change the twitter icon to X\n<img width=\"1845\" height=\"67\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/80c448af-02ee-4aae-b2c5-2a299a55fe2c\" /> Change the twitter icon to X and the link as well",
+   "q_body": "<img width=\"1845\" height=\"67\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/80c448af-02ee-4aae-b2c5-2a299a55fe2c\" /> Change the twitter icon to X and the link as well",
+   "gold": [
+    "apps/api/templates/emails/invitations/project_invitation.html",
+    "apps/api/templates/emails/notifications/issue-updates.html",
+    "apps/api/templates/emails/notifications/webhook-deactivate.html",
+    "apps/api/templates/emails/user/user_activation.html",
+    "apps/api/templates/emails/user/user_deactivation.html"
+   ],
+   "teach_at": "apps/api/templates/emails/invitations/project_invitation.html:261"
+  },
+  {
+   "issue": 8737,
+   "pr": 8744,
+   "merged": "2026-04-08T10:36:53Z",
+   "title": "\ud83d\udc1b Bug: OAuth login fails when instance configuration values have trailing whitespace",
+   "q_title": "\ud83d\udc1b Bug: OAuth login fails when instance configuration values have trailing whitespace",
+   "q_400": "\ud83d\udc1b Bug: OAuth login fails when instance configuration values have trailing whitespace\nWhen configuring OAuth credentials (e.g. GitHub Client ID) through the God Mode admin UI, any leading/trailing whitespace in the pasted value is persisted to the database as-is. This causes the OAuth redirect URL to include a URL-encoded space (`%20`) in the `client_id` parameter, which makes the identity provider",
+   "q_body": "When configuring OAuth credentials (e.g. GitHub Client ID) through the God Mode admin UI, any leading/trailing whitespace in the pasted value is persisted to the database as-is. This causes the OAuth redirect URL to include a URL-encoded space (`%20`) in the `client_id` parameter, which makes the identity provider return a 404. This is easy to trigger \u2014 simply copy-pasting a Client ID from a web p",
+   "gold": [
+    "apps/api/plane/license/api/views/configuration.py"
+   ],
+   "teach_at": "apps/api/plane/license/api/views/configuration.py:45"
+  },
+  {
+   "issue": 8829,
+   "pr": 8840,
+   "merged": "2026-04-28T20:31:46Z",
+   "title": "[bug]: Soft-deleted states returned by workspace and project state endpoints, causing deleted states to reappear in UI",
+   "q_title": "[bug]: Soft-deleted states returned by workspace and project state endpoints, causing deleted states to reappear in UI",
+   "q_400": "[bug]: Soft-deleted states returned by workspace and project state endpoints, causing deleted states to reappear in UI\n- [x] I have searched the existing issues When a custom project state is deleted, it is correctly soft-deleted in the database (deleted_at is set). However, two API endpoints do not filter on `deleted_at__isnull=True`, so they return soft-deleted states alongside active ones. The ",
+   "q_body": "- [x] I have searched the existing issues When a custom project state is deleted, it is correctly soft-deleted in the database (deleted_at is set). However, two API endpoints do not filter on `deleted_at__isnull=True`, so they return soft-deleted states alongside active ones. The frontend populates its state store from these endpoints, causing deleted states to reappear after navigating away and b",
+   "gold": [
+    "apps/api/plane/app/views/issue/base.py"
+   ],
+   "teach_at": "apps/api/plane/app/views/issue/base.py:99"
+  },
+  {
+   "issue": 9134,
+   "pr": 9137,
+   "merged": "2026-05-28T18:26:46Z",
+   "title": "[bug]: Opening a project crashes in Safari/iOS \u2014 window.requestIdleCallback is not a function (gantt-layout-loader, unguarded)",
+   "q_title": "[bug]: Opening a project crashes in Safari/iOS \u2014 window.requestIdleCallback is not a function (gantt-layout-loader, unguarded)",
+   "q_400": "[bug]: Opening a project crashes in Safari/iOS \u2014 window.requestIdleCallback is not a function (gantt-layout-loader, unguarded)\n- [x] I have searched the existing issues On a self-hosted v1.3.1 instance, opening any **project layout view** in **Safari (macOS) and Safari (iOS)** immediately trips the React error boundary (\"\ud83d\udea7 Looks like something went wrong!\"). Login, the projects list, and individua",
+   "q_body": "- [x] I have searched the existing issues On a self-hosted v1.3.1 instance, opening any **project layout view** in **Safari (macOS) and Safari (iOS)** immediately trips the React error boundary (\"\ud83d\udea7 Looks like something went wrong!\"). Login, the projects list, and individual work-item peek/detail drawers all work \u2014 only the project layout view crashes. The Network tab shows **zero failed requests**",
+   "gold": [
+    "apps/web/core/lib/polyfills/index.ts"
+   ],
+   "teach_at": "apps/web/core/lib/polyfills/index.ts:4"
+  },
+  {
+   "issue": 9157,
+   "pr": 9179,
+   "merged": "2026-06-01T09:33:22Z",
+   "title": "dispatch() Returns Exception Object Instead of HTTP Response in BaseAPIView",
+   "q_title": "dispatch() Returns Exception Object Instead of HTTP Response in BaseAPIView",
+   "q_400": "dispatch() Returns Exception Object Instead of HTTP Response in BaseAPIView\n- [x] I have searched the existing issues When I make any API request that triggers an unhandled exception, the server crashes the response pipeline instead of returning a structured error response and I see the error message attached below: TypeError: 'Exception' object is not a valid HTTP response What I expect is a prop",
+   "q_body": "- [x] I have searched the existing issues When I make any API request that triggers an unhandled exception, the server crashes the response pipeline instead of returning a structured error response and I see the error message attached below: TypeError: 'Exception' object is not a valid HTTP response What I expect is a properly formatted JSON error response with an appropriate HTTP status code. Fil",
+   "gold": [
+    "apps/api/plane/api/views/base.py",
+    "apps/api/plane/app/views/base.py",
+    "apps/api/plane/license/api/views/base.py",
+    "apps/api/plane/space/views/base.py"
+   ],
+   "teach_at": "apps/api/plane/api/views/base.py:110"
+  },
+  {
+   "issue": 8969,
+   "pr": 9059,
+   "merged": "2026-06-03T11:56:19Z",
+   "title": "Project creation silently fails with React crash when name/identifier contains special characters",
+   "q_title": "Project creation silently fails with React crash when name/identifier contains special characters",
+   "q_400": "Project creation silently fails with React crash when name/identifier contains special characters\nCreating a project with a special character (e.g. `+`) in the **Project name** field causes the API to return `400 Bad Request`, but the frontend does not surface a field-level validation message. Instead, the React app crashes with minified errors #418 and #423, and the user is left with no feedback ",
+   "q_body": "Creating a project with a special character (e.g. `+`) in the **Project name** field causes the API to return `400 Bad Request`, but the frontend does not surface a field-level validation message. Instead, the React app crashes with minified errors #418 and #423, and the user is left with no feedback about what went wrong. 1. Self-host Plane (community edition, `stable` images) behind a reverse pr",
+   "gold": [
+    "apps/web/ce/components/projects/create/root.tsx",
+    "apps/web/core/components/project/form.tsx"
+   ],
+   "teach_at": "apps/web/ce/components/projects/create/root.tsx:110"
+  },
+  {
+   "issue": 9251,
+   "pr": 9262,
+   "merged": "2026-06-20T21:33:14Z",
+   "title": "[bug]: `plan.so` is hardcoded into bot user email",
+   "q_title": "[bug]: `plan.so` is hardcoded into bot user email",
+   "q_400": "[bug]: `plan.so` is hardcoded into bot user email\n- [x] I have searched the existing issues When Plane creates the initial bot user called `Plane`, it sets it's email to `bot_user_{workspace_slug}@plane.so`, which is incorrect as `plane.so` is not the domain of our self-hosted instance. Run Plane on your own infrastructure and create a workspace, then check the DB. Plane would need to know it's ow",
+   "q_body": "- [x] I have searched the existing issues When Plane creates the initial bot user called `Plane`, it sets it's email to `bot_user_{workspace_slug}@plane.so`, which is incorrect as `plane.so` is not the domain of our self-hosted instance. Run Plane on your own infrastructure and create a workspace, then check the DB. Plane would need to know it's own domain, the environment variable configuration s",
+   "gold": [
+    "apps/api/plane/bgtasks/workspace_seed_task.py"
+   ],
+   "teach_at": "apps/api/plane/bgtasks/workspace_seed_task.py:10"
+  },
+  {
+   "issue": 9260,
+   "pr": 9279,
+   "merged": "2026-06-20T22:01:06Z",
+   "title": "[bug]: Sidebar pin/unpin not persisted \u2014 WorkspaceUserPreference PATCH missing user filter",
+   "q_title": "[bug]: Sidebar pin/unpin not persisted \u2014 WorkspaceUserPreference PATCH missing user filter",
+   "q_400": "[bug]: Sidebar pin/unpin not persisted \u2014 WorkspaceUserPreference PATCH missing user filter\nSidebar pin/unpin changes return 200 OK but are not saved for the requesting user. After page refresh, pins revert to previous state. In `plane/app/views/workspace/user_preference.py`, the `patch` method filters preferences without scoping to `request.user`: ```python preference = WorkspaceUserPreference.obj",
+   "q_body": "Sidebar pin/unpin changes return 200 OK but are not saved for the requesting user. After page refresh, pins revert to previous state. In `plane/app/views/workspace/user_preference.py`, the `patch` method filters preferences without scoping to `request.user`: ```python preference = WorkspaceUserPreference.objects.filter( key=key, workspace__slug=slug ).first() ``` In a workspace with multiple membe",
+   "gold": [
+    "apps/api/plane/app/views/workspace/user_preference.py"
+   ],
+   "teach_at": "apps/api/plane/app/views/workspace/user_preference.py:85"
+  },
+  {
+   "issue": 9306,
+   "pr": 9307,
+   "merged": "2026-07-07T20:21:15Z",
+   "title": "\ud83d\udc1b Bug: Issues created or updated via REST API send no notifications or emails",
+   "q_title": "\ud83d\udc1b Bug: Issues created or updated via REST API send no notifications or emails",
+   "q_400": "\ud83d\udc1b Bug: Issues created or updated via REST API send no notifications or emails\n- [X] I have searched the existing issues Creating, updating, or assigning an issue through the REST API (`/api/v1/...`) generates no notification \u2014 assignees and subscribers get no in-app notification and no email. The same actions in the web UI work, and SMTP is fine (OTP and web-UI emails arrive), so the notification ",
+   "q_body": "- [X] I have searched the existing issues Creating, updating, or assigning an issue through the REST API (`/api/v1/...`) generates no notification \u2014 assignees and subscribers get no in-app notification and no email. The same actions in the web UI work, and SMTP is fine (OTP and web-UI emails arrive), so the notification pipeline itself is healthy. Only issue create and update over the API are affe",
+   "gold": [
+    "apps/api/plane/api/views/issue.py"
+   ],
+   "teach_at": "apps/api/plane/api/views/issue.py:479"
+  },
+  {
+   "issue": 9127,
+   "pr": 9151,
+   "merged": "2026-07-28T12:22:46Z",
+   "title": "[Security/Medium] Filename Sanitization Does Not Strip Control Characters",
+   "q_title": "[Security/Medium] Filename Sanitization Does Not Strip Control Characters",
+   "q_400": "[Security/Medium] Filename Sanitization Does Not Strip Control Characters\nThe sanitize_filename() function in apps/api/plane/utils/path_validator.py does not strip control characters (e.g., tab, newline, carriage return) from user-provided filenames. This function is used when generating S3 object keys for file uploads. 1. Send a POST request to asset upload endpoint with a filename containing con",
+   "q_body": "The sanitize_filename() function in apps/api/plane/utils/path_validator.py does not strip control characters (e.g., tab, newline, carriage return) from user-provided filenames. This function is used when generating S3 object keys for file uploads. 1. Send a POST request to asset upload endpoint with a filename containing control characters 2. The filename with control characters will be used direc",
+   "gold": [
+    "apps/api/plane/utils/path_validator.py"
+   ],
+   "teach_at": "apps/api/plane/utils/path_validator.py:15"
+  },
+  {
+   "issue": 9221,
+   "pr": 9303,
+   "merged": "2026-07-29T14:03:03Z",
+   "title": "Bug - google login not working - Community Edition",
+   "q_title": "Bug - google login not working - Community Edition",
+   "q_400": "Bug - google login not working - Community Edition\n- [x] I have searched the existing issues <img width=\"2576\" height=\"210\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/acd8df95-cc98-4e60-8566-f4352e5827fa\" /> 1. setup the google login and save 2. Try to enable the google login 3. Notice says \"Google Login is active now\" But toggle did not turn on and its not available in the login ",
+   "q_body": "- [x] I have searched the existing issues <img width=\"2576\" height=\"210\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/acd8df95-cc98-4e60-8566-f4352e5827fa\" /> 1. setup the google login and save 2. Try to enable the google login 3. Notice says \"Google Login is active now\" But toggle did not turn on and its not available in the login screen as well Production Google Chrome Self-hosted",
+   "gold": [
+    "apps/api/plane/license/management/commands/configure_instance.py"
+   ],
+   "teach_at": "apps/api/plane/license/management/commands/configure_instance.py:18"
+  },
+  {
+   "issue": 9489,
+   "pr": 9521,
+   "merged": "2026-08-03T17:45:55Z",
+   "title": "[bug]: Notification list endpoint 404s due to missing trailing slash in frontend service call",
+   "q_title": "[bug]: Notification list endpoint 404s due to missing trailing slash in frontend service call",
+   "q_400": "[bug]: Notification list endpoint 404s due to missing trailing slash in frontend service call\n- [x] I have searched the existing issues The workspace inbox shows the correct unread notification count (badge), but the actual notification list never loads \u2014 the inbox stays on the empty-state illustration even though notifications exist. `WorkspaceNotificationService.list()` in `packages/services/src",
+   "q_body": "- [x] I have searched the existing issues The workspace inbox shows the correct unread notification count (badge), but the actual notification list never loads \u2014 the inbox stays on the empty-state illustration even though notifications exist. `WorkspaceNotificationService.list()` in `packages/services/src/workspace/notification.service.ts` builds its request URL without a trailing slash: ```ts asy",
+   "gold": [
+    "apps/web/core/services/workspace-notification.service.ts",
+    "packages/services/src/workspace/notification.service.ts"
+   ],
+   "teach_at": "apps/web/core/services/workspace-notification.service.ts:36"
+  },
+  {
+   "issue": 9517,
+   "pr": 9526,
+   "merged": "2026-09-02T17:55:39Z",
+   "title": "\ud83d\udc1b Bug: Work item create/update via API silently drops assignees who aren't active project members (returns 200/201, no error)",
+   "q_title": "\ud83d\udc1b Bug: Work item create/update via API silently drops assignees who aren't active project members (returns 200/201, no error)",
+   "q_400": "\ud83d\udc1b Bug: Work item create/update via API silently drops assignees who aren't active project members (returns 200/201, no error)\nCreating or updating a work item through the API with an `assignees` list returns success even when some or all of those ids aren't active project members with role >= 15. The invalid ids are quietly filtered out \u2014 no error, nothing in the response saying the assignment was",
+   "q_body": "Creating or updating a work item through the API with an `assignees` list returns success even when some or all of those ids aren't active project members with role >= 15. The invalid ids are quietly filtered out \u2014 no error, nothing in the response saying the assignment was rejected. We hit this twice in production automation; both times the API reported success and the work item just came back un",
+   "gold": [
+    "apps/api/plane/api/serializers/issue.py"
+   ],
+   "teach_at": "apps/api/plane/api/serializers/issue.py:105"
+  },
+  {
+   "issue": 9169,
+   "pr": 9200,
+   "merged": "2026-09-02T17:56:09Z",
+   "title": "Archiving a Cycle with No End Date Crashes with TypeError",
+   "q_title": "Archiving a Cycle with No End Date Crashes with TypeError",
+   "q_400": "Archiving a Cycle with No End Date Crashes with TypeError\n- [x] I have searched the existing issues TypeError: '>=' not supported between instances of 'NoneType' and 'datetime.datetime'. File: apps/api/plane/api/views/cycle.py, line 762 1. Create a cycle without setting an end date 2. Attempt to archive that cycle 3. See 500 error Production None Cloud v0.17.0-dev",
+   "q_body": "- [x] I have searched the existing issues TypeError: '>=' not supported between instances of 'NoneType' and 'datetime.datetime'. File: apps/api/plane/api/views/cycle.py, line 762 1. Create a cycle without setting an end date 2. Attempt to archive that cycle 3. See 500 error Production None Cloud v0.17.0-dev",
+   "gold": [
+    "apps/api/plane/api/views/cycle.py",
+    "apps/api/plane/app/views/cycle/archive.py"
+   ],
+   "teach_at": "apps/api/plane/api/views/cycle.py:763"
+  },
+  {
+   "issue": 9674,
+   "pr": 9763,
+   "merged": "2026-09-07T20:03:55Z",
+   "title": "[bug]: Issue link `metadata` is always overwritten on update \u2014 `crawl_work_item_link_title` runs unconditionally in `partial_update`",
+   "q_title": "[bug]: Issue link `metadata` is always overwritten on update \u2014 `crawl_work_item_link_title` runs unconditionally in `partial_update`",
+   "q_400": "[bug]: Issue link `metadata` is always overwritten on update \u2014 `crawl_work_item_link_title` runs unconditionally in `partial_update`\n- [x] I have searched the existing issues `PATCH`ing an issue link's `metadata` succeeds (200, and the response echoes what was sent), but the value is replaced a second or two later. The background crawler runs on **every** update \u2014 even when the `url` did not chang",
+   "q_body": "- [x] I have searched the existing issues `PATCH`ing an issue link's `metadata` succeeds (200, and the response echoes what was sent), but the value is replaced a second or two later. The background crawler runs on **every** update \u2014 even when the `url` did not change \u2014 and assigns the whole `metadata` field from what it scraped. ``` PATCH .../issues/{issue}/issue-links/{link}/ {\"metadata\": {}} ->",
+   "gold": [
+    "apps/api/plane/api/views/issue.py",
+    "apps/api/plane/app/views/issue/link.py"
+   ],
+   "teach_at": "apps/api/plane/api/views/issue.py:1307"
+  },
+  {
+   "issue": 9838,
+   "pr": 9840,
+   "merged": "2026-09-15T20:24:32Z",
+   "title": "\ud83d\udee0\ufe0f Improvement: Update legacy Plane branding assets",
+   "q_title": "\ud83d\udee0\ufe0f Improvement: Update legacy Plane branding assets",
+   "q_400": "\ud83d\udee0\ufe0f Improvement: Update legacy Plane branding assets\nWhile going through the Plane repository, I noticed that several branding assets still use the previous blue Plane logo, while the current Plane branding uses the newer black/white identity. The legacy assets appear across both the Web and Space applications. - `apps/space/app/assets/plane-logo.svg` - `apps/space/app/assets/plane-logos/black-hori",
+   "q_body": "While going through the Plane repository, I noticed that several branding assets still use the previous blue Plane logo, while the current Plane branding uses the newer black/white identity. The legacy assets appear across both the Web and Space applications. - `apps/space/app/assets/plane-logo.svg` - `apps/space/app/assets/plane-logos/black-horizontal-with-blue-logo.png` - `apps/space/app/assets/",
+   "gold": [
+    "apps/admin/public/site.webmanifest.json",
+    "apps/space/public/site.webmanifest.json",
+    "apps/web/public/plane-logos/plane-mobile-pwa.png",
+    "apps/web/public/site.webmanifest.json"
+   ],
+   "teach_at": "apps/admin/public/site.webmanifest.json:5"
+  },
+  {
+   "issue": 9612,
+   "pr": 9804,
+   "merged": "2026-09-17T16:58:25Z",
+   "title": "[bug]: Sub-item is not showing in ticket in local",
+   "q_title": "[bug]: Sub-item is not showing in ticket in local",
+   "q_400": "[bug]: Sub-item is not showing in ticket in local\n- [x] I have searched the existing issues In local development after I added sub-item-issue into parent-issue. It is not appearing under collapsible-button. Possible cause: plane/apps/web/core/components/issues/issue-detail-widgets/sub-issues/content.tsx line:154 subIssueHelpers.issue_visibility.includes(parentIssueId) After removing this piece of ",
+   "q_body": "- [x] I have searched the existing issues In local development after I added sub-item-issue into parent-issue. It is not appearing under collapsible-button. Possible cause: plane/apps/web/core/components/issues/issue-detail-widgets/sub-issues/content.tsx line:154 subIssueHelpers.issue_visibility.includes(parentIssueId) After removing this piece of code it is working and showing sub-issues. 1. Run ",
+   "gold": [
+    "apps/web/core/components/issues/issue-detail-widgets/sub-issues/content.tsx"
+   ],
+   "teach_at": "apps/web/core/components/issues/issue-detail-widgets/sub-issues/content.tsx:84"
+  },
+  {
+   "issue": 9861,
+   "pr": 9862,
+   "merged": "2026-09-23T18:38:42Z",
+   "title": "[bug]: Expired session causes endless reload loop / error boundary instead of the sign-in screen",
+   "q_title": "[bug]: Expired session causes endless reload loop / error boundary instead of the sign-in screen",
+   "q_400": "[bug]: Expired session causes endless reload loop / error boundary instead of the sign-in screen\nWhen the session cookie expires while the web app is open, the user is not returned to the sign-in screen. Depending on timing they either land on an error boundary (\"Looks like something went wrong\") or the page keeps reloading. 1. Sign in, keep the tab open until the session expires (or invalidate th",
+   "q_body": "When the session cookie expires while the web app is open, the user is not returned to the sign-in screen. Depending on timing they either land on an error boundary (\"Looks like something went wrong\") or the page keeps reloading. 1. Sign in, keep the tab open until the session expires (or invalidate the server-side session). 2. Interact with the app (e.g. open a work items list): the request retur",
+   "gold": [
+    "apps/web/core/services/api.service.ts"
+   ],
+   "teach_at": "apps/web/core/services/api.service.ts:42"
+  },
+  {
+   "issue": 4639,
+   "pr": 9717,
+   "merged": "2026-09-29T11:34:32Z",
+   "title": "[bug]: Plane API: expand query parameter does not work with \"updated_by\" on \"projects\"",
+   "q_title": "[bug]: Plane API: expand query parameter does not work with \"updated_by\" on \"projects\"",
+   "q_400": "[bug]: Plane API: expand query parameter does not work with \"updated_by\" on \"projects\"\n- [X] I have searched the existing issues When I fetch all projects with ```js fetch('https://api.plane.so/api/v1/workspaces/{slug}/projects/', { query: { expand: \"created_by,updated_by,project_lead\" }, }) ``` All is working good except for \"updated_by\". Here is an extract of the result: ![image](https://github.",
+   "q_body": "- [X] I have searched the existing issues When I fetch all projects with ```js fetch('https://api.plane.so/api/v1/workspaces/{slug}/projects/', { query: { expand: \"created_by,updated_by,project_lead\" }, }) ``` All is working good except for \"updated_by\". Here is an extract of the result: ![image](https://github.com/makeplane/plane/assets/64729974/e4e507a4-feb9-4e43-93c8-8304be74d354) As you can se",
+   "gold": [
+    "apps/api/plane/api/serializers/base.py",
+    "apps/api/plane/app/serializers/base.py"
+   ],
+   "teach_at": "apps/api/plane/api/serializers/base.py:2"
+  }
+ ]
+}

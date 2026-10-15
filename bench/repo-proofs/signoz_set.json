@@ -1,0 +1,2305 @@
+{
+ "repo": "SigNoz/signoz",
+ "snapshot": "8a0c5bc3c8a9ee41d6bf10c7cf30845f5643d3a9",
+ "items": [
+  {
+   "issue": 9100,
+   "pr": 9247,
+   "merged": "2025-10-19T15:35:23Z",
+   "title": "TRACES[FE]:Make search for attributes default in trace detail page",
+   "q_title": "TRACES[FE]:Make search for attributes default in trace detail page",
+   "q_400": "TRACES[FE]:Make search for attributes default in trace detail page\n:Make search for attributes default in trace detail page",
+   "q_body": ":Make search for attributes default in trace detail page",
+   "gold": [
+    "frontend/src/container/SpanDetailsDrawer/Attributes/Attributes.tsx",
+    "frontend/src/container/SpanDetailsDrawer/Events/Events.tsx",
+    "frontend/src/container/SpanDetailsDrawer/SpanDetailsDrawer.tsx"
+   ],
+   "teach_at": "frontend/src/container/SpanDetailsDrawer/Attributes/Attributes.tsx:20"
+  },
+  {
+   "issue": 9147,
+   "pr": 9303,
+   "merged": "2025-10-27T13:52:40Z",
+   "title": "LOG: Logs context filter selection logic",
+   "q_title": "LOG: Logs context filter selection logic",
+   "q_400": "LOG: Logs context filter selection logic\nImprovement over https://github.com/SigNoz/signoz/issues/8504#issuecomment-3061153364. One we released this, we have seen then some users have k8s, cloud, host in resource attributes even this all selected results in a query which exceeds the limit. We should come with a strategy. 1) Always include - `service.name` and `deployment.environment/env/environmen",
+   "q_body": "Improvement over https://github.com/SigNoz/signoz/issues/8504#issuecomment-3061153364. One we released this, we have seen then some users have k8s, cloud, host in resource attributes even this all selected results in a query which exceeds the limit. We should come with a strategy. 1) Always include - `service.name` and `deployment.environment/env/environment` if present in resource filters. 2) Sel",
+   "gold": [
+    "frontend/src/container/LogsExplorerContext/useInitialQuery.ts",
+    "frontend/src/container/LogsExplorerContext/utils.ts"
+   ],
+   "teach_at": "frontend/src/container/LogsExplorerContext/useInitialQuery.ts:2"
+  },
+  {
+   "issue": 9190,
+   "pr": 9371,
+   "merged": "2025-10-28T17:09:55Z",
+   "title": "[FE]: Update FE implementation for logs s3 retention",
+   "q_title": "[FE]: Update FE implementation for logs s3 retention",
+   "q_400": "[FE]: Update FE implementation for logs s3 retention\nRemove the Hrs/Months dropdown from Logs TTL when moving to s3 <img width=\"1016\" height=\"832\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/92e5576a-b127-4519-880c-fdbba01b1667\" /> Also add in the API payload ``` \"coldStorageVolume\": \"s3\", \"coldStorageDuration\": 60, ``` As we want to standardise the new TTL schema, we want to eradi",
+   "q_body": "Remove the Hrs/Months dropdown from Logs TTL when moving to s3 <img width=\"1016\" height=\"832\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/92e5576a-b127-4519-880c-fdbba01b1667\" /> Also add in the API payload ``` \"coldStorageVolume\": \"s3\", \"coldStorageDuration\": 60, ``` As we want to standardise the new TTL schema, we want to eradicate the option for Hours in the Logs TTL Table speci",
+   "gold": [
+    "frontend/src/api/settings/setRetentionV2.ts",
+    "frontend/src/container/GeneralSettings/GeneralSettings.tsx",
+    "frontend/src/container/GeneralSettings/Retention.tsx",
+    "frontend/src/container/GeneralSettings/utils.ts",
+    "frontend/src/types/api/settings/getRetention.ts",
+    "frontend/src/types/api/settings/setRetention.ts"
+   ],
+   "teach_at": "frontend/src/api/settings/setRetentionV2.ts:8"
+  },
+  {
+   "issue": 9467,
+   "pr": 9432,
+   "merged": "2025-10-29T09:54:54Z",
+   "title": "Docker compose configs does not enable Cost Explorer tracking",
+   "q_title": "Docker compose configs does not enable Cost Explorer tracking",
+   "q_400": "Docker compose configs does not enable Cost Explorer tracking\nUpgraded to 0.93.0 when cost explorer was released. Didn't seem to be working at the time. Still doesn't in 0.99.0. Looks like some changes are needed. These were done for helm (https://github.com/SigNoz/charts/pull/742) but not for docker compose. Self-hosted docker compose should be able to monitor cost explorer too 1. Install signoz ",
+   "q_body": "Upgraded to 0.93.0 when cost explorer was released. Didn't seem to be working at the time. Still doesn't in 0.99.0. Looks like some changes are needed. These were done for helm (https://github.com/SigNoz/charts/pull/742) but not for docker compose. Self-hosted docker compose should be able to monitor cost explorer too 1. Install signoz with docker compose 2. Go to Cost Explorer - nothing shown * *",
+   "gold": [
+    "deploy/docker-swarm/otel-collector-config.yaml",
+    "deploy/docker/otel-collector-config.yaml"
+   ],
+   "teach_at": "deploy/docker-swarm/otel-collector-config.yaml:1"
+  },
+  {
+   "issue": 8386,
+   "pr": 8911,
+   "merged": "2025-11-01T16:56:05Z",
+   "title": "Infra Metrics in trace details page.",
+   "q_title": "Infra Metrics in trace details page.",
+   "q_400": "Infra Metrics in trace details page.\nThe same metrics panel that we have in log detail page shoule be present in trace detail page.",
+   "q_body": "The same metrics panel that we have in log detail page shoule be present in trace detail page.",
+   "gold": [
+    "frontend/src/components/LogDetail/index.tsx",
+    "frontend/src/container/LogDetailedView/InfraMetrics/InfraMetrics.tsx",
+    "frontend/src/container/LogDetailedView/InfraMetrics/NodeMetrics.tsx",
+    "frontend/src/container/LogDetailedView/InfraMetrics/PodMetrics.tsx",
+    "frontend/src/container/SpanDetailsDrawer/SpanDetailsDrawer.tsx",
+    "frontend/src/container/SpanDetailsDrawer/SpanRelatedSignals/SpanRelatedSignals.styles.scss",
+    "frontend/src/container/SpanDetailsDrawer/SpanRelatedSignals/SpanRelatedSignals.tsx",
+    "frontend/src/container/SpanDetailsDrawer/constants.ts"
+   ],
+   "teach_at": "frontend/src/components/LogDetail/index.tsx:383"
+  },
+  {
+   "issue": 9433,
+   "pr": 9455,
+   "merged": "2025-11-03T11:15:08Z",
+   "title": "bug: error while generating connection params during AWS integration",
+   "q_title": "bug: error while generating connection params during AWS integration",
+   "q_400": "bug: error while generating connection params during AWS integration\nAfter clicking integrate now on AWS integration ``` GET /api/v1/cloud-integrations/aws/accounts/generate-connection-params ``` is called which is failing with following error ``` { \"status\": \"error\", \"errorType\": \"internal\", \"error\": \"couldn't provision PAT for cloud integration:: couldn't look for integration user: constraint fa",
+   "q_body": "After clicking integrate now on AWS integration ``` GET /api/v1/cloud-integrations/aws/accounts/generate-connection-params ``` is called which is failing with following error ``` { \"status\": \"error\", \"errorType\": \"internal\", \"error\": \"couldn't provision PAT for cloud integration:: couldn't look for integration user: constraint failed: FOREIGN KEY constraint failed (787)\" } ``` Should succeed API 1",
+   "gold": [
+    ".github/workflows/build-enterprise.yaml",
+    ".github/workflows/build-staging.yaml",
+    ".github/workflows/integrationci.yaml",
+    "cmd/enterprise/.goreleaser.yaml",
+    "ee/query-service/app/api/cloudIntegrations.go",
+    "ee/query-service/constants/constants.go",
+    "pkg/modules/user/impluser/module.go"
+   ],
+   "teach_at": ".github/workflows/build-enterprise.yaml:107"
+  },
+  {
+   "issue": 9491,
+   "pr": 9492,
+   "merged": "2025-11-05T13:54:57Z",
+   "title": "Table panel non number keys as NaN",
+   "q_title": "Table panel non number keys as NaN",
+   "q_400": "Table panel non number keys as NaN\n<img width=\"1504\" height=\"130\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/edcee089-db01-4d0e-8986-c696a5439519\" />",
+   "q_body": "<img width=\"1504\" height=\"130\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/edcee089-db01-4d0e-8986-c696a5439519\" />",
+   "gold": [
+    "frontend/src/container/GridTableComponent/index.tsx",
+    "frontend/src/lib/query/createTableColumnsFromQuery.ts"
+   ],
+   "teach_at": "frontend/src/container/GridTableComponent/index.tsx:88"
+  },
+  {
+   "issue": 8478,
+   "pr": 9418,
+   "merged": "2025-11-10T19:58:16Z",
+   "title": "[config] require tls for alertmanager (SIGNOZ_ALERTMANAGER_SIGNOZ_GLOBAL_SMTP__REQUIRE__TLS) is not working ",
+   "q_title": "[config] require tls for alertmanager (SIGNOZ_ALERTMANAGER_SIGNOZ_GLOBAL_SMTP__REQUIRE__TLS) is not working ",
+   "q_400": "[config] require tls for alertmanager (SIGNOZ_ALERTMANAGER_SIGNOZ_GLOBAL_SMTP__REQUIRE__TLS) is not working \nI've been trying to get SMTP forwarding configured to work with alerting on an Ubuntu install of Signoz v0.84.1. When performing a test alert notification from the browser, I get this error: unknown establish connection to server: dial tcp 127.0.0.1:25: connect: connection refused In /etc/e",
+   "q_body": "I've been trying to get SMTP forwarding configured to work with alerting on an Ubuntu install of Signoz v0.84.1. When performing a test alert notification from the browser, I get this error: unknown establish connection to server: dial tcp 127.0.0.1:25: connect: connection refused In /etc/environment I've configured it this way: SIGNOZ_ALERTMANAGER_SIGNOZ_GLOBAL_SMTP__FROM=\"<an email address>\" SIG",
+   "gold": [
+    "pkg/types/alertmanagertypes/config.go"
+   ],
+   "teach_at": "pkg/types/alertmanagertypes/config.go:93"
+  },
+  {
+   "issue": 8932,
+   "pr": 9534,
+   "merged": "2025-11-11T18:39:15Z",
+   "title": "Builtin integration JSON files are not updated",
+   "q_title": "Builtin integration JSON files are not updated",
+   "q_400": "Builtin integration JSON files are not updated\nThe files located in https://github.com/SigNoz/signoz/tree/f6bc30050bd6381fe5cc65375381ad8dfe76b32a/pkg/query-service/app/integrations/builtin_integrations are not updated for new qb",
+   "q_body": "The files located in https://github.com/SigNoz/signoz/tree/f6bc30050bd6381fe5cc65375381ad8dfe76b32a/pkg/query-service/app/integrations/builtin_integrations are not updated for new qb",
+   "gold": [
+    "pkg/query-service/app/integrations/builtin_integrations/aws_elasticache/assets/dashboards/overview.json",
+    "pkg/query-service/app/integrations/builtin_integrations/aws_elasticache/assets/dashboards/overview_dot.json",
+    "pkg/query-service/app/integrations/builtin_integrations/aws_rds_mysql/assets/dashboards/db_metrics.json",
+    "pkg/query-service/app/integrations/builtin_integrations/aws_rds_mysql/assets/dashboards/db_metrics_dot.json",
+    "pkg/query-service/app/integrations/builtin_integrations/aws_rds_mysql/assets/dashboards/overview.json",
+    "pkg/query-service/app/integrations/builtin_integrations/aws_rds_mysql/assets/dashboards/overview_dot.json",
+    "pkg/query-service/app/integrations/builtin_integrations/aws_rds_postgres/assets/dashboards/db_metrics_overview.json",
+    "pkg/query-service/app/integrations/builtin_integrations/aws_rds_postgres/assets/dashboards/db_metrics_overview_dot.json",
+    "pkg/query-service/app/integrations/builtin_integrations/aws_rds_postgres/assets/dashboards/overview.json",
+    "pkg/query-service/app/integrations/builtin_integrations/aws_rds_postgres/assets/dashboards/overview_dot.json",
+    "pkg/query-service/app/integrations/builtin_integrations/clickhouse/assets/dashboards/overview.json",
+    "pkg/query-service/app/integrations/builtin_integrations/clickhouse/assets/dashboards/overview_dot.json",
+    "pkg/query-service/app/integrations/builtin_integrations/mongo/assets/dashboards/overview.json",
+    "pkg/query-service/app/integrations/builtin_integrations/mongo/assets/dashboards/overview_dot.json",
+    "pkg/query-service/app/integrations/builtin_integrations/postgres/assets/dashboards/overview.json",
+    "pkg/query-service/app/integrations/builtin_integrations/postgres/assets/dashboards/overview_dot.json",
+    "pkg/query-service/app/integrations/builtin_integrations/redis/assets/dashboards/overview.json",
+    "pkg/query-service/app/integrations/builtin_integrations/redis/assets/dashboards/overview_dot.json"
+   ],
+   "teach_at": "pkg/query-service/app/integrations/builtin_integrations/mongo/assets/dashboards/overview.json:1"
+  },
+  {
+   "issue": 9536,
+   "pr": 9538,
+   "merged": "2025-11-12T00:21:26Z",
+   "title": "Event object is invalid: 'payload.severity' is missing or blank",
+   "q_title": "Event object is invalid: 'payload.severity' is missing or blank",
+   "q_400": "Event object is invalid: 'payload.severity' is missing or blank\nPagerduty alerts with the new alerting experience are not delivered because of the missing `severity` label.",
+   "q_body": "Pagerduty alerts with the new alerting experience are not delivered because of the missing `severity` label.",
+   "gold": [
+    "pkg/contextlinks/types.go",
+    "pkg/query-service/app/parser.go",
+    "pkg/query-service/rules/threshold_rule.go",
+    "pkg/types/ruletypes/constants.go",
+    "pkg/types/ruletypes/threshold.go"
+   ],
+   "teach_at": "pkg/contextlinks/types.go:42"
+  },
+  {
+   "issue": 9251,
+   "pr": 9287,
+   "merged": "2025-11-12T08:32:08Z",
+   "title": "`@` at the start of the service name breaks the Services page",
+   "q_title": "`@` at the start of the service name breaks the Services page",
+   "q_400": "`@` at the start of the service name breaks the Services page\n- Set service name as `@redis-sentinal` - Send sample data - The service doesn't show up in the List.",
+   "q_body": "- Set service name as `@redis-sentinal` - Send sample data - The service doesn't show up in the List.",
+   "gold": [
+    "frontend/src/api/metrics/getService.ts",
+    "frontend/src/api/metrics/getTopOperations.ts",
+    "frontend/src/mocks-server/handlers.ts",
+    "frontend/src/pages/MetricsApplication/MetricsApplication.tsx",
+    "pkg/query-service/app/http_handler.go",
+    "pkg/signoz/handler.go",
+    "pkg/signoz/module.go",
+    "pkg/signoz/signoz.go"
+   ],
+   "teach_at": "frontend/src/api/metrics/getService.ts:1"
+  },
+  {
+   "issue": 9273,
+   "pr": 9448,
+   "merged": "2025-11-13T19:45:19Z",
+   "title": "Moving PostableRule/GettableRule validation to UnmarshalJSON",
+   "q_title": "Moving PostableRule/GettableRule validation to UnmarshalJSON",
+   "q_400": "Moving PostableRule/GettableRule validation to UnmarshalJSON\nGet rid of the `Validate` function and move the validation to `UnmarshalJSON`",
+   "q_body": "Get rid of the `Validate` function and move the validation to `UnmarshalJSON`",
+   "gold": [
+    "pkg/types/ruletypes/api_params.go"
+   ],
+   "teach_at": "pkg/types/ruletypes/api_params.go:180"
+  },
+  {
+   "issue": 9323,
+   "pr": 9550,
+   "merged": "2025-11-18T11:20:47Z",
+   "title": "[FE] : Change the External API Queries to Query Range V5",
+   "q_title": "[FE] : Change the External API Queries to Query Range V5",
+   "q_400": "[FE] : Change the External API Queries to Query Range V5\nChange the External API Queries to Query Range V5 The queries have been mentioned here : https://www.notion.so/signoz/External-API-monitoring-requests-272fcc6bcd198085818ef1b17864cbf0?source=copy_link I would request you to change all query range APIs to QB V5. This was deemed out of scope in this PR : https://github.com/SigNoz/signoz/pull/9",
+   "q_body": "Change the External API Queries to Query Range V5 The queries have been mentioned here : https://www.notion.so/signoz/External-API-monitoring-requests-272fcc6bcd198085818ef1b17864cbf0?source=copy_link I would request you to change all query range APIs to QB V5. This was deemed out of scope in this PR : https://github.com/SigNoz/signoz/pull/9042 as discussed by @YounixM",
+   "gold": [
+    "frontend/src/container/ApiMonitoring/Explorer/Domains/DomainDetails/AllEndPoints.tsx",
+    "frontend/src/container/ApiMonitoring/Explorer/Domains/DomainDetails/EndPointDetails.tsx",
+    "frontend/src/container/ApiMonitoring/Explorer/Domains/DomainDetails/TopErrors.tsx",
+    "frontend/src/container/ApiMonitoring/Explorer/Domains/DomainDetails/components/DomainMetrics.tsx",
+    "frontend/src/container/ApiMonitoring/Explorer/Domains/DomainDetails/components/EndPointMetrics.tsx",
+    "frontend/src/container/ApiMonitoring/Explorer/Domains/DomainDetails/components/MetricOverTimeGraph.tsx",
+    "frontend/src/container/ApiMonitoring/utils.tsx",
+    "frontend/src/container/GridTableComponent/index.tsx",
+    "frontend/src/container/GridTableComponent/types.ts",
+    "frontend/src/container/PanelWrapper/TablePanelWrapper.tsx",
+    "frontend/src/container/QueryTable/QueryTable.intefaces.ts",
+    "frontend/src/types/api/dashboard/getAll.ts"
+   ],
+   "teach_at": "frontend/src/container/ApiMonitoring/Explorer/Domains/DomainDetails/AllEndPoints.tsx:1"
+  },
+  {
+   "issue": 9601,
+   "pr": 9607,
+   "merged": "2025-11-19T08:50:59Z",
+   "title": "Dynamic variable doesn't work with PromQL when `ALL` option is selected",
+   "q_title": "Dynamic variable doesn't work with PromQL when `ALL` option is selected",
+   "q_400": "Dynamic variable doesn't work with PromQL when `ALL` option is selected\n1. Create a dynamic variable of type multi-select with `ALL` option enabled 2. Use it in an promql expression, example (`sum(rate({\"system.cpu.time\", \"host.name\"=~\"$host.name\"}[5m]))`) where `host.name` is the variable name 3. Verify if it works with selecting one host 4. Verify if it works with selecting two hosts 5. Verify i",
+   "q_body": "1. Create a dynamic variable of type multi-select with `ALL` option enabled 2. Use it in an promql expression, example (`sum(rate({\"system.cpu.time\", \"host.name\"=~\"$host.name\"}[5m]))`) where `host.name` is the variable name 3. Verify if it works with selecting one host 4. Verify if it works with selecting two hosts 5. Verify if it works with selecting `ALL` for variable",
+   "gold": [
+    "pkg/querier/promql_query.go"
+   ],
+   "teach_at": "pkg/querier/promql_query.go:16"
+  },
+  {
+   "issue": 9618,
+   "pr": 9616,
+   "merged": "2025-11-19T18:20:39Z",
+   "title": "Authentication Model configuration ERROR on Update to v0.102.0",
+   "q_title": "Authentication Model configuration ERROR on Update to v0.102.0",
+   "q_400": "Authentication Model configuration ERROR on Update to v0.102.0\nWe performed the newest update to version v0.102.0 that was released today. Migration and Collector setup went without any issues. The Signoz instance itself creashed with an error: 2025-11-19T10:54:02.292Z | {\"timestamp\":\"2025-11-19T10:54:02.291910031Z\",\"level\":\"ERROR\",\"code\":{\"function\":\"github.com/SigNoz/signoz/cmd.Execute\",\"file\":\"",
+   "q_body": "We performed the newest update to version v0.102.0 that was released today. Migration and Collector setup went without any issues. The Signoz instance itself creashed with an error: 2025-11-19T10:54:02.292Z | {\"timestamp\":\"2025-11-19T10:54:02.291910031Z\",\"level\":\"ERROR\",\"code\":{\"function\":\"github.com/SigNoz/signoz/cmd.Execute\",\"file\":\"/home/runner/work/signoz/signoz/cmd/root.go\",\"line\":30}, \"msg\":",
+   "gold": [
+    ".github/workflows/integrationci.yaml",
+    "ee/sqlschema/postgressqlschema/formatter.go",
+    "pkg/signoz/provider.go",
+    "pkg/sqlschema/column.go",
+    "pkg/sqlschema/formatter.go"
+   ],
+   "teach_at": ".github/workflows/integrationci.yaml:18"
+  },
+  {
+   "issue": 2811,
+   "pr": 9428,
+   "merged": "2025-11-21T20:00:37Z",
+   "title": "Different alert recovery threshold",
+   "q_title": "Different alert recovery threshold",
+   "q_400": "Different alert recovery threshold\nA lot of times, an alert will rapidly toggle between alerting and being resolved. For example, the disk space usage here is marginal, and kept firing on & off: ![image](https://github.com/SigNoz/signoz/assets/5213469/2e60d179-0940-4dcd-8ce2-c06b90a60fc6) A separate recovery threshold would add some hysteresis to the alert and keep it active until the underlying p",
+   "q_body": "A lot of times, an alert will rapidly toggle between alerting and being resolved. For example, the disk space usage here is marginal, and kept firing on & off: ![image](https://github.com/SigNoz/signoz/assets/5213469/2e60d179-0940-4dcd-8ce2-c06b90a60fc6) A separate recovery threshold would add some hysteresis to the alert and keep it active until the underlying problem is solved. [This also happen",
+   "gold": [
+    "Makefile",
+    "ee/query-service/rules/anomaly.go",
+    "pkg/query-service/model/alerting.go",
+    "pkg/query-service/rules/base_rule.go",
+    "pkg/query-service/rules/manager.go",
+    "pkg/query-service/rules/prom_rule.go",
+    "pkg/query-service/rules/rule.go",
+    "pkg/query-service/rules/threshold_rule.go",
+    "pkg/query-service/rules/threshold_rule_test_data.go",
+    "pkg/types/ruletypes/alerting.go",
+    "pkg/types/ruletypes/result_types.go",
+    "pkg/types/ruletypes/threshold.go"
+   ],
+   "teach_at": "Makefile:86"
+  },
+  {
+   "issue": 9701,
+   "pr": 9702,
+   "merged": "2025-11-27T10:14:24Z",
+   "title": "TTL: TTL for logs not actually getting applied",
+   "q_title": "TTL: TTL for logs not actually getting applied",
+   "q_400": "TTL: TTL for logs not actually getting applied\nIn the new shema for custom retention, updating the default of retention days in distributed table is missing.",
+   "q_body": "In the new shema for custom retention, updating the default of retention days in distributed table is missing.",
+   "gold": [
+    "pkg/query-service/app/clickhouseReader/reader.go"
+   ],
+   "teach_at": "pkg/query-service/app/clickhouseReader/reader.go:1663"
+  },
+  {
+   "issue": 9470,
+   "pr": 9700,
+   "merged": "2025-11-27T14:31:00Z",
+   "title": "[authn] requires Google OpenID configuration on startup, breaking offline network environments on self hosted platform",
+   "q_title": "[authn] requires Google OpenID configuration on startup, breaking offline network environments on self hosted platform",
+   "q_400": "[authn] requires Google OpenID configuration on startup, breaking offline network environments on self hosted platform\nBug description When upgrading from 0.97.1 to 0.99.0, starting Signoz now attempts to connect to https://accounts.google.com/.well-known/openid-configuration during startup. This did not happen in previous versions. In an internal network environment without internet access, this ",
+   "q_body": "Bug description When upgrading from 0.97.1 to 0.99.0, starting Signoz now attempts to connect to https://accounts.google.com/.well-known/openid-configuration during startup. This did not happen in previous versions. In an internal network environment without internet access, this connection cannot be made, causing Signoz to fail to start. <img width=\"1313\" height=\"196\" alt=\"Image\" src=\"https://git",
+   "gold": [
+    "pkg/authn/callbackauthn/googlecallbackauthn/authn.go"
+   ],
+   "teach_at": "pkg/authn/callbackauthn/googlecallbackauthn/authn.go:24"
+  },
+  {
+   "issue": 3372,
+   "pr": 9716,
+   "merged": "2025-11-28T19:29:44Z",
+   "title": "[authn] support IDP initiated session",
+   "q_title": "[authn] support IDP initiated session",
+   "q_400": "[authn] support IDP initiated session\nMost of the users in an Org use the Okta browser plugin to quickly get to their work apps. Currently, a user won't be able to login to SigNoz from Okta but the user will have to login via SigNoz UI.",
+   "q_body": "Most of the users in an Org use the Okta browser plugin to quickly get to their work apps. Currently, a user won't be able to login to SigNoz from Okta but the user will have to login via SigNoz UI.",
+   "gold": [
+    "ee/authn/callbackauthn/oidccallbackauthn/authn.go",
+    "ee/authn/callbackauthn/samlcallbackauthn/authn.go",
+    "pkg/authn/authn.go",
+    "pkg/authn/callbackauthn/googlecallbackauthn/authn.go",
+    "pkg/modules/authdomain/authdomain.go",
+    "pkg/modules/authdomain/implauthdomain/handler.go",
+    "pkg/modules/authdomain/implauthdomain/module.go",
+    "pkg/signoz/module.go",
+    "pkg/types/authtypes/domain.go"
+   ],
+   "teach_at": "ee/authn/callbackauthn/oidccallbackauthn/authn.go:129"
+  },
+  {
+   "issue": 9708,
+   "pr": 9579,
+   "merged": "2025-11-29T20:01:13Z",
+   "title": "chore: modify implementation around updated_metadata table to keep inserting new rows and not delete older",
+   "q_title": "chore: modify implementation around updated_metadata table to keep inserting new rows and not delete older",
+   "q_400": "chore: modify implementation around updated_metadata table to keep inserting new rows and not delete older\nWe use the signoz_metrics.updated_metadata table to store any custom user modifications for a metric ( description, temporality, type, etc.). Today, if an update is requested, we delete the older row if it exists and insert a new entry. This delete operation and then inserting can be upgraded",
+   "q_body": "We use the signoz_metrics.updated_metadata table to store any custom user modifications for a metric ( description, temporality, type, etc.). Today, if an update is requested, we delete the older row if it exists and insert a new entry. This delete operation and then inserting can be upgraded to a better logic. We will keep inserting new rows to the updated_metadata table, and we will not be delet",
+   "gold": [
+    "pkg/query-service/app/http_handler.go",
+    "pkg/querybuilder/where_clause_visitor.go",
+    "pkg/signoz/handler.go",
+    "pkg/signoz/module.go",
+    "pkg/signoz/signoz.go",
+    "pkg/telemetrymetrics/statement_builder.go",
+    "pkg/telemetrymetrics/tables.go",
+    "pkg/types/metrictypes/metrictypes.go"
+   ],
+   "teach_at": "pkg/query-service/app/http_handler.go:659"
+  },
+  {
+   "issue": 9671,
+   "pr": 9709,
+   "merged": "2025-12-01T15:39:31Z",
+   "title": "EVENTS[FE]: Format options on the explorer pages timeseries and table view.",
+   "q_title": "EVENTS[FE]: Format options on the explorer pages timeseries and table view.",
+   "q_400": "EVENTS[FE]: Format options on the explorer pages timeseries and table view.\nIn dashboards we have option of selecting the Y axis unit and other options such as decimal precision, bring it to the explorer pages. We can add some defaults as well example, durationNano should be nanoseconds etc.",
+   "q_body": "In dashboards we have option of selecting the Y axis unit and other options such as decimal precision, bring it to the explorer pages. We can add some defaults as well example, durationNano should be nanoseconds etc.",
+   "gold": [
+    "frontend/src/container/MeterExplorer/Explorer/Explorer.styles.scss",
+    "frontend/src/container/QueryBuilder/filters/BuilderUnitsFilter/BuilderUnits.tsx",
+    "frontend/src/container/TimeSeriesView/TimeSeriesView.styles.scss",
+    "frontend/src/container/TimeSeriesView/TimeSeriesView.tsx"
+   ],
+   "teach_at": "frontend/src/container/MeterExplorer/Explorer/Explorer.styles.scss:124"
+  },
+  {
+   "issue": 8916,
+   "pr": 9629,
+   "merged": "2025-12-02T16:20:05Z",
+   "title": "TRACES[FE]: disable isRoot and isEntrypoint from columns",
+   "q_title": "TRACES[FE]: disable isRoot and isEntrypoint from columns",
+   "q_400": "TRACES[FE]: disable isRoot and isEntrypoint from columns\n* When a query fails show the options to select columns and change order by instead of hiding that * Dont allow user to Select `isRoot` and `isEntrypoint` from the columns menu in traces. <img width=\"1800\" height=\"527\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/4234c833-8b07-43cb-a62a-acf395c03c31\" /> <img width=\"1800\" heigh",
+   "q_body": "* When a query fails show the options to select columns and change order by instead of hiding that * Dont allow user to Select `isRoot` and `isEntrypoint` from the columns menu in traces. <img width=\"1800\" height=\"527\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/4234c833-8b07-43cb-a62a-acf395c03c31\" /> <img width=\"1800\" height=\"527\" alt=\"Image\" src=\"https://github.com/user-attachme",
+   "gold": [
+    "frontend/src/container/NewWidget/LeftContainer/ExplorerAttributeColumns.tsx",
+    "frontend/src/container/NewWidget/LeftContainer/ExplorerColumnsRenderer.tsx",
+    "frontend/src/container/OptionsMenu/constants.ts",
+    "frontend/src/container/OptionsMenu/useOptionsMenu.ts"
+   ],
+   "teach_at": "frontend/src/container/NewWidget/LeftContainer/ExplorerAttributeColumns.tsx:1"
+  },
+  {
+   "issue": 9398,
+   "pr": 9657,
+   "merged": "2025-12-03T02:50:02Z",
+   "title": "Logs - Individual field in the body should not copy the whole body",
+   "q_title": "Logs - Individual field in the body should not copy the whole body",
+   "q_400": "Logs - Individual field in the body should not copy the whole body\n",
+   "q_body": "",
+   "gold": [
+    "frontend/src/container/LogDetailedView/BodyTitleRenderer.tsx",
+    "frontend/src/container/LogDetailedView/TableView/TableViewActions.tsx",
+    "frontend/src/container/LogDetailedView/utils.tsx"
+   ],
+   "teach_at": "frontend/src/container/LogDetailedView/BodyTitleRenderer.tsx:7"
+  },
+  {
+   "issue": 2267,
+   "pr": 9728,
+   "merged": "2025-12-03T06:07:57Z",
+   "title": "[Onboarding] Fly doc",
+   "q_title": "[Onboarding] Fly doc",
+   "q_400": "[Onboarding] Fly doc\nPR: Fly doc (#2143) Author: @revmag PR Link: https://github.com/SigNoz/signoz.io/pull/2143 - \u2795 data/docs/metrics-management/fly-metrics.mdx This issue was auto\u2011generated because the PR carries the `add-to-onboarding` label. Please include these docs into the onboarding flow during the next sprint.",
+   "q_body": "PR: Fly doc (#2143) Author: @revmag PR Link: https://github.com/SigNoz/signoz.io/pull/2143 - \u2795 data/docs/metrics-management/fly-metrics.mdx This issue was auto\u2011generated because the PR carries the `add-to-onboarding` label. Please include these docs into the onboarding flow during the next sprint.",
+   "gold": [
+    "frontend/src/container/OnboardingV2Container/onboarding-configs/onboarding-config-with-links.json"
+   ],
+   "teach_at": null
+  },
+  {
+   "issue": 9480,
+   "pr": 9770,
+   "merged": "2025-12-03T18:06:05Z",
+   "title": "External APIs -> Filtering broken",
+   "q_title": "External APIs -> Filtering broken",
+   "q_400": "External APIs -> Filtering broken\n*Please describe.* *If this affects the front-end, screenshots would be of great help.* Filtering in External APIs screen is broken. It will always list all domains. When adding a filter (e.g. on environment or service) only domains matching the filter should be listed 1. Filter External APIs to environment using the quick filter bar --> Domains from other environ",
+   "q_body": "*Please describe.* *If this affects the front-end, screenshots would be of great help.* Filtering in External APIs screen is broken. It will always list all domains. When adding a filter (e.g. on environment or service) only domains matching the filter should be listed 1. Filter External APIs to environment using the quick filter bar --> Domains from other environments are still shown Same behavio",
+   "gold": [
+    "pkg/modules/thirdpartyapi/translator.go",
+    "pkg/types/thirdpartyapitypes/thirdpartyapi.go"
+   ],
+   "teach_at": "pkg/modules/thirdpartyapi/translator.go:2"
+  },
+  {
+   "issue": 9201,
+   "pr": 9816,
+   "merged": "2025-12-18T04:12:43Z",
+   "title": "Dashboards: Opening dashboard with url .....id/ results in not able to edit panels",
+   "q_title": "Dashboards: Opening dashboard with url .....id/ results in not able to edit panels",
+   "q_400": "Dashboards: Opening dashboard with url .....id/ results in not able to edit panels\nWhen we open a dashboard with url and a `/` at the end of id. Then click on edit panel it results in `id//new`",
+   "q_body": "When we open a dashboard with url and a `/` at the end of id. Then click on edit panel it results in `id//new`",
+   "gold": [
+    "frontend/src/container/GridCardLayout/WidgetHeader/index.tsx",
+    "frontend/src/utils/app.ts"
+   ],
+   "teach_at": "frontend/src/container/GridCardLayout/WidgetHeader/index.tsx:35"
+  },
+  {
+   "issue": 9647,
+   "pr": 9766,
+   "merged": "2025-12-18T12:11:57Z",
+   "title": "Add tests for switching b/w tabs in explorer",
+   "q_title": "Add tests for switching b/w tabs in explorer",
+   "q_400": "Add tests for switching b/w tabs in explorer\nI didn't find one. Can you please add a test for switching b/w tabs and ensure the search expression is correctly present? i.e., if the issue mentioned were to happen again for any reason, how would we know from the test https://github.com/SigNoz/signoz/pull/9569#pullrequestreview-3476697767? _Originally posted by @srikanthccv in https://github.com/SigN",
+   "q_body": "I didn't find one. Can you please add a test for switching b/w tabs and ensure the search expression is correctly present? i.e., if the issue mentioned were to happen again for any reason, how would we know from the test https://github.com/SigNoz/signoz/pull/9569#pullrequestreview-3476697767? _Originally posted by @srikanthccv in https://github.com/SigNoz/signoz/pull/9569#discussion_r2545373482_",
+   "gold": [
+    "frontend/src/components/QueryBuilderV2/QueryV2/QueryAddOns/QueryAddOns.tsx",
+    "frontend/src/components/QueryBuilderV2/QueryV2/QueryAggregation/QueryAggregation.tsx"
+   ],
+   "teach_at": "frontend/src/components/QueryBuilderV2/QueryV2/QueryAddOns/QueryAddOns.tsx:300"
+  },
+  {
+   "issue": 9481,
+   "pr": 9663,
+   "merged": "2025-12-18T12:22:12Z",
+   "title": "table panel search clear doesn't work",
+   "q_title": "table panel search clear doesn't work",
+   "q_400": "table panel search clear doesn't work\nTry searching for a text and clearing it. It doesn't reset.",
+   "q_body": "Try searching for a text and clearing it. It doesn't reset.",
+   "gold": [
+    "frontend/src/container/GridCardLayout/WidgetHeader/index.tsx"
+   ],
+   "teach_at": "frontend/src/container/GridCardLayout/WidgetHeader/index.tsx:244"
+  },
+  {
+   "issue": 9362,
+   "pr": 9750,
+   "merged": "2025-12-18T12:32:24Z",
+   "title": "Dollar Unit doesn't work in number panel",
+   "q_title": "Dollar Unit doesn't work in number panel",
+   "q_400": "Dollar Unit doesn't work in number panel\n<img width=\"1428\" height=\"639\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/01f4d631-ab28-46f2-a52b-026cb6de5eb5\" />",
+   "q_body": "<img width=\"1428\" height=\"639\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/01f4d631-ab28-46f2-a52b-026cb6de5eb5\" />",
+   "gold": [
+    "frontend/src/components/ValueGraph/index.tsx",
+    "frontend/src/container/NewWidget/index.tsx"
+   ],
+   "teach_at": "frontend/src/components/ValueGraph/index.tsx:3"
+  },
+  {
+   "issue": 9241,
+   "pr": 9630,
+   "merged": "2025-12-18T15:18:41Z",
+   "title": "Status Error Message Should Not Display Fully, should be expandable.",
+   "q_title": "Status Error Message Should Not Display Fully, should be expandable.",
+   "q_400": "Status Error Message Should Not Display Fully, should be expandable.\nCurrently in traces, entire status error message is displayed. Instead, should be truncated and have an expandable view where user can optionally see the entire message. https://github.com/user-attachments/assets/813d452d-f610-4b4f-809b-d1f151d11f59",
+   "q_body": "Currently in traces, entire status error message is displayed. Instead, should be truncated and have an expandable view where user can optionally see the entire message. https://github.com/user-attachments/assets/813d452d-f610-4b4f-809b-d1f151d11f59",
+   "gold": [
+    "frontend/src/container/SpanDetailsDrawer/Events/components/EventAttribute.tsx",
+    "frontend/src/container/SpanDetailsDrawer/SpanDetailsDrawer.styles.scss",
+    "frontend/src/container/SpanDetailsDrawer/SpanDetailsDrawer.tsx"
+   ],
+   "teach_at": "frontend/src/container/SpanDetailsDrawer/Events/components/EventAttribute.tsx:3"
+  },
+  {
+   "issue": 9540,
+   "pr": 9814,
+   "merged": "2025-12-23T06:14:42Z",
+   "title": "Navigation - Keyboard Shortcuts",
+   "q_title": "Navigation - Keyboard Shortcuts",
+   "q_400": "Navigation - Keyboard Shortcuts\nSupport Navigation Keyboard Shortcuts for Main Routes and SubRoutes Trace Explorer -> Trace Funnels Metrics Explorer Meter Explorer Settings -> Ingestion Settings and so on Description / Requirement: * Refactor the existing Cmd+K palette logic to centralize all shortcut actions into a single, shared utility. * Ensure that multiple components (including the Cmd+K pal",
+   "q_body": "Support Navigation Keyboard Shortcuts for Main Routes and SubRoutes Trace Explorer -> Trace Funnels Metrics Explorer Meter Explorer Settings -> Ingestion Settings and so on Description / Requirement: * Refactor the existing Cmd+K palette logic to centralize all shortcut actions into a single, shared utility. * Ensure that multiple components (including the Cmd+K palette, global keyboard shortcuts,",
+   "gold": [
+    "frontend/src/AppRoutes/index.tsx",
+    "frontend/src/constants/shortcuts/globalShortcuts.ts",
+    "frontend/src/container/SideNav/SideNav.tsx",
+    "frontend/src/hooks/hotkeys/useKeyboardHotkeys.tsx"
+   ],
+   "teach_at": "frontend/src/AppRoutes/index.tsx:6"
+  },
+  {
+   "issue": 9856,
+   "pr": 9855,
+   "merged": "2025-12-23T08:29:23Z",
+   "title": "Panel rerender on hover in Dashboards",
+   "q_title": "Panel rerender on hover in Dashboards",
+   "q_400": "Panel rerender on hover in Dashboards\nhttps://github.com/user-attachments/assets/d41c9e7d-e7d9-4564-b5e9-227e4a6f971f",
+   "q_body": "https://github.com/user-attachments/assets/d41c9e7d-e7d9-4564-b5e9-227e4a6f971f",
+   "gold": [
+    "frontend/src/container/GridCardLayout/GridCard/WidgetGraphComponent.tsx",
+    "frontend/src/container/GridCardLayout/GridCardLayout.styles.scss",
+    "frontend/src/container/GridCardLayout/WidgetHeader/WidgetHeader.styles.scss",
+    "frontend/src/container/GridCardLayout/WidgetHeader/index.tsx",
+    "frontend/src/container/QueryTable/__test__/mocks.ts"
+   ],
+   "teach_at": "frontend/src/container/GridCardLayout/GridCard/WidgetGraphComponent.tsx:67"
+  },
+  {
+   "issue": 9215,
+   "pr": 9732,
+   "merged": "2025-12-25T17:24:25Z",
+   "title": "Update the default reduce to based on the metric type",
+   "q_title": "Update the default reduce to based on the metric type",
+   "q_400": "Update the default reduce to based on the metric type\nFor counter, in almost every case it would be correct to use `Sum of all values` instead of `Avg of all values` as default. Based on the metric type selected by user, set the default dynamically.",
+   "q_body": "For counter, in almost every case it would be correct to use `Sum of all values` instead of `Avg of all values` as default. Based on the metric type selected by user, set the default dynamically.",
+   "gold": [
+    "frontend/src/components/QueryBuilderV2/QueryV2/QueryAddOns/QueryAddOns.tsx",
+    "frontend/src/container/QueryBuilder/components/SpaceAggregationOptions/SpaceAggregationOptions.tsx",
+    "frontend/src/container/QueryBuilder/filters/ReduceToFilter/ReduceToFilter.tsx",
+    "frontend/src/hooks/queryBuilder/useQueryBuilderOperations.ts"
+   ],
+   "teach_at": "frontend/src/components/QueryBuilderV2/QueryV2/QueryAddOns/QueryAddOns.tsx:32"
+  },
+  {
+   "issue": 8880,
+   "pr": 9869,
+   "merged": "2025-12-26T08:10:19Z",
+   "title": "Scoll gets disabled while exploring metrics",
+   "q_title": "Scoll gets disabled while exploring metrics",
+   "q_400": "Scoll gets disabled while exploring metrics\nIn the metrics explorer, when the mouse lands under the tooltip while naturally scrolling available metrics, the scroll gets disabled. It resumes when the mouse is moved away from the tooltip. https://github.com/user-attachments/assets/bcf02756-1c25-4b67-b966-0f8a8c2a16c0 Scroll should not be disabled when mouse lands on tooltip. 1. Open the metrics expl",
+   "q_body": "In the metrics explorer, when the mouse lands under the tooltip while naturally scrolling available metrics, the scroll gets disabled. It resumes when the mouse is moved away from the tooltip. https://github.com/user-attachments/assets/bcf02756-1c25-4b67-b966-0f8a8c2a16c0 Scroll should not be disabled when mouse lands on tooltip. 1. Open the metrics explorer. 2. Start scrolling on available metric",
+   "gold": [
+    "frontend/src/container/QueryBuilder/filters/QueryBuilderSearch/OptionRenderer.tsx",
+    "frontend/src/container/QueryBuilder/filters/QueryBuilderSearch/QueryBuilderSearch.styles.scss"
+   ],
+   "teach_at": "frontend/src/container/QueryBuilder/filters/QueryBuilderSearch/OptionRenderer.tsx:1"
+  },
+  {
+   "issue": 9282,
+   "pr": 9877,
+   "merged": "2025-12-26T12:05:08Z",
+   "title": "Limit is still sent in the request payload after removing it",
+   "q_title": "Limit is still sent in the request payload after removing it",
+   "q_400": "Limit is still sent in the request payload after removing it\n<img width=\"2896\" height=\"1544\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/722f8626-fa3d-4a15-b10e-11bebe930efe\" /> I initial added a limit 10 to create the issue, then removed it show the presence of this bug. - Create a query with the limit of 10 - Add order by asc on count - Run the query - Remove the limit and run ag",
+   "q_body": "<img width=\"2896\" height=\"1544\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/722f8626-fa3d-4a15-b10e-11bebe930efe\" /> I initial added a limit 10 to create the issue, then removed it show the presence of this bug. - Create a query with the limit of 10 - Add order by asc on count - Run the query - Remove the limit and run again - Observe the request payload",
+   "gold": [
+    "frontend/src/container/GridCardLayout/GridCard/FullView/index.tsx",
+    "frontend/src/container/GridCardLayout/GridCard/index.tsx",
+    "frontend/src/container/NewWidget/index.tsx"
+   ],
+   "teach_at": "frontend/src/container/GridCardLayout/GridCard/FullView/index.tsx:120"
+  },
+  {
+   "issue": 9801,
+   "pr": 9876,
+   "merged": "2025-12-26T17:38:25Z",
+   "title": "In light mode, active selections in query builder look disabled",
+   "q_title": "In light mode, active selections in query builder look disabled",
+   "q_400": "In light mode, active selections in query builder look disabled\nEven though `p90` is an active value which has been selected by a user, why is it in a disabled color? It should appear as an active value 1. 2. 3. * **Signoz version**: 0.104.0 <img width=\"1112\" height=\"565\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/8b43e701-f8c5-4a16-9e07-e42a8090f77b\" />",
+   "q_body": "Even though `p90` is an active value which has been selected by a user, why is it in a disabled color? It should appear as an active value 1. 2. 3. * **Signoz version**: 0.104.0 <img width=\"1112\" height=\"565\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/8b43e701-f8c5-4a16-9e07-e42a8090f77b\" />",
+   "gold": [
+    "frontend/src/components/QueryBuilderV2/QueryBuilderV2.styles.scss",
+    "frontend/src/components/QueryBuilderV2/QueryV2/MerticsAggregateSection/MetricsAggregateSection.styles.scss",
+    "frontend/src/container/QueryBuilder/QueryBuilder.styles.scss"
+   ],
+   "teach_at": "frontend/src/components/QueryBuilderV2/QueryBuilderV2.styles.scss:560"
+  },
+  {
+   "issue": 8186,
+   "pr": 9588,
+   "merged": "2025-12-28T05:03:43Z",
+   "title": "warn users about incorrect usage with metric unit",
+   "q_title": "warn users about incorrect usage with metric unit",
+   "q_400": "warn users about incorrect usage with metric unit\nSomeone has set unit of the `k8s.node.cpu.usage` as percentage when it's actually cores.",
+   "q_body": "Someone has set unit of the `k8s.node.cpu.usage` as percentage when it's actually cores.",
+   "gold": [
+    "frontend/src/components/YAxisUnitSelector/YAxisUnitSelector.tsx",
+    "frontend/src/components/YAxisUnitSelector/styles.scss",
+    "frontend/src/components/YAxisUnitSelector/types.ts",
+    "frontend/src/container/CreateAlertV2/QuerySection/ChartPreview/ChartPreview.tsx"
+   ],
+   "teach_at": "frontend/src/components/YAxisUnitSelector/YAxisUnitSelector.tsx:1"
+  },
+  {
+   "issue": 9733,
+   "pr": 9883,
+   "merged": "2025-12-28T11:17:46Z",
+   "title": "Hosts Dashboard displays '-' for Operating System despite valid OS metadata",
+   "q_title": "Hosts Dashboard displays '-' for Operating System despite valid OS metadata",
+   "q_400": "Hosts Dashboard displays '-' for Operating System despite valid OS metadata\n<img width=\"639\" height=\"59\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a61be29a-7759-4a81-9732-9c7a423c8bda\" /> The \"Infrastructure Monitoring > Hosts\" dashboard displays a dash (-) in the Operating System column for active hosts, even though the valid OS metadata is successfully collected and sent by the",
+   "q_body": "<img width=\"639\" height=\"59\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a61be29a-7759-4a81-9732-9c7a423c8bda\" /> The \"Infrastructure Monitoring > Hosts\" dashboard displays a dash (-) in the Operating System column for active hosts, even though the valid OS metadata is successfully collected and sent by the OTel Collector. The \"Operating System\" column in the Hosts list should disp",
+   "gold": [
+    "pkg/query-service/app/inframetrics/hosts.go"
+   ],
+   "teach_at": "pkg/query-service/app/inframetrics/hosts.go:520"
+  },
+  {
+   "issue": 9216,
+   "pr": 9302,
+   "merged": "2025-12-28T16:59:38Z",
+   "title": "Case-insensitve query names in formula",
+   "q_title": "Case-insensitve query names in formula",
+   "q_400": "Case-insensitve query names in formula\n`A/B` or `a/b` or `A/b` or `a/B` should all give the same result for query variable name",
+   "q_body": "`A/B` or `a/b` or `A/b` or `a/B` should all give the same result for query variable name",
+   "gold": [
+    "pkg/types/querybuildertypes/querybuildertypesv5/formula.go"
+   ],
+   "teach_at": "pkg/types/querybuildertypes/querybuildertypesv5/formula.go:153"
+  },
+  {
+   "issue": 8917,
+   "pr": 9089,
+   "merged": "2025-12-28T17:47:44Z",
+   "title": "/fields/keys and /fields/values do not work if the context is specified in the key",
+   "q_title": "/fields/keys and /fields/values do not work if the context is specified in the key",
+   "q_400": "/fields/keys and /fields/values do not work if the context is specified in the key\n- try using `resource.service.name = ` vs `service.name = ` and see the response from the API for values - try using `resource.servic` vs `servic` and see the response from the API for keys",
+   "q_body": "- try using `resource.service.name = ` vs `service.name = ` and see the response from the API for values - try using `resource.servic` vs `servic` and see the response from the API for keys",
+   "gold": [
+    "pkg/apis/fields/parse.go"
+   ],
+   "teach_at": "pkg/apis/fields/parse.go:80"
+  },
+  {
+   "issue": 9882,
+   "pr": 9881,
+   "merged": "2025-12-29T09:10:51Z",
+   "title": "Uplot chart data processing optimization",
+   "q_title": "Uplot chart data processing optimization",
+   "q_400": "Uplot chart data processing optimization\n*Please describe.* *If this affects the front-end, screenshots would be of great help.*",
+   "q_body": "*Please describe.* *If this affects the front-end, screenshots would be of great help.*",
+   "gold": [
+    "frontend/src/container/PanelWrapper/UplotPanelWrapper.tsx",
+    "frontend/src/lib/uPlotLib/utils/getUplotChartData.ts"
+   ],
+   "teach_at": "frontend/src/container/PanelWrapper/UplotPanelWrapper.tsx:132"
+  },
+  {
+   "issue": 9885,
+   "pr": 9899,
+   "merged": "2025-12-30T15:28:12Z",
+   "title": "getErrorDetails is not a function | Frontend Throwing Error | Local",
+   "q_title": "getErrorDetails is not a function | Frontend Throwing Error | Local",
+   "q_400": "getErrorDetails is not a function | Frontend Throwing Error | Local\nI am running Signoz locally, everything is set up - backend, OTEL collector, Clickhouse, and frontend based on development instructions Whenever i try to create a dashboard it throws - `errorPublicDashboardData?.getErrorDetails is not a function` https://github.com/user-attachments/assets/0d0a3d61-267a-4e49-9572-adcedca1e001 It sh",
+   "q_body": "I am running Signoz locally, everything is set up - backend, OTEL collector, Clickhouse, and frontend based on development instructions Whenever i try to create a dashboard it throws - `errorPublicDashboardData?.getErrorDetails is not a function` https://github.com/user-attachments/assets/0d0a3d61-267a-4e49-9572-adcedca1e001 It should allow me to create dashboards and not throw this error 1. Go to",
+   "gold": [
+    "cmd/community/server.go",
+    "cmd/enterprise/server.go",
+    "ee/query-service/app/api/api.go",
+    "pkg/modules/dashboard/dashboard.go",
+    "pkg/modules/dashboard/impldashboard/handler.go",
+    "pkg/modules/dashboard/impldashboard/module.go",
+    "pkg/signoz/handler.go",
+    "pkg/signoz/module.go",
+    "pkg/signoz/provider.go",
+    "pkg/signoz/signoz.go",
+    "pkg/types/authtypes/typeable.go",
+    "pkg/types/authtypes/typeable_organization.go",
+    "pkg/types/authtypes/typeable_role.go",
+    "pkg/types/authtypes/typeable_user.go",
+    "pkg/types/ctxtypes/auth.go",
+    "pkg/types/dashboardtypes/dashboard.go"
+   ],
+   "teach_at": "cmd/community/server.go:14"
+  },
+  {
+   "issue": 9514,
+   "pr": 9902,
+   "merged": "2025-12-31T09:58:44Z",
+   "title": "Clicking on \"Alerts\" erases the work",
+   "q_title": "Clicking on \"Alerts\" erases the work",
+   "q_400": "Clicking on \"Alerts\" erases the work\n>It's very easy to navigate away from in-progress work and lose all of it. I clicked on \"Alerts\" while editing a panel because I was curious, and without any warning it took me to another page and cleared all of my work.",
+   "q_body": ">It's very easy to navigate away from in-progress work and lose all of it. I clicked on \"Alerts\" while editing a panel because I was curious, and without any warning it took me to another page and cleared all of my work.",
+   "gold": [
+    "frontend/src/container/GridCardLayout/WidgetHeader/index.tsx",
+    "frontend/src/container/GridCardLayout/WidgetHeader/types.ts",
+    "frontend/src/container/NewWidget/RightContainer/index.tsx",
+    "frontend/src/hooks/queryBuilder/useCreateAlerts.tsx"
+   ],
+   "teach_at": "frontend/src/container/GridCardLayout/WidgetHeader/index.tsx:26"
+  },
+  {
+   "issue": 9752,
+   "pr": 9880,
+   "merged": "2026-01-04T11:30:16Z",
+   "title": "Populate start and end for the fill zero function",
+   "q_title": "Populate start and end for the fill zero function",
+   "q_400": "Populate start and end for the fill zero function\nSee the conversation here https://github.com/SigNoz/signoz/pull/9651. Even if the client sends `fillZero` it doesn't work.",
+   "q_body": "See the conversation here https://github.com/SigNoz/signoz/pull/9651. Even if the client sends `fillZero` it doesn't work.",
+   "gold": [
+    "pkg/types/querybuildertypes/querybuildertypesv5/functions.go",
+    "pkg/types/querybuildertypes/querybuildertypesv5/req.go"
+   ],
+   "teach_at": "pkg/types/querybuildertypes/querybuildertypesv5/functions.go:376"
+  },
+  {
+   "issue": 2392,
+   "pr": 9928,
+   "merged": "2026-01-06T10:35:08Z",
+   "title": "[Onboarding] feat: Add comprehensive AWS monitoring documentation for multiple services, including a restructured content organization.",
+   "q_title": "[Onboarding] feat: Add comprehensive AWS monitoring documentation for multiple services, including a restructured content organization.",
+   "q_400": "[Onboarding] feat: Add comprehensive AWS monitoring documentation for multiple services, including a restructured content organization.\nPR: feat: Add comprehensive AWS monitoring documentation for multiple services, including a restructured content organization. (#2381) Author: @makeavish PR Link: https://github.com/SigNoz/signoz.io/pull/2381 - \u2795 data/docs/aws-monitoring/alb.mdx - \u2795 data/docs/aws-",
+   "q_body": "PR: feat: Add comprehensive AWS monitoring documentation for multiple services, including a restructured content organization. (#2381) Author: @makeavish PR Link: https://github.com/SigNoz/signoz.io/pull/2381 - \u2795 data/docs/aws-monitoring/alb.mdx - \u2795 data/docs/aws-monitoring/api-gateway.mdx - \u2795 data/docs/aws-monitoring/dynamodb.mdx - \u274c data/docs/aws-monitoring/ec2-infra-metrics.mdx - \u274c data/docs/aw",
+   "gold": [
+    "frontend/src/container/OnboardingV2Container/AddDataSource/AddDataSource.tsx",
+    "frontend/src/container/OnboardingV2Container/OnboardingV2.styles.scss",
+    "frontend/src/container/OnboardingV2Container/onboarding-configs/onboarding-config-with-links.json"
+   ],
+   "teach_at": "frontend/src/container/OnboardingV2Container/AddDataSource/AddDataSource.tsx:51"
+  },
+  {
+   "issue": 2282,
+   "pr": 9929,
+   "merged": "2026-01-06T17:17:10Z",
+   "title": "[Onboarding] adding livekit docs",
+   "q_title": "[Onboarding] adding livekit docs",
+   "q_400": "[Onboarding] adding livekit docs\nPR: adding livekit docs (#2260) Author: @gkarthi-signoz PR Link: https://github.com/SigNoz/signoz.io/pull/2260 - \u2795 data/docs/livekit-observability.mdx This issue was auto\u2011generated because the PR carries the `add-to-onboarding` label. Please include these docs into the onboarding flow during the next sprint.",
+   "q_body": "PR: adding livekit docs (#2260) Author: @gkarthi-signoz PR Link: https://github.com/SigNoz/signoz.io/pull/2260 - \u2795 data/docs/livekit-observability.mdx This issue was auto\u2011generated because the PR carries the `add-to-onboarding` label. Please include these docs into the onboarding flow during the next sprint.",
+   "gold": [
+    "frontend/src/container/OnboardingV2Container/AddDataSource/AddDataSource.tsx",
+    "frontend/src/container/OnboardingV2Container/onboarding-configs/onboarding-config-with-links.json"
+   ],
+   "teach_at": "frontend/src/container/OnboardingV2Container/AddDataSource/AddDataSource.tsx:119"
+  },
+  {
+   "issue": 9834,
+   "pr": 9842,
+   "merged": "2026-01-06T20:54:29Z",
+   "title": "Sibling spans sorted by name instead of startTimeUnixNano when under 1ms",
+   "q_title": "Sibling spans sorted by name instead of startTimeUnixNano when under 1ms",
+   "q_400": "Sibling spans sorted by name instead of startTimeUnixNano when under 1ms\nWhen sending traces via OTLP/HTTP JSON where sibling spans (same parent) have durations under 1ms, Signoz appears to sort them alphabetically by span name rather than by `startTimeUnixNano`. I'm not sure if this is intentional behavior, but I would consider it a bug since the chronological order of operations is important for",
+   "q_body": "When sending traces via OTLP/HTTP JSON where sibling spans (same parent) have durations under 1ms, Signoz appears to sort them alphabetically by span name rather than by `startTimeUnixNano`. I'm not sure if this is intentional behavior, but I would consider it a bug since the chronological order of operations is important for understanding a trace, regardless of how fast the individual spans are. ",
+   "gold": [
+    "pkg/query-service/app/clickhouseReader/reader.go"
+   ],
+   "teach_at": "pkg/query-service/app/clickhouseReader/reader.go:934"
+  },
+  {
+   "issue": 9291,
+   "pr": 9955,
+   "merged": "2026-01-08T10:53:37Z",
+   "title": "[sqlstore] column reference \"org_id\" is ambiguous for alertmanager",
+   "q_title": "[sqlstore] column reference \"org_id\" is ambiguous for alertmanager",
+   "q_400": "[sqlstore] column reference \"org_id\" is ambiguous for alertmanager\nToday I have migrated my Signoz ecosystem to postgres and little minutes later the database service has been stopped with this error. EDIT: The reason for the service interruption is not related to the error. It was related to a misconfiguration of the healthcheck combined with a scheduled server restart. The ambiguity in the query",
+   "q_body": "Today I have migrated my Signoz ecosystem to postgres and little minutes later the database service has been stopped with this error. EDIT: The reason for the service interruption is not related to the error. It was related to a misconfiguration of the healthcheck combined with a scheduled server restart. The ambiguity in the query keeps occurring. ``` 2025-10-08T01:00:27.078723088Z 2025-10-08 01:",
+   "gold": [
+    "pkg/alertmanager/alertmanagerserver/server.go",
+    "pkg/alertmanager/alertmanagerstore/sqlalertmanagerstore/state.go",
+    "pkg/types/alertmanagertypes/alertmanagertypestest/state.go",
+    "pkg/types/alertmanagertypes/state.go"
+   ],
+   "teach_at": "pkg/alertmanager/alertmanagerserver/server.go:157"
+  },
+  {
+   "issue": 9314,
+   "pr": 9651,
+   "merged": "2026-01-08T14:19:05Z",
+   "title": "Add `FillZero` function to query builder functions list",
+   "q_title": "Add `FillZero` function to query builder functions list",
+   "q_400": "Add `FillZero` function to query builder functions list\nWe support filling zeros when the value is not present for a certain timestamp. However, this function doesn't exist on the list of functions supported by frontend. Add this function. It doesn't take any arguments.",
+   "q_body": "We support filling zeros when the value is not present for a certain timestamp. However, this function doesn't exist on the list of functions supported by frontend. Add this function. It doesn't take any arguments.",
+   "gold": [
+    "frontend/src/constants/queryFunctionOptions.ts",
+    "frontend/src/types/common/queryBuilder.ts",
+    "frontend/src/utils/functionNameNormalizer.ts"
+   ],
+   "teach_at": "frontend/src/constants/queryFunctionOptions.ts:68"
+  },
+  {
+   "issue": 9522,
+   "pr": 9724,
+   "merged": "2026-01-09T05:45:01Z",
+   "title": "\"Create Alert\" from widget stops at the alert type selection page",
+   "q_title": "\"Create Alert\" from widget stops at the alert type selection page",
+   "q_400": "\"Create Alert\" from widget stops at the alert type selection page\nSometimes the \"Create alerts\" button triggers the redirect but stops at the alert type selection page.",
+   "q_body": "Sometimes the \"Create alerts\" button triggers the redirect but stops at the alert type selection page.",
+   "gold": [
+    "frontend/src/AppRoutes/routes.ts",
+    "frontend/src/constants/query.ts",
+    "frontend/src/constants/routes.ts",
+    "frontend/src/container/CreateAlertRule/index.tsx",
+    "frontend/src/container/FormAlertRules/index.tsx",
+    "frontend/src/container/ListAlertRules/ListAlert.tsx",
+    "frontend/src/utils/permission/index.ts"
+   ],
+   "teach_at": "frontend/src/AppRoutes/routes.ts:1"
+  },
+  {
+   "issue": 9265,
+   "pr": 9698,
+   "merged": "2026-01-09T13:07:29Z",
+   "title": "Easy to disable grouping in notification",
+   "q_title": "Easy to disable grouping in notification",
+   "q_400": "Easy to disable grouping in notification\nRight now, to disable grouping, one needs to add all labels. This is not only bad UX but also prone to error because the alert may be updated to add a new key to the query groupby, but forgot to update the notification groupby",
+   "q_body": "Right now, to disable grouping, one needs to add all labels. This is not only bad UX but also prone to error because the alert may be updated to add a new key to the query groupby, but forgot to update the notification groupby",
+   "gold": [
+    "frontend/src/container/CreateAlertV2/NotificationSettings/MultipleNotifications.tsx",
+    "frontend/src/container/CreateAlertV2/constants.ts"
+   ],
+   "teach_at": "frontend/src/container/CreateAlertV2/NotificationSettings/MultipleNotifications.tsx:1"
+  },
+  {
+   "issue": 7368,
+   "pr": 9936,
+   "merged": "2026-01-09T13:17:24Z",
+   "title": "Y Axis Unit Selector changes in Alerts and Dashboards",
+   "q_title": "Y Axis Unit Selector changes in Alerts and Dashboards",
+   "q_400": "Y Axis Unit Selector changes in Alerts and Dashboards\n- Old Alerts - Implementation will be done the exact same way as we did in New Alerts in this [PR](https://github.com/SigNoz/signoz/pull/9588). - Dashboards - In the Add/Edit Panel page - Replace the old component with the new one - For non-metric types, everything else remains the same. - For metric types, we will use `useGetYAxisUnit` to fetc",
+   "q_body": "- Old Alerts - Implementation will be done the exact same way as we did in New Alerts in this [PR](https://github.com/SigNoz/signoz/pull/9588). - Dashboards - In the Add/Edit Panel page - Replace the old component with the new one - For non-metric types, everything else remains the same. - For metric types, we will use `useGetYAxisUnit` to fetch and pre-fill the y axis unit. - If there is one metr",
+   "gold": [
+    "frontend/src/components/YAxisUnitSelector/YAxisUnitSelector.tsx",
+    "frontend/src/components/YAxisUnitSelector/styles.scss",
+    "frontend/src/container/CreateAlertV2/QuerySection/ChartPreview/ChartPreview.tsx",
+    "frontend/src/container/FormAlertRules/index.tsx",
+    "frontend/src/container/NewWidget/RightContainer/ColumnUnitSelector/ColumnUnitSelector.styles.scss",
+    "frontend/src/container/NewWidget/RightContainer/ColumnUnitSelector/ColumnUnitSelector.tsx",
+    "frontend/src/container/NewWidget/RightContainer/RightContainer.styles.scss",
+    "frontend/src/container/NewWidget/RightContainer/YAxisUnitSelector.tsx",
+    "frontend/src/container/NewWidget/RightContainer/index.tsx",
+    "frontend/src/container/NewWidget/index.tsx"
+   ],
+   "teach_at": "frontend/src/components/YAxisUnitSelector/YAxisUnitSelector.tsx:34"
+  },
+  {
+   "issue": 9519,
+   "pr": 9807,
+   "merged": "2026-01-09T17:16:40Z",
+   "title": "Test notification should always trigger a new notification",
+   "q_title": "Test notification should always trigger a new notification",
+   "q_400": "Test notification should always trigger a new notification\nAt the moment, test notification only sends the notification if the threshold is breached. It should always send a test notification.",
+   "q_body": "At the moment, test notification only sends the notification if the threshold is breached. It should always send a test notification.",
+   "gold": [
+    "ee/query-service/rules/anomaly.go",
+    "go.mod",
+    "pkg/query-service/rules/base_rule.go",
+    "pkg/query-service/rules/prom_rule.go",
+    "pkg/query-service/rules/threshold_rule.go",
+    "pkg/query-service/rules/threshold_rule_test_data.go",
+    "pkg/types/ruletypes/threshold.go"
+   ],
+   "teach_at": "ee/query-service/rules/anomaly.go:247"
+  },
+  {
+   "issue": 8854,
+   "pr": 9621,
+   "merged": "2026-01-09T17:56:40Z",
+   "title": "Ability to Skip evaluation for newer groups that are added, for eg, a new host should be skip from cpu usage alert, until that host become stable.",
+   "q_title": "Ability to Skip evaluation for newer groups that are added, for eg, a new host should be skip from cpu usage alert, until that host become stable.",
+   "q_400": "Ability to Skip evaluation for newer groups that are added, for eg, a new host should be skip from cpu usage alert, until that host become stable.\n",
+   "q_body": "",
+   "gold": [
+    "ee/query-service/app/server.go",
+    "ee/query-service/rules/anomaly.go",
+    "ee/query-service/rules/manager.go",
+    "pkg/query-service/app/server.go",
+    "pkg/query-service/rules/base_rule.go",
+    "pkg/query-service/rules/manager.go",
+    "pkg/query-service/rules/prom_rule.go",
+    "pkg/query-service/rules/test_notification.go",
+    "pkg/query-service/rules/threshold_rule.go",
+    "pkg/telemetrymetadata/metadata.go",
+    "pkg/types/ruletypes/api_params.go",
+    "pkg/types/telemetrytypes/store.go",
+    "pkg/types/telemetrytypes/telemetrytypestest/metadata_store.go"
+   ],
+   "teach_at": "ee/query-service/app/server.go:12"
+  },
+  {
+   "issue": 4323,
+   "pr": 9944,
+   "merged": "2026-01-12T15:48:59Z",
+   "title": "Support written fixed time stamps support",
+   "q_title": "Support written fixed time stamps support",
+   "q_400": "Support written fixed time stamps support\nMake it easier to write the fixed time range start and end. If I want to see data from 12/12 to 4/1 the only way to do this now is to use the custom option and then rely on the calendar which is time-consuming. Users should be able to type the custom timestamp in the filter that can be parsed and interpreted.",
+   "q_body": "Make it easier to write the fixed time range start and end. If I want to see data from 12/12 to 4/1 the only way to do this now is to use the custom option and then rely on the calendar which is time-consuming. Users should be able to type the custom timestamp in the filter that can be parsed and interpreted.",
+   "gold": [
+    "frontend/src/components/CustomTimePicker/CustomTimePicker.styles.scss",
+    "frontend/src/components/CustomTimePicker/CustomTimePicker.tsx",
+    "frontend/src/components/CustomTimePicker/CustomTimePickerPopoverContent.tsx",
+    "frontend/src/components/DatePickerV2/DatePickerV2.styles.scss",
+    "frontend/src/components/DatePickerV2/DatePickerV2.tsx",
+    "frontend/src/components/HostMetricsDetail/HostMetricTraces/HostMetricTraces.tsx",
+    "frontend/src/components/HostMetricsDetail/HostMetricsLogs/HostMetricLogsDetailedView.tsx",
+    "frontend/src/components/HostMetricsDetail/Metrics/Metrics.tsx",
+    "frontend/src/container/InfraMonitoringK8s/EntityDetailsUtils/EntityEvents/EntityEvents.tsx",
+    "frontend/src/container/InfraMonitoringK8s/EntityDetailsUtils/EntityLogs/EntityLogsDetailedView.tsx",
+    "frontend/src/container/InfraMonitoringK8s/EntityDetailsUtils/EntityMetrics/EntityMetrics.tsx",
+    "frontend/src/container/InfraMonitoringK8s/EntityDetailsUtils/EntityTraces/EntityTraces.tsx",
+    "frontend/src/container/QueryBuilder/components/ToolbarActions/RightToolbarActions.tsx",
+    "frontend/src/container/Toolbar/Toolbar.styles.scss",
+    "frontend/src/container/TopNav/DateTimeSelection/index.tsx",
+    "frontend/src/container/TopNav/DateTimeSelectionV2/DateTimeSelectionV2.styles.scss",
+    "frontend/src/container/TopNav/DateTimeSelectionV2/config.ts",
+    "frontend/src/container/TopNav/DateTimeSelectionV2/index.tsx",
+    "frontend/src/lib/getMinMax.ts",
+    "frontend/src/periscope.scss",
+    "frontend/src/utils/timeUtils.ts"
+   ],
+   "teach_at": "frontend/src/components/CustomTimePicker/CustomTimePicker.styles.scss:36"
+  },
+  {
+   "issue": 9465,
+   "pr": 9843,
+   "merged": "2026-01-19T12:53:18Z",
+   "title": "Dashboard variable default not working, results in panel failures",
+   "q_title": "Dashboard variable default not working, results in panel failures",
+   "q_400": "Dashboard variable default not working, results in panel failures\nI have a dashboard that shows slow requests above a threshold. I wanted to make the threshold a dashboard variable named \"Duration\". I selected \"Textbox\" variable type, and set default of \"5s\". I then use this in the dashboard panels: duration_nano >= \"$Duration\". But when the Duration value is empty, the default is not being used, ",
+   "q_body": "I have a dashboard that shows slow requests above a threshold. I wanted to make the threshold a dashboard variable named \"Duration\". I selected \"Textbox\" variable type, and set default of \"5s\". I then use this in the dashboard panels: duration_nano >= \"$Duration\". But when the Duration value is empty, the default is not being used, and the panels are throwing errors. If I manually add \"5s\" into th",
+   "gold": [
+    "frontend/src/providers/Dashboard/Dashboard.tsx",
+    "frontend/src/types/api/dashboard/getAll.ts"
+   ],
+   "teach_at": "frontend/src/providers/Dashboard/Dashboard.tsx:291"
+  },
+  {
+   "issue": 9281,
+   "pr": 10033,
+   "merged": "2026-01-20T11:17:09Z",
+   "title": "Table panel should not do any sorting on it's own by default",
+   "q_title": "Table panel should not do any sorting on it's own by default",
+   "q_400": "Table panel should not do any sorting on it's own by default\n<img width=\"2902\" height=\"1530\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3cbd6435-c3ea-4ebb-87be-d451e7682bda\" />",
+   "q_body": "<img width=\"2902\" height=\"1530\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3cbd6435-c3ea-4ebb-87be-d451e7682bda\" />",
+   "gold": [
+    "pkg/querier/postprocess.go",
+    "pkg/types/querybuildertypes/querybuildertypesv5/req.go"
+   ],
+   "teach_at": "pkg/querier/postprocess.go:318"
+  },
+  {
+   "issue": 8919,
+   "pr": 9975,
+   "merged": "2026-01-21T10:30:31Z",
+   "title": "require minimum number of points config doesn't work for promql alerts",
+   "q_title": "require minimum number of points config doesn't work for promql alerts",
+   "q_400": "require minimum number of points config doesn't work for promql alerts\nwe allow ability to configure requiring minimum data points in each result group. However, this setting is not implemented for promql based alerts.",
+   "q_body": "we allow ability to configure requiring minimum data points in each result group. However, this setting is not implemented for promql based alerts.",
+   "gold": [
+    "ee/query-service/rules/anomaly.go",
+    "ee/query-service/rules/manager.go",
+    "pkg/prometheus/config.go",
+    "pkg/prometheus/engine.go",
+    "pkg/query-service/rules/base_rule.go",
+    "pkg/query-service/rules/prom_rule.go",
+    "pkg/query-service/rules/rule.go",
+    "pkg/query-service/rules/test_notification.go",
+    "pkg/query-service/rules/threshold_rule.go",
+    "pkg/types/ruletypes/alerting.go",
+    "pkg/types/ruletypes/threshold.go"
+   ],
+   "teach_at": "ee/query-service/rules/anomaly.go:240"
+  },
+  {
+   "issue": 10009,
+   "pr": 10011,
+   "merged": "2026-01-22T09:52:56Z",
+   "title": "(discussion) OpenAPI TypeScript Code Generation",
+   "q_title": "(discussion) OpenAPI TypeScript Code Generation",
+   "q_400": "(discussion) OpenAPI TypeScript Code Generation\nThis RFC proposes adopting an OpenAPI-to-TypeScript code generation tool to automatically generate type-safe API clients from our OpenAPI specifications. This will ensure type safety between frontend and backend, reduce boilerplate, and improve developer experience. Currently, API interactions are manually written, leading to: - **Type mismatches**: ",
+   "q_body": "This RFC proposes adopting an OpenAPI-to-TypeScript code generation tool to automatically generate type-safe API clients from our OpenAPI specifications. This will ensure type safety between frontend and backend, reduce boilerplate, and improve developer experience. Currently, API interactions are manually written, leading to: - **Type mismatches**: Frontend types can drift from actual backend res",
+   "gold": [
+    ".github/CODEOWNERS",
+    ".github/workflows/goci.yaml",
+    ".github/workflows/jsci.yaml",
+    "frontend/.eslintignore",
+    "frontend/.eslintrc.js",
+    "frontend/package.json",
+    "frontend/src/api/index.ts",
+    "frontend/tsconfig.json"
+   ],
+   "teach_at": ".github/CODEOWNERS:103"
+  },
+  {
+   "issue": 10088,
+   "pr": 10090,
+   "merged": "2026-01-22T14:23:47Z",
+   "title": "Return newly created Notification channel in `Create Channel API`",
+   "q_title": "Return newly created Notification channel in `Create Channel API`",
+   "q_400": "Return newly created Notification channel in `Create Channel API`\nToday when a new notification channel is created, the response code is 204 with no body. Once the channel is created and if I want to either update or delete this channel I need the id and to get this id I would have to call the list channel API and filter the newly created channel using it's name. To return newly created notificati",
+   "q_body": "Today when a new notification channel is created, the response code is 204 with no body. Once the channel is created and if I want to either update or delete this channel I need the id and to get this id I would have to call the list channel API and filter the newly created channel using it's name. To return newly created notification channel in response body with status code 201. Call the list ch",
+   "gold": [
+    "pkg/alertmanager/alertmanager.go",
+    "pkg/alertmanager/api.go",
+    "pkg/alertmanager/signozalertmanager/provider.go"
+   ],
+   "teach_at": "pkg/alertmanager/alertmanager.go:43"
+  },
+  {
+   "issue": 2518,
+   "pr": 10120,
+   "merged": "2026-01-27T17:33:23Z",
+   "title": "[Onboarding] feat(metrics): python metrics revamp",
+   "q_title": "[Onboarding] feat(metrics): python metrics revamp",
+   "q_400": "[Onboarding] feat(metrics): python metrics revamp\nPR: feat(metrics): python metrics revamp (#2516) Author: @shubham-signoz PR Link: https://github.com/SigNoz/signoz.io/pull/2516 - \u2795 data/docs/metrics-management/send-metrics/applications/opentelemetry-python.mdx This issue was auto\u2011generated because the PR carries the `add-to-onboarding` label. Please include these docs into the onboarding flow dur",
+   "q_body": "PR: feat(metrics): python metrics revamp (#2516) Author: @shubham-signoz PR Link: https://github.com/SigNoz/signoz.io/pull/2516 - \u2795 data/docs/metrics-management/send-metrics/applications/opentelemetry-python.mdx This issue was auto\u2011generated because the PR carries the `add-to-onboarding` label. Please include these docs into the onboarding flow during the next sprint.",
+   "gold": [
+    "frontend/src/container/OnboardingV2Container/onboarding-configs/onboarding-config-with-links.json"
+   ],
+   "teach_at": "frontend/src/container/OnboardingV2Container/onboarding-configs/onboarding-config-with-links.json:295"
+  },
+  {
+   "issue": 10226,
+   "pr": 10227,
+   "merged": "2026-02-10T04:48:32Z",
+   "title": "Service Map: Environment filter not working when DOT_METRICS_ENABLED is active",
+   "q_title": "Service Map: Environment filter not working when DOT_METRICS_ENABLED is active",
+   "q_400": "Service Map: Environment filter not working when DOT_METRICS_ENABLED is active\nWhen the `DOT_METRICS_ENABLED` feature flag is active, the Service Map's resource attribute filters (environment, k8s cluster name, k8s namespace) do not work. Selecting an environment from the dropdown does not persist and the map continues to display all environments. **Root cause:** The `whilelistedKeys` array in `fr",
+   "q_body": "When the `DOT_METRICS_ENABLED` feature flag is active, the Service Map's resource attribute filters (environment, k8s cluster name, k8s namespace) do not work. Selecting an environment from the dropdown does not persist and the map continues to display all environments. **Root cause:** The `whilelistedKeys` array in `frontend/src/hooks/useResourceAttribute/config.ts` only contains underscore-notat",
+   "gold": [
+    "frontend/src/container/ResourceAttributesFilter/ResourceAttributesFilter.tsx",
+    "frontend/src/hooks/useResourceAttribute/config.ts"
+   ],
+   "teach_at": "frontend/src/container/ResourceAttributesFilter/ResourceAttributesFilter.tsx:95"
+  },
+  {
+   "issue": 2521,
+   "pr": 10261,
+   "merged": "2026-02-10T12:53:24Z",
+   "title": "[Onboarding] feat(metrics): java metrics revamp",
+   "q_title": "[Onboarding] feat(metrics): java metrics revamp",
+   "q_400": "[Onboarding] feat(metrics): java metrics revamp\nPR: feat(metrics): java metrics revamp (#2513) Author: @shubham-signoz PR Link: https://github.com/SigNoz/signoz.io/pull/2513 - \u2795 data/docs/metrics-management/send-metrics/applications/opentelemetry-java.mdx This issue was auto\u2011generated because the PR carries the `add-to-onboarding` label. Please include these docs into the onboarding flow during th",
+   "q_body": "PR: feat(metrics): java metrics revamp (#2513) Author: @shubham-signoz PR Link: https://github.com/SigNoz/signoz.io/pull/2513 - \u2795 data/docs/metrics-management/send-metrics/applications/opentelemetry-java.mdx This issue was auto\u2011generated because the PR carries the `add-to-onboarding` label. Please include these docs into the onboarding flow during the next sprint.",
+   "gold": [
+    "frontend/src/container/OnboardingV2Container/onboarding-configs/onboarding-config-with-links.json"
+   ],
+   "teach_at": "frontend/src/container/OnboardingV2Container/onboarding-configs/onboarding-config-with-links.json:323"
+  },
+  {
+   "issue": 6175,
+   "pr": 10202,
+   "merged": "2026-02-12T06:36:08Z",
+   "title": "Support for simultaneous delta and cumulative temporality",
+   "q_title": "Support for simultaneous delta and cumulative temporality",
+   "q_400": "Support for simultaneous delta and cumulative temporality\nThe current implementation only supports one temporality at a time. A metric has to be either delta or cumulative. This makes it hard to switch from one to another. For instance, I want to recommend adding a cumulative delta pipeline for metrics for end users. This would be fine for new users, but existing users can't transition without bre",
+   "q_body": "The current implementation only supports one temporality at a time. A metric has to be either delta or cumulative. This makes it hard to switch from one to another. For instance, I want to recommend adding a cumulative delta pipeline for metrics for end users. This would be fine for new users, but existing users can't transition without breaking things. Make query-service support both in any combi",
+   "gold": [
+    "pkg/querier/querier.go",
+    "pkg/telemetrymetadata/metadata.go",
+    "pkg/telemetrymetrics/statement_builder.go",
+    "pkg/types/metrictypes/metrictypes.go",
+    "pkg/types/telemetrytypes/store.go",
+    "pkg/types/telemetrytypes/telemetrytypestest/metadata_store.go"
+   ],
+   "teach_at": "pkg/querier/querier.go:278"
+  },
+  {
+   "issue": 9409,
+   "pr": 10305,
+   "merged": "2026-02-16T07:30:20Z",
+   "title": "Bar chart - Bar width should be scaled to timeslice",
+   "q_title": "Bar chart - Bar width should be scaled to timeslice",
+   "q_400": "Bar chart - Bar width should be scaled to timeslice\nWhen displaying data with a bar chart the bars width seems to be computed from the number of bars in the chart instead of using the timeslice's width. Example <img width=\"1749\" height=\"286\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/0c1fdba5-5177-4cf7-af88-0547b22c6689\" /> The bars' width should be relative to the timeslice's wid",
+   "q_body": "When displaying data with a bar chart the bars width seems to be computed from the number of bars in the chart instead of using the timeslice's width. Example <img width=\"1749\" height=\"286\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/0c1fdba5-5177-4cf7-af88-0547b22c6689\" /> The bars' width should be relative to the timeslice's width of the graph",
+   "gold": [
+    "frontend/src/api/v5/queryRange/convertV5Response.ts",
+    "frontend/src/container/PanelWrapper/panelWrapper.types.ts",
+    "frontend/src/hooks/queryBuilder/useGetQueryRange.ts",
+    "frontend/src/lib/dashboard/getQueryResults.ts",
+    "frontend/src/types/api/metrics/getQueryRange.ts",
+    "frontend/src/types/api/v5/queryRange.ts"
+   ],
+   "teach_at": "frontend/src/api/v5/queryRange/convertV5Response.ts:388"
+  },
+  {
+   "issue": 3786,
+   "pr": 10250,
+   "merged": "2026-02-18T08:42:01Z",
+   "title": "Add in-product guide/help to write `like`, `contains` and `regex` filters in the logs QB",
+   "q_title": "Add in-product guide/help to write `like`, `contains` and `regex` filters in the logs QB",
+   "q_400": "Add in-product guide/help to write `like`, `contains` and `regex` filters in the logs QB\nShow patterns examples for these 3 operators maybe with some examples. We can also show help icon with pointers to docs along. Common problems: - Should I include `%` when using `like`? - should the pattern include single quotes typed by users?",
+   "q_body": "Show patterns examples for these 3 operators maybe with some examples. We can also show help icon with pointers to docs along. Common problems: - Should I include `%` when using `like`? - should the pattern include single quotes typed by users?",
+   "gold": [
+    "frontend/src/components/HostMetricsDetail/HostMetricsLogs/HostMetricsLogs.tsx",
+    "frontend/src/components/LogDetail/LogDetail.interfaces.ts",
+    "frontend/src/components/LogDetail/LogDetails.styles.scss",
+    "frontend/src/components/LogDetail/index.tsx",
+    "frontend/src/components/Logs/ListLogView/index.tsx",
+    "frontend/src/components/Logs/RawLogView/index.tsx",
+    "frontend/src/components/Logs/RawLogView/styles.ts",
+    "frontend/src/components/Logs/RawLogView/types.ts",
+    "frontend/src/container/InfraMonitoringK8s/EntityDetailsUtils/EntityLogs/EntityLogs.tsx",
+    "frontend/src/container/LiveLogs/LiveLogsList/index.tsx",
+    "frontend/src/container/LogDetailedView/TableView/TableViewActions.tsx",
+    "frontend/src/container/LogsExplorerList/InfinityTableView/TableRow.tsx",
+    "frontend/src/container/LogsExplorerList/InfinityTableView/index.tsx",
+    "frontend/src/container/LogsExplorerList/InfinityTableView/types.ts",
+    "frontend/src/container/LogsExplorerList/index.tsx",
+    "frontend/src/container/LogsExplorerViews/index.tsx",
+    "frontend/src/container/LogsPanelTable/LogsPanelComponent.tsx",
+    "frontend/src/styles.scss",
+    "frontend/src/utils/logs.ts"
+   ],
+   "teach_at": "frontend/src/components/HostMetricsDetail/HostMetricsLogs/HostMetricsLogs.tsx:1"
+  },
+  {
+   "issue": 6354,
+   "pr": 10393,
+   "merged": "2026-02-24T08:17:29Z",
+   "title": "Incorrect warning for threshold and column unit comparision",
+   "q_title": "Incorrect warning for threshold and column unit comparision",
+   "q_400": "Incorrect warning for threshold and column unit comparision\n![Screenshot 2024-11-04 at 7 57 37 AM](https://github.com/user-attachments/assets/6f9c58f0-f06a-4e2e-8833-1fab7fbbf40c) You can see in the above image that the column unit (percent) should have a valid comparison with the threshold unit. It says invalid comparison with `none` when the column unit is percent.",
+   "q_body": "![Screenshot 2024-11-04 at 7 57 37 AM](https://github.com/user-attachments/assets/6f9c58f0-f06a-4e2e-8833-1fab7fbbf40c) You can see in the above image that the column unit (percent) should have a valid comparison with the threshold unit. It says invalid comparison with `none` when the column unit is percent.",
+   "gold": [
+    "frontend/src/components/YAxisUnitSelector/constants.ts",
+    "frontend/src/components/YAxisUnitSelector/types.ts",
+    "frontend/src/container/NewWidget/RightContainer/dataFormatCategories.ts",
+    "frontend/src/container/NewWidget/utils.ts",
+    "frontend/src/container/QueryBuilder/filters/BuilderUnitsFilter/config.ts"
+   ],
+   "teach_at": "frontend/src/components/YAxisUnitSelector/constants.ts:1"
+  },
+  {
+   "issue": 8704,
+   "pr": 10342,
+   "merged": "2026-02-27T05:23:52Z",
+   "title": "Replace Search Bar in Metrics Explorer Summary and Inspect Pages",
+   "q_title": "Replace Search Bar in Metrics Explorer Summary and Inspect Pages",
+   "q_400": "Replace Search Bar in Metrics Explorer Summary and Inspect Pages\n",
+   "q_body": "",
+   "gold": [
+    "frontend/src/container/MetricsExplorer/Inspect/ExpandedView.tsx",
+    "frontend/src/container/MetricsExplorer/Inspect/GraphView.tsx",
+    "frontend/src/container/MetricsExplorer/Inspect/Inspect.styles.scss",
+    "frontend/src/container/MetricsExplorer/Inspect/Inspect.tsx",
+    "frontend/src/container/MetricsExplorer/Inspect/QueryBuilder.tsx",
+    "frontend/src/container/MetricsExplorer/Inspect/TableView.tsx",
+    "frontend/src/container/MetricsExplorer/Inspect/constants.ts",
+    "frontend/src/container/MetricsExplorer/Inspect/types.ts",
+    "frontend/src/container/MetricsExplorer/Inspect/useInspectMetrics.ts",
+    "frontend/src/container/MetricsExplorer/Summary/Summary.tsx"
+   ],
+   "teach_at": "frontend/src/container/MetricsExplorer/Inspect/ExpandedView.tsx:33"
+  },
+  {
+   "issue": 5676,
+   "pr": 10458,
+   "merged": "2026-03-02T16:41:21Z",
+   "title": "Show unsupported mesaage when Summay metric type is used with query builder",
+   "q_title": "Show unsupported mesaage when Summay metric type is used with query builder",
+   "q_400": "Show unsupported mesaage when Summay metric type is used with query builder\nThe query builder doesn't support the summary metric type because aggregating summary metrics is illogical. At present, attempting to use the query builder with a summary metric results in an unspecified error. We should modify this to display a clear \"unsupported type\" error message instead.",
+   "q_body": "The query builder doesn't support the summary metric type because aggregating summary metrics is illogical. At present, attempting to use the query builder with a summary metric results in an unspecified error. We should modify this to display a clear \"unsupported type\" error message instead.",
+   "gold": [
+    "frontend/src/components/QueryBuilderV2/QueryBuilderV2.styles.scss",
+    "frontend/src/components/QueryBuilderV2/QueryBuilderV2.tsx",
+    "frontend/src/components/QueryBuilderV2/QueryV2/MetricsSelect/MetricsSelect.tsx",
+    "frontend/src/components/QueryBuilderV2/QueryV2/QueryAddOns/QueryAddOns.tsx",
+    "frontend/src/constants/queryBuilder.ts",
+    "frontend/src/container/MeterExplorer/Explorer/TimeSeries.tsx",
+    "frontend/src/container/MetricsExplorer/Explorer/EmptyMetricsSearch.tsx",
+    "frontend/src/container/MetricsExplorer/Explorer/Explorer.tsx",
+    "frontend/src/container/MetricsExplorer/Explorer/TimeSeries.tsx",
+    "frontend/src/container/MetricsExplorer/MetricDetails/AllAttributes.tsx",
+    "frontend/src/container/MetricsExplorer/MetricDetails/DashboardsAndAlertsPopover.tsx",
+    "frontend/src/container/MetricsExplorer/MetricDetails/MetricDetails.styles.scss",
+    "frontend/src/container/MetricsExplorer/MetricDetails/MetricDetails.tsx",
+    "frontend/src/container/MetricsExplorer/MetricDetails/types.ts",
+    "frontend/src/container/MetricsExplorer/MetricDetails/utils.tsx",
+    "frontend/src/container/MetricsExplorer/Summary/Summary.tsx",
+    "frontend/src/container/QueryBuilder/components/Query/Query.tsx",
+    "frontend/src/container/QueryBuilder/filters/index.ts",
+    "frontend/src/container/TimeSeriesView/TimeSeriesView.tsx",
+    "frontend/src/hooks/queryBuilder/useQueryBuilderOperations.ts",
+    "frontend/src/hooks/useHandleExplorerTabChange.ts",
+    "frontend/src/providers/QueryBuilder.tsx",
+    "frontend/src/types/common/operations.types.ts",
+    "frontend/src/types/common/queryBuilder.ts",
+    "pkg/telemetrymetadata/metadata.go",
+    "pkg/types/querybuildertypes/querybuildertypesv5/builder_elements.go"
+   ],
+   "teach_at": "frontend/src/components/QueryBuilderV2/QueryBuilderV2.styles.scss:60"
+  },
+  {
+   "issue": 8189,
+   "pr": 10465,
+   "merged": "2026-03-05T07:37:07Z",
+   "title": "Exclude private internal attributes from the result in promql queries",
+   "q_title": "Exclude private internal attributes from the result in promql queries",
+   "q_400": "Exclude private internal attributes from the result in promql queries\nLabels that start with `__` are private and provide no value to user. Exclude them from the result.",
+   "q_body": "Labels that start with `__` are private and provide no value to user. Exclude them from the result.",
+   "gold": [
+    "pkg/querier/promql_query.go"
+   ],
+   "teach_at": "pkg/querier/promql_query.go:237"
+  },
+  {
+   "issue": 10531,
+   "pr": 10532,
+   "merged": "2026-03-09T11:26:58Z",
+   "title": "Subsequent calls after rotate don't work for APIs generated from openAPI",
+   "q_title": "Subsequent calls after rotate don't work for APIs generated from openAPI",
+   "q_400": "Subsequent calls after rotate don't work for APIs generated from openAPI\nSubsequent calls after rotate don't work for APIs generated from openAPI https://github.com/user-attachments/assets/cf0e9104-3e81-47f8-938b-d7cf346327cb",
+   "q_body": "Subsequent calls after rotate don't work for APIs generated from openAPI https://github.com/user-attachments/assets/cf0e9104-3e81-47f8-938b-d7cf346327cb",
+   "gold": [
+    "frontend/src/api/index.ts"
+   ],
+   "teach_at": "frontend/src/api/index.ts:94"
+  },
+  {
+   "issue": 9510,
+   "pr": 10529,
+   "merged": "2026-03-09T11:46:34Z",
+   "title": "Show suggestions when the legend format doesn't include the group by label with unique values",
+   "q_title": "Show suggestions when the legend format doesn't include the group by label with unique values",
+   "q_400": "Show suggestions when the legend format doesn't include the group by label with unique values\nIf there is a group by label with more than one value, and the custom legend format exists but doesn't include the group by key, then show the suggestion to update the legend format.",
+   "q_body": "If there is a group by label with more than one value, and the custom legend format exists but doesn't include the group by key, then show the suggestion to update the legend format.",
+   "gold": [
+    "frontend/src/components/QueryBuilderV2/QueryV2/QueryAddOns/QueryAddOns.tsx"
+   ],
+   "teach_at": "frontend/src/components/QueryBuilderV2/QueryV2/QueryAddOns/QueryAddOns.tsx:14"
+  },
+  {
+   "issue": 2169,
+   "pr": 10225,
+   "merged": "2026-03-09T15:04:36Z",
+   "title": "Chrome tab OOMs if dashboard page is kept open for long",
+   "q_title": "Chrome tab OOMs if dashboard page is kept open for long",
+   "q_400": "Chrome tab OOMs if dashboard page is kept open for long\nSteps to reproduce: 1. Choose a dashboard with many panels 2. Set auto-refresh to 30s 3. Open the memory tab in chrome dev tools 4. Check memory slowly increasing to 300MBs in 15-20 mins",
+   "q_body": "Steps to reproduce: 1. Choose a dashboard with many panels 2. Set auto-refresh to 30s 3. Open the memory tab in chrome dev tools 4. Check memory slowly increasing to 300MBs in 15-20 mins",
+   "gold": [
+    "frontend/src/constants/reactQueryKeys.ts",
+    "frontend/src/container/GridCardLayout/GridCard/index.tsx",
+    "frontend/src/providers/Dashboard/Dashboard.tsx"
+   ],
+   "teach_at": "frontend/src/constants/reactQueryKeys.ts:97"
+  },
+  {
+   "issue": 2519,
+   "pr": 10552,
+   "merged": "2026-03-11T05:08:58Z",
+   "title": "[Onboarding] feat(metrics): rust metrics revamp",
+   "q_title": "[Onboarding] feat(metrics): rust metrics revamp",
+   "q_400": "[Onboarding] feat(metrics): rust metrics revamp\nPR: feat(metrics): rust metrics revamp (#2517) Author: @shubham-signoz PR Link: https://github.com/SigNoz/signoz.io/pull/2517 - \u2795 data/docs/metrics-management/send-metrics/applications/opentelemetry-rust.mdx This issue was auto\u2011generated because the PR carries the `add-to-onboarding` label. Please include these docs into the onboarding flow during th",
+   "q_body": "PR: feat(metrics): rust metrics revamp (#2517) Author: @shubham-signoz PR Link: https://github.com/SigNoz/signoz.io/pull/2517 - \u2795 data/docs/metrics-management/send-metrics/applications/opentelemetry-rust.mdx This issue was auto\u2011generated because the PR carries the `add-to-onboarding` label. Please include these docs into the onboarding flow during the next sprint.",
+   "gold": [
+    "frontend/example.env",
+    "frontend/src/container/OnboardingV2Container/AddDataSource/AddDataSource.tsx",
+    "frontend/src/container/OnboardingV2Container/onboarding-configs/onboarding-config-with-links.json"
+   ],
+   "teach_at": "frontend/example.env:1"
+  },
+  {
+   "issue": 10559,
+   "pr": 10560,
+   "merged": "2026-03-17T16:26:19Z",
+   "title": "If a histogram metric hasn't seen data in a while, it gives a \"something went wrong\" error",
+   "q_title": "If a histogram metric hasn't seen data in a while, it gives a \"something went wrong\" error",
+   "q_400": "If a histogram metric hasn't seen data in a while, it gives a \"something went wrong\" error\nThis happens because the query that fetches for the metric type only checks the query's time range, and if no type is found, the statement builder does not change the space aggregation to sum, which leads to a p75(per_series_value) aggregation that leads to the something went wrong error",
+   "q_body": "This happens because the query that fetches for the metric type only checks the query's time range, and if no type is found, the statement builder does not change the space aggregation to sum, which leads to a p75(per_series_value) aggregation that leads to the something went wrong error",
+   "gold": [
+    "pkg/querier/querier.go",
+    "pkg/telemetrymetadata/metadata.go",
+    "pkg/types/telemetrytypes/store.go",
+    "pkg/types/telemetrytypes/telemetrytypestest/metadata_store.go"
+   ],
+   "teach_at": "pkg/querier/querier.go:20"
+  },
+  {
+   "issue": 9802,
+   "pr": 10325,
+   "merged": "2026-03-18T10:58:39Z",
+   "title": "feat: Can two json bodies be merged at the query time",
+   "q_title": "feat: Can two json bodies be merged at the query time",
+   "q_400": "feat: Can two json bodies be merged at the query time\n> We wanted to check if it's possible to do the merging of two JSON bodies in ClickHouse instead of this code block here. _Originally posted by @srikanthccv in [#9381](https://github.com/SigNoz/signoz/pull/9381/changes#r2613007438)_",
+   "q_body": "> We wanted to check if it's possible to do the merging of two JSON bodies in ClickHouse instead of this code block here. _Originally posted by @srikanthccv in [#9381](https://github.com/SigNoz/signoz/pull/9381/changes#r2613007438)_",
+   "gold": [
+    "go.mod",
+    "pkg/querier/builder_query.go",
+    "pkg/querier/consume.go",
+    "pkg/querybuilder/fallback_expr.go",
+    "pkg/querybuilder/where_clause_visitor.go",
+    "pkg/telemetrylogs/condition_builder.go",
+    "pkg/telemetrylogs/const.go",
+    "pkg/telemetrylogs/field_mapper.go",
+    "pkg/telemetrylogs/statement_builder.go",
+    "pkg/telemetrylogs/test_data.go",
+    "pkg/telemetrymetadata/metadata.go",
+    "pkg/types/telemetrytypes/telemetrytypestest/metadata_store.go"
+   ],
+   "teach_at": "go.mod:11"
+  },
+  {
+   "issue": 8894,
+   "pr": 10570,
+   "merged": "2026-03-19T09:50:06Z",
+   "title": "Spline graphs with sparse data points create misleading visualizations",
+   "q_title": "Spline graphs with sparse data points create misleading visualizations",
+   "q_400": "Spline graphs with sparse data points create misleading visualizations\nSpline graphs connecting sparse data points create smooth curves that mislead users into believing there's continuous data when there are actually large gaps between measurements. This can cause confusion during incident response and monitoring. When using spline/smooth curve graphs with sparse data points (e.g., 1-2 points per",
+   "q_body": "Spline graphs connecting sparse data points create smooth curves that mislead users into believing there's continuous data when there are actually large gaps between measurements. This can cause confusion during incident response and monitoring. When using spline/smooth curve graphs with sparse data points (e.g., 1-2 points per day), the visualization creates an illusion of continuous data flow. U",
+   "gold": [
+    "frontend/src/container/NewWidget/RightContainer/RightContainer.styles.scss",
+    "frontend/src/container/NewWidget/RightContainer/constants.ts",
+    "frontend/src/container/NewWidget/RightContainer/index.tsx",
+    "frontend/src/container/NewWidget/index.tsx",
+    "frontend/src/types/api/dashboard/getAll.ts"
+   ],
+   "teach_at": "frontend/src/container/NewWidget/RightContainer/RightContainer.styles.scss:4"
+  },
+  {
+   "issue": 6805,
+   "pr": 10649,
+   "merged": "2026-03-19T19:19:00Z",
+   "title": "[pkg/config] Standardize Configuration",
+   "q_title": "[pkg/config] Standardize Configuration",
+   "q_400": "[pkg/config] Standardize Configuration\nCurrently, SigNoz lacks a unified approach to configuration management, leading to several challenges: 1. Configuration settings are scattered across different formats: - Environment variables (e.g., `SIGNOZ_LOCAL_DB_PATH`) - Command-line flags (e.g., `-cluster`) - Command-line flags which require a file (e.g., `-config=/root/config/prometheus.yml`) 2. Incons",
+   "q_body": "Currently, SigNoz lacks a unified approach to configuration management, leading to several challenges: 1. Configuration settings are scattered across different formats: - Environment variables (e.g., `SIGNOZ_LOCAL_DB_PATH`) - Command-line flags (e.g., `-cluster`) - Command-line flags which require a file (e.g., `-config=/root/config/prometheus.yml`) 2. Inconsistent naming conventions: - PascalCase",
+   "gold": [
+    "cmd/community/server.go",
+    "cmd/config.go",
+    "cmd/enterprise/server.go",
+    "pkg/signoz/config.go"
+   ],
+   "teach_at": "cmd/community/server.go:33"
+  },
+  {
+   "issue": 6805,
+   "pr": 10659,
+   "merged": "2026-03-19T19:54:02Z",
+   "title": "[pkg/config] Standardize Configuration",
+   "q_title": "[pkg/config] Standardize Configuration",
+   "q_400": "[pkg/config] Standardize Configuration\nCurrently, SigNoz lacks a unified approach to configuration management, leading to several challenges: 1. Configuration settings are scattered across different formats: - Environment variables (e.g., `SIGNOZ_LOCAL_DB_PATH`) - Command-line flags (e.g., `-cluster`) - Command-line flags which require a file (e.g., `-config=/root/config/prometheus.yml`) 2. Incons",
+   "q_body": "Currently, SigNoz lacks a unified approach to configuration management, leading to several challenges: 1. Configuration settings are scattered across different formats: - Environment variables (e.g., `SIGNOZ_LOCAL_DB_PATH`) - Command-line flags (e.g., `-cluster`) - Command-line flags which require a file (e.g., `-config=/root/config/prometheus.yml`) 2. Inconsistent naming conventions: - PascalCase",
+   "gold": [
+    "cmd/community/server.go",
+    "cmd/config.go",
+    "cmd/enterprise/server.go",
+    "pkg/signoz/config.go"
+   ],
+   "teach_at": "cmd/community/server.go:32"
+  },
+  {
+   "issue": 9403,
+   "pr": 10654,
+   "merged": "2026-03-20T12:05:34Z",
+   "title": "External APIs -> domains table -> change the cursor to pointer on hovering domain rows",
+   "q_title": "External APIs -> domains table -> change the cursor to pointer on hovering domain rows",
+   "q_400": "External APIs -> domains table -> change the cursor to pointer on hovering domain rows\n<img width=\"1856\" height=\"566\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a4012954-efe5-4806-b749-be8d4900897e\" />",
+   "q_body": "<img width=\"1856\" height=\"566\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a4012954-efe5-4806-b749-be8d4900897e\" />",
+   "gold": [
+    "frontend/src/container/ApiMonitoring/Explorer/Explorer.styles.scss"
+   ],
+   "teach_at": "frontend/src/container/ApiMonitoring/Explorer/Explorer.styles.scss:144"
+  },
+  {
+   "issue": 9399,
+   "pr": 9415,
+   "merged": "2026-03-20T13:47:35Z",
+   "title": "External APIs -> domain details right drawer -> hover style of the left tab when the right tab is active",
+   "q_title": "External APIs -> domain details right drawer -> hover style of the left tab when the right tab is active",
+   "q_400": "External APIs -> domain details right drawer -> hover style of the left tab when the right tab is active\n<img width=\"1823\" height=\"585\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/07b6d66f-fed2-4a70-a472-e4c528ab2710\" /> - Next/Previous domain <img width=\"90\" height=\"46\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/bc0451d1-e954-4b73-84f3-12a578c0cbcd\" /> - Number of",
+   "q_body": "<img width=\"1823\" height=\"585\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/07b6d66f-fed2-4a70-a472-e4c528ab2710\" /> - Next/Previous domain <img width=\"90\" height=\"46\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/bc0451d1-e954-4b73-84f3-12a578c0cbcd\" /> - Number of calls / Latency <img width=\"272\" height=\"69\" alt=\"Image\" src=\"https://github.com/user-attachments/assets",
+   "gold": [
+    "frontend/src/container/ApiMonitoring/Explorer/Domains/DomainDetails/DomainDetails.styles.scss"
+   ],
+   "teach_at": "frontend/src/container/ApiMonitoring/Explorer/Domains/DomainDetails/DomainDetails.styles.scss:700"
+  },
+  {
+   "issue": 10611,
+   "pr": 10729,
+   "merged": "2026-03-27T15:01:16Z",
+   "title": "[web] unable to copy invite link in browser over http",
+   "q_title": "[web] unable to copy invite link in browser over http",
+   "q_400": "[web] unable to copy invite link in browser over http\nHello! I want to invite a user by sending him an invite link. I created the invitation (pending) and when I hit the \"Copy invite link\" button, nothing was copied and an alert \"Failed to copy invite link\" was shown. No web requests, no errors in console. <img width=\"1712\" height=\"1347\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/",
+   "q_body": "Hello! I want to invite a user by sending him an invite link. I created the invitation (pending) and when I hit the \"Copy invite link\" button, nothing was copied and an alert \"Failed to copy invite link\" was shown. No web requests, no errors in console. <img width=\"1712\" height=\"1347\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/8f7f14d6-8e05-4e03-90a9-60a77c3e050d\" /> * **Signoz ve",
+   "gold": [
+    "frontend/src/components/MarkdownRenderer/CodeCopyBtn/CodeCopyBtn.tsx",
+    "frontend/src/components/NewSelect/CustomMultiSelect.tsx"
+   ],
+   "teach_at": "frontend/src/components/MarkdownRenderer/CodeCopyBtn/CodeCopyBtn.tsx:17"
+  },
+  {
+   "issue": 9402,
+   "pr": 10544,
+   "merged": "2026-03-27T17:31:45Z",
+   "title": "External APIs (light mode) -> border color doesn\u2019t match the other borders",
+   "q_title": "External APIs (light mode) -> border color doesn\u2019t match the other borders",
+   "q_400": "External APIs (light mode) -> border color doesn\u2019t match the other borders\n<img width=\"1846\" height=\"77\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/f9f11f30-7baf-45fe-a9f1-d67908d3f0ce\" />",
+   "q_body": "<img width=\"1846\" height=\"77\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/f9f11f30-7baf-45fe-a9f1-d67908d3f0ce\" />",
+   "gold": [
+    "frontend/src/container/ApiMonitoring/Explorer/Explorer.styles.scss"
+   ],
+   "teach_at": "frontend/src/container/ApiMonitoring/Explorer/Explorer.styles.scss:9"
+  },
+  {
+   "issue": 9400,
+   "pr": 9412,
+   "merged": "2026-03-27T18:31:09Z",
+   "title": "External APIs -> domain details right drawer -> Dependent services avg. latency column has different color on hover",
+   "q_title": "External APIs -> domain details right drawer -> Dependent services avg. latency column has different color on hover",
+   "q_400": "External APIs -> domain details right drawer -> Dependent services avg. latency column has different color on hover\n<img width=\"1117\" height=\"137\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/c66a9b42-33fe-4cb5-970a-d5943301d667\" />",
+   "q_body": "<img width=\"1117\" height=\"137\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/c66a9b42-33fe-4cb5-970a-d5943301d667\" />",
+   "gold": [
+    "frontend/src/container/ApiMonitoring/Explorer/Domains/DomainDetails/DomainDetails.styles.scss"
+   ],
+   "teach_at": "frontend/src/container/ApiMonitoring/Explorer/Domains/DomainDetails/DomainDetails.styles.scss:793"
+  },
+  {
+   "issue": 10741,
+   "pr": 10748,
+   "merged": "2026-03-30T15:58:56Z",
+   "title": "Standardize default time range",
+   "q_title": "Standardize default time range",
+   "q_400": "Standardize default time range\nAny place that is using hardcoded values, like: https://github.com/SigNoz/signoz/blob/234787f2c1a4cfdffd4e62dbd50bb342e9cea862/frontend/src/container/TopNav/DateTimeSelectionV2/constants.ts#L113 And https://github.com/SigNoz/signoz/pull/10733#discussion_r3001142770 Can be updated to use a constant across the whole codebase to have a default constant value for time ra",
+   "q_body": "Any place that is using hardcoded values, like: https://github.com/SigNoz/signoz/blob/234787f2c1a4cfdffd4e62dbd50bb342e9cea862/frontend/src/container/TopNav/DateTimeSelectionV2/constants.ts#L113 And https://github.com/SigNoz/signoz/pull/10733#discussion_r3001142770 Can be updated to use a constant across the whole codebase to have a default constant value for time range used by the DateTimeSelecti",
+   "gold": [
+    "frontend/src/container/Home/Home.tsx",
+    "frontend/src/pages/AlertDetails/hooks.tsx"
+   ],
+   "teach_at": "frontend/src/container/Home/Home.tsx:17"
+  },
+  {
+   "issue": 8964,
+   "pr": 10165,
+   "merged": "2026-03-31T08:54:54Z",
+   "title": "Resource fingerprint extraction breaks under `NOT` with non-resource predicates",
+   "q_title": "Resource fingerprint extraction breaks under `NOT` with non-resource predicates",
+   "q_400": "Resource fingerprint extraction breaks under `NOT` with non-resource predicates\nWhen building the __resource_filter CTE for logs/traces, our resource-only predicate extraction mishandles expressions that contain `NOT (...)` around sub-expressions that have no resource terms. This yields an empty resource fingerprint set leading to incorrect result. ``` NOT (message CONTAINS 'foo' AND hasToken(body",
+   "q_body": "When building the __resource_filter CTE for logs/traces, our resource-only predicate extraction mishandles expressions that contain `NOT (...)` around sub-expressions that have no resource terms. This yields an empty resource fingerprint set leading to incorrect result. ``` NOT (message CONTAINS 'foo' AND hasToken(body, 'bar')) ``` The expression has no resource terms. Projected to the resource pl",
+   "gold": [
+    "pkg/querybuilder/fallback_expr.go",
+    "pkg/querybuilder/resourcefilter/condition_builder.go",
+    "pkg/querybuilder/where_clause_visitor.go"
+   ],
+   "teach_at": "pkg/querybuilder/fallback_expr.go:214"
+  },
+  {
+   "issue": 9446,
+   "pr": 10775,
+   "merged": "2026-03-31T09:22:32Z",
+   "title": "[ci/golangci] enable staticcheck and godot in golangci lint",
+   "q_title": "[ci/golangci] enable staticcheck and godot in golangci lint",
+   "q_400": "[ci/golangci] enable staticcheck and godot in golangci lint\nEnable staticcheck and godot as the linters in `golangci-lint`. Make the corresponding changes that are needed. Use `v2.6.0` of golangci-lint. Note: The following paths are excluded and no changes need to be done in these paths. ``` paths: - pkg/query-service - ee/query-service - scripts/ - tmp/ - third_party$ - builtin$ - examples$ ```",
+   "q_body": "Enable staticcheck and godot as the linters in `golangci-lint`. Make the corresponding changes that are needed. Use `v2.6.0` of golangci-lint. Note: The following paths are excluded and no changes need to be done in these paths. ``` paths: - pkg/query-service - ee/query-service - scripts/ - tmp/ - third_party$ - builtin$ - examples$ ```",
+   "gold": [
+    ".golangci.yml",
+    "ee/anomaly/hourly.go",
+    "ee/anomaly/params.go",
+    "ee/anomaly/seasonal.go",
+    "ee/licensing/config.go",
+    "ee/sqlstore/postgressqlstore/dialect.go",
+    "ee/zeus/config.go",
+    "ee/zeus/httpzeus/provider.go",
+    "pkg/alertmanager/alertmanagerserver/dispatcher.go",
+    "pkg/alertmanager/alertmanagerserver/telemetry.go",
+    "pkg/alertmanager/nfmanager/nfmanagertest/provider.go",
+    "pkg/alertmanager/nfmanager/rulebasednotification/provider.go",
+    "pkg/alertmanager/signozalertmanager/provider.go",
+    "pkg/authn/callbackauthn/googlecallbackauthn/authn.go",
+    "pkg/config/conf.go",
+    "pkg/contextlinks/alert_link_visitor.go",
+    "pkg/contextlinks/links.go",
+    "pkg/contextlinks/types.go",
+    "pkg/errors/errors.go",
+    "pkg/errors/type.go",
+    "pkg/http/middleware/middleware.go",
+    "pkg/http/middleware/response.go",
+    "pkg/http/render/status.go",
+    "pkg/instrumentation/instrumentation.go",
+    "pkg/instrumentation/loghandler/loghandler.go",
+    "pkg/instrumentation/metric.go",
+    "pkg/modules/apdex/implapdex/module.go",
+    "pkg/modules/dashboard/impldashboard/module.go",
+    "pkg/modules/quickfilter/implquickfilter/module.go",
+    "pkg/modules/rawdataexport/implrawdataexport/constants.go",
+    "pkg/modules/rawdataexport/implrawdataexport/handler.go",
+    "pkg/modules/tracefunnel/clickhouse_queries.go",
+    "pkg/modules/tracefunnel/impltracefunnel/module.go",
+    "pkg/modules/tracefunnel/impltracefunnel/store.go",
+    "pkg/modules/tracefunnel/query.go",
+    "pkg/modules/tracefunnel/tracefunnel.go",
+    "pkg/modules/user/impluser/getter.go",
+    "pkg/modules/user/impluser/store.go",
+    "pkg/prometheus/clickhouseprometheus/client.go",
+    "pkg/querier/api.go",
+    "pkg/querier/bucket_cache.go",
+    "pkg/querier/builder_query.go",
+    "pkg/querier/clickhouse_query.go",
+    "pkg/querier/config.go",
+    "pkg/querier/consume.go",
+    "pkg/querier/format.go",
+    "pkg/querier/interfaces.go",
+    "pkg/querier/list_range.go",
+    "pkg/querier/pools.go",
+    "pkg/querier/postprocess.go",
+    "pkg/querier/promql_query.go",
+    "pkg/querier/querier.go",
+    "pkg/querier/signozquerier/provider.go",
+    "pkg/querybuilder/having_rewriter.go",
+    "pkg/querybuilder/never_true.go",
+    "pkg/querybuilder/resourcefilter/statement_builder.go",
+    "pkg/querybuilder/time.go",
+    "pkg/querybuilder/where_clause_visitor.go",
+    "pkg/ruler/rulestore/rulestoretest/rule.go",
+    "pkg/sqlmigration/037_add_trace_funnels.go",
+    "pkg/sqlstore/sqlitesqlstore/dialect.go",
+    "pkg/sqlstore/sqlstoretest/provider.go",
+    "pkg/telemetrylogs/const.go",
+    "pkg/telemetrylogs/field_mapper.go",
+    "pkg/telemetrylogs/statement_builder.go",
+    "pkg/telemetrylogs/test_data.go",
+    "pkg/telemetrymetadata/backward_compat_keys.go"
+   ],
+   "teach_at": ".golangci.yml:6"
+  },
+  {
+   "issue": 8677,
+   "pr": 10657,
+   "merged": "2026-03-31T11:06:05Z",
+   "title": "[Bug] Infrastructure > Volumes - PVC detail page causes infinite reload loop when clicked",
+   "q_title": "[Bug] Infrastructure > Volumes - PVC detail page causes infinite reload loop when clicked",
+   "q_400": "[Bug] Infrastructure > Volumes - PVC detail page causes infinite reload loop when clicked\nInfrastructure > Volumes - PVC detail page causes infinite reload loop when clicked When clicking on any PVC (Persistent Volume Claim) in the Infrastructure > Kubernetes > Volumes page, the detail page enters an infinite reload loop, making it impossible to view volume details. The page continuously calls /ap",
+   "q_body": "Infrastructure > Volumes - PVC detail page causes infinite reload loop when clicked When clicking on any PVC (Persistent Volume Claim) in the Infrastructure > Kubernetes > Volumes page, the detail page enters an infinite reload loop, making it impossible to view volume details. The page continuously calls /api/v1/pvcs/list and /api/v1/event APIs hundreds of times within seconds. Network Analysis: ",
+   "gold": [
+    "frontend/src/container/InfraMonitoringK8s/Volumes/K8sVolumesList.tsx",
+    "frontend/src/container/InfraMonitoringK8s/Volumes/utils.tsx"
+   ],
+   "teach_at": "frontend/src/container/InfraMonitoringK8s/Volumes/K8sVolumesList.tsx:48"
+  },
+  {
+   "issue": 10722,
+   "pr": 10737,
+   "merged": "2026-04-02T07:35:49Z",
+   "title": "Throw a warning instead of an error when metric is present but data is not seen in the query range",
+   "q_title": "Throw a warning instead of an error when metric is present but data is not seen in the query range",
+   "q_400": "Throw a warning instead of an error when metric is present but data is not seen in the query range\nUsers can have dashboards with metrics that sometimes emit data but sometimes don't cuz there is nothing to report (for example some vendor's SDK may emit failure metrics only when there is a failure). This can be especially true for delta metrics. For such metrics, if there is a dashboard, we should",
+   "q_body": "Users can have dashboards with metrics that sometimes emit data but sometimes don't cuz there is nothing to report (for example some vendor's SDK may emit failure metrics only when there is a failure). This can be especially true for delta metrics. For such metrics, if there is a dashboard, we should not fail the query API if there is no data in the time range, only give a warning (like we do when",
+   "gold": [
+    "pkg/querier/querier.go"
+   ],
+   "teach_at": "pkg/querier/querier.go:4"
+  },
+  {
+   "issue": 9417,
+   "pr": 10802,
+   "merged": "2026-04-07T11:22:11Z",
+   "title": "Janky User Experience - Sign In Screen -> Loading -> Sign In Screen -> Dashboard",
+   "q_title": "Janky User Experience - Sign In Screen -> Loading -> Sign In Screen -> Dashboard",
+   "q_400": "Janky User Experience - Sign In Screen -> Loading -> Sign In Screen -> Dashboard\nGo to login screen Enter username , password - Sign In Loading screen appears and for a split second login screen is shown. User is logged into the portal.",
+   "q_body": "Go to login screen Enter username , password - Sign In Loading screen appears and for a split second login screen is shown. User is logged into the portal.",
+   "gold": [
+    "frontend/src/AppRoutes/Private.tsx"
+   ],
+   "teach_at": "frontend/src/AppRoutes/Private.tsx:1"
+  },
+  {
+   "issue": 11020,
+   "pr": 11030,
+   "merged": "2026-04-21T11:44:22Z",
+   "title": "Alert page should have the default query type of the panel when creating alert from the panel",
+   "q_title": "Alert page should have the default query type of the panel when creating alert from the panel",
+   "q_400": "Alert page should have the default query type of the panel when creating alert from the panel\nhttps://github.com/user-attachments/assets/eaf336fb-ded4-4c17-9d11-3a1e2ef2b1a9",
+   "q_body": "https://github.com/user-attachments/assets/eaf336fb-ded4-4c17-9d11-3a1e2ef2b1a9",
+   "gold": [
+    "frontend/src/hooks/queryBuilder/useCreateAlerts.tsx"
+   ],
+   "teach_at": "frontend/src/hooks/queryBuilder/useCreateAlerts.tsx:76"
+  },
+  {
+   "issue": 10615,
+   "pr": 11008,
+   "merged": "2026-04-21T13:58:19Z",
+   "title": "[EPIC] Migrate from @signozhq/<components> to @signozhq/ui",
+   "q_title": "[EPIC] Migrate from @signozhq/<components> to @signozhq/ui",
+   "q_400": "[EPIC] Migrate from @signozhq/<components> to @signozhq/ui\nThis is a macro task to group all the efforts to migrate the old component libraries to the new one. You can see the docs and examples of the new components at: https://periscope.signoz.io/ --- For anyone interested in contribute, please split the PRs to a specific part of the UI (only a page, or few components at the time), with screensho",
+   "q_body": "This is a macro task to group all the efforts to migrate the old component libraries to the new one. You can see the docs and examples of the new components at: https://periscope.signoz.io/ --- For anyone interested in contribute, please split the PRs to a specific part of the UI (only a page, or few components at the time), with screenshots/videos of before/after, this will make the PR review muc",
+   "gold": [
+    "frontend/jest.config.ts",
+    "frontend/jest.setup.ts",
+    "frontend/package.json",
+    "frontend/src/components/AppLoading/AppLoading.styles.scss",
+    "frontend/src/components/ChangePercentagePill/ChangePercentagePill.styles.scss",
+    "frontend/src/components/CustomTimePicker/CustomTimePicker.tsx",
+    "frontend/src/components/ErrorModal/ErrorModal.styles.scss",
+    "frontend/src/components/ErrorModal/components/ErrorContent.styles.scss",
+    "frontend/src/components/InputWithLabel/InputWithLabel.styles.scss",
+    "frontend/src/components/LogDetail/LogDetails.styles.scss",
+    "frontend/src/components/Logs/LogStateIndicator/LogStateIndicator.styles.scss",
+    "frontend/src/components/NewSelect/styles.scss",
+    "frontend/src/components/QueryBuilderV2/QueryBuilderV2.styles.scss",
+    "frontend/src/components/QueryBuilderV2/QueryV2/QueryAddOns/QueryAddOns.styles.scss",
+    "frontend/src/components/QueryBuilderV2/QueryV2/QueryAggregation/QueryAggregation.styles.scss",
+    "frontend/src/components/QueryBuilderV2/QueryV2/QuerySearch/QuerySearch.styles.scss",
+    "frontend/src/components/QuickFilters/FilterRenderers/Checkbox/Checkbox.styles.scss",
+    "frontend/src/components/QuickFilters/QuickFilters.styles.scss",
+    "frontend/src/components/QuickFilters/QuickFilters.tsx",
+    "frontend/src/components/SpanHoverCard/SpanHoverCard.styles.scss",
+    "frontend/src/components/WarningPopover/WarningPopover.styles.scss",
+    "frontend/src/container/AppLayout/AppLayout.styles.scss",
+    "frontend/src/container/CreateAlertV2/AlertCondition/styles.scss",
+    "frontend/src/container/CreateAlertV2/CreateAlertHeader/CreateAlertHeader.tsx",
+    "frontend/src/container/CreateAlertV2/CreateAlertHeader/styles.scss",
+    "frontend/src/container/CreateAlertV2/EvaluationSettings/AdvancedOptionItem/styles.scss",
+    "frontend/src/container/CreateAlertV2/EvaluationSettings/EvaluationCadence/styles.scss",
+    "frontend/src/container/CreateAlertV2/EvaluationSettings/TimeInput/TimeInput.scss",
+    "frontend/src/container/CreateAlertV2/EvaluationSettings/styles.scss",
+    "frontend/src/container/CreateAlertV2/Footer/Footer.tsx",
+    "frontend/src/container/CreateAlertV2/Footer/styles.scss",
+    "frontend/src/container/CreateAlertV2/NotificationSettings/styles.scss",
+    "frontend/src/container/CreateAlertV2/QuerySection/styles.scss",
+    "frontend/src/container/CreateAlertV2/Stepper/styles.scss",
+    "frontend/src/container/CustomDomainSettings/CustomDomainSettings.styles.scss",
+    "frontend/src/container/CustomDomainSettings/CustomDomainSettings.tsx",
+    "frontend/src/container/GeneralSettings/GeneralSettings.tsx",
+    "frontend/src/container/GeneralSettings/Retention.tsx",
+    "frontend/src/container/GridCardLayout/GridCardLayout.styles.scss",
+    "frontend/src/container/Home/DataSourceInfo/DataSourceInfo.tsx",
+    "frontend/src/container/Home/Home.styles.scss",
+    "frontend/src/container/Home/Home.tsx",
+    "frontend/src/container/Home/HomeChecklist/HomeChecklist.styles.scss",
+    "frontend/src/container/IngestionSettings/IngestionSettings.styles.scss"
+   ],
+   "teach_at": "frontend/jest.config.ts:45"
+  },
+  {
+   "issue": 9077,
+   "pr": 11032,
+   "merged": "2026-04-21T14:53:40Z",
+   "title": "Show related values even if ALL is selected",
+   "q_title": "Show related values even if ALL is selected",
+   "q_400": "Show related values even if ALL is selected\nRead the discussion here https://signoz-team.slack.com/archives/C088SMWD6E8/p1757439400099839",
+   "q_body": "Read the discussion here https://signoz-team.slack.com/archives/C088SMWD6E8/p1757439400099839",
+   "gold": [
+    "frontend/src/components/NewSelect/CustomMultiSelect.tsx"
+   ],
+   "teach_at": "frontend/src/components/NewSelect/CustomMultiSelect.tsx:1445"
+  },
+  {
+   "issue": 11022,
+   "pr": 11038,
+   "merged": "2026-04-22T13:28:55Z",
+   "title": "Anomaly alert preview bug with Click House query",
+   "q_title": "Anomaly alert preview bug with Click House query",
+   "q_400": "Anomaly alert preview bug with Click House query\nI'm having a problem when building an anomaly alert with ClickHouse query using distributed_signoz_index_v3. The query is working on threshold alert but crashes when using it in an anomaly alert: This is the ClickHouse query ``` SELECT toStartOfMinute(trace_start) AS ts, max(trace_duration_seconds) AS value FROM ( SELECT traceID, (max(toUnixTimestam",
+   "q_body": "I'm having a problem when building an anomaly alert with ClickHouse query using distributed_signoz_index_v3. The query is working on threshold alert but crashes when using it in an anomaly alert: This is the ClickHouse query ``` SELECT toStartOfMinute(trace_start) AS ts, max(trace_duration_seconds) AS value FROM ( SELECT traceID, (max(toUnixTimestamp64Nano(timestamp) + durationNano) - min(toUnixTi",
+   "gold": [
+    "frontend/src/container/FormAlertRules/QuerySection.tsx",
+    "frontend/src/container/FormAlertRules/index.tsx",
+    "frontend/src/lib/uPlotLib/utils/getUplotChartData.ts"
+   ],
+   "teach_at": "frontend/src/container/FormAlertRules/QuerySection.tsx:24"
+  },
+  {
+   "issue": 3898,
+   "pr": 10953,
+   "merged": "2026-04-22T17:52:54Z",
+   "title": "[FE] Tooltip in charts are not scrollable",
+   "q_title": "[FE] Tooltip in charts are not scrollable",
+   "q_400": "[FE] Tooltip in charts are not scrollable\nFor high cardinal charts the list of labels overflow and some of the labels are not visible ![image](https://github.com/SigNoz/signoz/assets/9512100/1de15348-0d14-4901-995a-7315b335b9e0)",
+   "q_body": "For high cardinal charts the list of labels overflow and some of the labels are not visible ![image](https://github.com/SigNoz/signoz/assets/9512100/1de15348-0d14-4901-995a-7315b335b9e0)",
+   "gold": [
+    "frontend/package.json"
+   ],
+   "teach_at": "frontend/package.json:52"
+  },
+  {
+   "issue": 11087,
+   "pr": 11086,
+   "merged": "2026-04-24T13:41:14Z",
+   "title": "Add tooltip analytics events + minor UI fixes",
+   "q_title": "Add tooltip analytics events + minor UI fixes",
+   "q_400": "Add tooltip analytics events + minor UI fixes\n<img width=\"602\" height=\"376\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/ea30469d-45e1-488b-949d-3234bc8e4e3f\" />",
+   "q_body": "<img width=\"602\" height=\"376\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/ea30469d-45e1-488b-949d-3234bc8e4e3f\" />",
+   "gold": [
+    "frontend/src/constants/events.ts"
+   ],
+   "teach_at": "frontend/src/constants/events.ts:3"
+  },
+  {
+   "issue": 4958,
+   "pr": 11159,
+   "merged": "2026-05-05T08:19:36Z",
+   "title": "Link multiple graphs in dashboard with time",
+   "q_title": "Link multiple graphs in dashboard with time",
+   "q_400": "Link multiple graphs in dashboard with time\nHover over linked charts in dashboard at time T and have all other charts show the same vertical time for their respective time T",
+   "q_body": "Hover over linked charts in dashboard at time T and have all other charts show the same vertical time for their respective time T",
+   "gold": [
+    "frontend/src/constants/events.ts",
+    "frontend/src/constants/localStorage.ts",
+    "frontend/src/hooks/dashboard/useDeleteDashboard.tsx"
+   ],
+   "teach_at": "frontend/src/constants/events.ts:6"
+  },
+  {
+   "issue": 9369,
+   "pr": 10999,
+   "merged": "2026-05-06T15:18:30Z",
+   "title": "Trace Funnels: Clicking a trace in results table should open details in a new tab",
+   "q_title": "Trace Funnels: Clicking a trace in results table should open details in a new tab",
+   "q_400": "Trace Funnels: Clicking a trace in results table should open details in a new tab\nIn the Trace Funnels results table, clicking any trace currently opens the trace details in the same tab, which disrupts user workflow when analyzing multiple traces. **Expected Behavior:** - When a user clicks a trace entry in the results table, the trace details should open in a new browser tab. - This allows users",
+   "q_body": "In the Trace Funnels results table, clicking any trace currently opens the trace details in the same tab, which disrupts user workflow when analyzing multiple traces. **Expected Behavior:** - When a user clicks a trace entry in the results table, the trace details should open in a new browser tab. - This allows users to keep their current Trace Funnels view while exploring details without losing c",
+   "gold": [
+    "frontend/src/pages/TracesFunnelDetails/components/FunnelResults/utils.tsx"
+   ],
+   "teach_at": "frontend/src/pages/TracesFunnelDetails/components/FunnelResults/utils.tsx:7"
+  },
+  {
+   "issue": 7484,
+   "pr": 11011,
+   "merged": "2026-05-08T17:30:22Z",
+   "title": "/status page incorrectly shows an upgrade is available",
+   "q_title": "/status page incorrectly shows an upgrade is available",
+   "q_400": "/status page incorrectly shows an upgrade is available\nThe `/status` page incorrectly shows that an upgrade is available due to what looks like a `v` being present in one version number and not the other. <img width=\"949\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/40dbaebb-b42e-4955-a6f2-739c087e7ea4\" /> Recognize that the versions are the same. 1. Install signoz via Linux standal",
+   "q_body": "The `/status` page incorrectly shows that an upgrade is available due to what looks like a `v` being present in one version number and not the other. <img width=\"949\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/40dbaebb-b42e-4955-a6f2-739c087e7ea4\" /> Recognize that the versions are the same. 1. Install signoz via Linux standalone binary method. 2. Check /status page * **Signoz ver",
+   "gold": [
+    "frontend/src/utils/app.ts"
+   ],
+   "teach_at": "frontend/src/utils/app.ts:16"
+  },
+  {
+   "issue": 11290,
+   "pr": 11295,
+   "merged": "2026-05-13T19:50:25Z",
+   "title": "Alert Disable Toggle not respected",
+   "q_title": "Alert Disable Toggle not respected",
+   "q_400": "Alert Disable Toggle not respected\nWhen editing any alert, the Disable toggle is available, yet IF one were to \"disable\" the alert, while editing it, then \"Save\" it, the toggle config doesn't stick, the \"Save\" action overrides it and renders the alert \"Enabled\" Alert remains Disabled as per Toggled disabled setting 1. Edit alert 2. Disable it 3. Save alert 4. Alert is re-Enabled * Signoz: 0.113.0 ",
+   "q_body": "When editing any alert, the Disable toggle is available, yet IF one were to \"disable\" the alert, while editing it, then \"Save\" it, the toggle config doesn't stick, the \"Save\" action overrides it and renders the alert \"Enabled\" Alert remains Disabled as per Toggled disabled setting 1. Edit alert 2. Disable it 3. Save alert 4. Alert is re-Enabled * Signoz: 0.113.0 * Firefox: Version 150.0.1 (64-bit)",
+   "gold": [
+    "frontend/src/container/ListAlertRules/ToggleAlertState.tsx",
+    "frontend/src/pages/AlertDetails/hooks.tsx"
+   ],
+   "teach_at": "frontend/src/container/ListAlertRules/ToggleAlertState.tsx:1"
+  },
+  {
+   "issue": 5875,
+   "pr": 11247,
+   "merged": "2026-05-13T20:32:04Z",
+   "title": "Disable autofill for time selection field",
+   "q_title": "Disable autofill for time selection field",
+   "q_400": "Disable autofill for time selection field\nDescription: The time selection field has autocomplete enabled, which causes issues with password managers injecting values. \u2022 Suggestion: Disable autocomplete for the time selection field to avoid interference from password managers. \u2022 Steps to reproduce: Use a password manager while selecting time in the UI. > It'd be great if you could add autocomplete=",
+   "q_body": "Description: The time selection field has autocomplete enabled, which causes issues with password managers injecting values. \u2022 Suggestion: Disable autocomplete for the time selection field to avoid interference from password managers. \u2022 Steps to reproduce: Use a password manager while selecting time in the UI. > It'd be great if you could add autocomplete=\"off\" to the time selection fields. My pas",
+   "gold": [
+    "frontend/src/components/CustomTimePicker/CustomTimePicker.tsx"
+   ],
+   "teach_at": "frontend/src/components/CustomTimePicker/CustomTimePicker.tsx:596"
+  },
+  {
+   "issue": 10674,
+   "pr": 11243,
+   "merged": "2026-05-14T09:31:23Z",
+   "title": "[bug] adding a dashboard variable via drilldown to APM metrics dashboard breaks the panels",
+   "q_title": "[bug] adding a dashboard variable via drilldown to APM metrics dashboard breaks the panels",
+   "q_400": "[bug] adding a dashboard variable via drilldown to APM metrics dashboard breaks the panels\nTwo bugs in dashboard panel filter expressions when using dynamic variables. **Steps to reproduce:** 1. Create a dashboard with a panel whose filter expression is: `(deployment.environment = $deployment.environment AND service.name = $service.name AND operation IN $top_level_operation)` 2. Delete the `top_le",
+   "q_body": "Two bugs in dashboard panel filter expressions when using dynamic variables. **Steps to reproduce:** 1. Create a dashboard with a panel whose filter expression is: `(deployment.environment = $deployment.environment AND service.name = $service.name AND operation IN $top_level_operation)` 2. Delete the `top_level_operation` variable from the dashboard variables. **Expected:** `(deployment.environmen",
+   "gold": [
+    "frontend/src/components/QueryBuilderV2/utils.ts"
+   ],
+   "teach_at": "frontend/src/components/QueryBuilderV2/utils.ts:1"
+  },
+  {
+   "issue": 10661,
+   "pr": 11323,
+   "merged": "2026-05-15T20:10:15Z",
+   "title": "Vulnerability in signoz project",
+   "q_title": "Vulnerability in signoz project",
+   "q_400": "Vulnerability in signoz project\nWhile working in signoz project, I found that the application uses github.com/russellhaering/gosaml2, which is affected by a denial-of-service vulnerability in its AES-CBC decryption logic. The issue occurs in the DecryptBytes function, where malformed input can result in empty data after trimming, leading to an index out-of-range panic. [CVE Report]( https://vulert",
+   "q_body": "While working in signoz project, I found that the application uses github.com/russellhaering/gosaml2, which is affected by a denial-of-service vulnerability in its AES-CBC decryption logic. The issue occurs in the DecryptBytes function, where malformed input can result in empty data after trimming, leading to an index out-of-range panic. [CVE Report]( https://vulert.com/vuln-scan/list/d532a5bb-fa7",
+   "gold": [
+    "go.mod",
+    "pkg/prometheus/clickhouseprometheus/provider.go",
+    "pkg/prometheus/prometheus.go",
+    "pkg/prometheus/prometheustest/provider.go",
+    "pkg/querier/promql_query.go",
+    "pkg/query-service/app/querier/v2/helper.go",
+    "pkg/query-service/app/querier/v2/querier.go"
+   ],
+   "teach_at": "go.mod:19"
+  },
+  {
+   "issue": 7548,
+   "pr": 11121,
+   "merged": "2026-05-19T07:00:22Z",
+   "title": "(bug): unable to create a recurring planned maintenance with start time and end time",
+   "q_title": "(bug): unable to create a recurring planned maintenance with start time and end time",
+   "q_400": "(bug): unable to create a recurring planned maintenance with start time and end time\n- Recurring planned maintenance isn't working as expected in the case when both start time and end time are present. - all the alerts get silenced when the current time is between start time and end time - the alerts should only get silenced for that `duration` window between the start time and end time on a daily",
+   "q_body": "- Recurring planned maintenance isn't working as expected in the case when both start time and end time are present. - all the alerts get silenced when the current time is between start time and end time - the alerts should only get silenced for that `duration` window between the start time and end time on a daily basis for a daily reccuring schedule - create a planned maintenance ( recurring dail",
+   "gold": [
+    "pkg/ruler/rulestore/sqlrulestore/maintenance.go",
+    "pkg/ruler/signozruler/provider.go",
+    "pkg/types/ruletypes/maintenance.go"
+   ],
+   "teach_at": "pkg/ruler/rulestore/sqlrulestore/maintenance.go:2"
+  },
+  {
+   "issue": 9186,
+   "pr": 11356,
+   "merged": "2026-05-19T13:39:02Z",
+   "title": "Incorrect unsaved changes warning in edit mode",
+   "q_title": "Incorrect unsaved changes warning in edit mode",
+   "q_400": "Incorrect unsaved changes warning in edit mode\nThe warning is shown even when I have made no changes.",
+   "q_body": "The warning is shown even when I have made no changes.",
+   "gold": [
+    "frontend/src/container/NewWidget/index.tsx",
+    "frontend/src/container/NewWidget/utils.ts"
+   ],
+   "teach_at": "frontend/src/container/NewWidget/index.tsx:1"
+  },
+  {
+   "issue": 9270,
+   "pr": 11130,
+   "merged": "2026-05-20T04:27:51Z",
+   "title": "Move planned downtime to alertmanager",
+   "q_title": "Move planned downtime to alertmanager",
+   "q_400": "Move planned downtime to alertmanager\nAs of now, the planned downtime is implemented by rule manager. It is also implemented is incorrect way that instead of just silencing the alert, it doesn't run query at all, as a consequence the rule state history is not available for this time.",
+   "q_body": "As of now, the planned downtime is implemented by rule manager. It is also implemented is incorrect way that instead of just silencing the alert, it doesn't run query at all, as a consequence the rule state history is not available for this time.",
+   "gold": [
+    "ee/query-service/rules/manager.go",
+    "frontend/src/container/PlannedDowntime/PlannedDowntime.tsx",
+    "frontend/src/container/PlannedDowntime/PlannedDowntimeForm.tsx",
+    "frontend/src/container/PlannedDowntime/PlannedDowntimeList.tsx",
+    "frontend/src/container/PlannedDowntime/PlannedDowntimeutils.ts",
+    "pkg/alertmanager/alertmanagerserver/server.go",
+    "pkg/alertmanager/service.go",
+    "pkg/alertmanager/signozalertmanager/provider.go",
+    "pkg/query-service/rules/manager.go",
+    "pkg/query-service/rules/prom_rule_task.go",
+    "pkg/query-service/rules/rule_task.go",
+    "pkg/query-service/rules/task.go",
+    "pkg/ruler/ruler.go",
+    "pkg/ruler/signozruler/provider.go",
+    "pkg/signoz/provider.go",
+    "pkg/signoz/signoz.go",
+    "pkg/sqlmigration/027_update_rules.go",
+    "pkg/types/alertmanagertypes/alert.go",
+    "pkg/types/alertmanagertypes/marker.go",
+    "pkg/types/ruletypes/schedule.go"
+   ],
+   "teach_at": "ee/query-service/rules/manager.go:13"
+  },
+  {
+   "issue": 9257,
+   "pr": 11316,
+   "merged": "2026-05-20T13:44:54Z",
+   "title": "Missing breadcrumbs navigation in create/edit alerts",
+   "q_title": "Missing breadcrumbs navigation in create/edit alerts",
+   "q_400": "Missing breadcrumbs navigation in create/edit alerts\n<img width=\"3010\" height=\"1122\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/cd439e9d-a515-4eb5-804a-3910e1d10dd8\" /> This is really bad.",
+   "q_body": "<img width=\"3010\" height=\"1122\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/cd439e9d-a515-4eb5-804a-3910e1d10dd8\" /> This is really bad.",
+   "gold": [
+    "frontend/src/AppRoutes/pageComponents.ts",
+    "frontend/src/AppRoutes/routes.ts",
+    "frontend/src/constants/routes.ts",
+    "frontend/src/container/CreateAlertRule/defaults.ts",
+    "frontend/src/container/CreateAlertRule/index.tsx",
+    "frontend/src/container/ListAlertRules/ListAlert.tsx",
+    "frontend/src/container/TopNav/index.tsx",
+    "frontend/src/pages/AlertDetails/AlertDetails.styles.scss",
+    "frontend/src/pages/AlertDetails/AlertDetails.tsx",
+    "frontend/src/pages/AlertList/AlertList.styles.scss",
+    "frontend/src/utils/permission/index.ts"
+   ],
+   "teach_at": "frontend/src/AppRoutes/pageComponents.ts:47"
+  },
+  {
+   "issue": 9845,
+   "pr": 11348,
+   "merged": "2026-05-20T14:13:34Z",
+   "title": "[BUG] Alert Title Rename Shows Success Message but Changes Are Not Saved",
+   "q_title": "[BUG] Alert Title Rename Shows Success Message but Changes Are Not Saved",
+   "q_400": "[BUG] Alert Title Rename Shows Success Message but Changes Are Not Saved\nWhen I rename the title of an existing alert and click Save, a popup says it was completed successfully, but the change is not actually applied. 1. Go To Alerts 2. Go into the already created Alert. 3. Click Rename in the Alert title, edit, and save everything. * **Signoz version**: 102.1 * **Browser version**: * **Your OS an",
+   "q_body": "When I rename the title of an existing alert and click Save, a popup says it was completed successfully, but the change is not actually applied. 1. Go To Alerts 2. Go into the already created Alert. 3. Click Rename in the Alert title, edit, and save everything. * **Signoz version**: 102.1 * **Browser version**: * **Your OS and version**: * **Your CPU Architecture**(ARM/Intel):",
+   "gold": [
+    "frontend/src/container/CreateAlertV2/CreateAlertHeader/CreateAlertHeader.tsx",
+    "frontend/src/container/CreateAlertV2/Footer/Footer.tsx",
+    "frontend/src/container/FormAlertRules/index.tsx",
+    "frontend/src/pages/AlertDetails/AlertDetails.tsx",
+    "frontend/src/pages/AlertDetails/AlertHeader/ActionButtons/ActionButtons.tsx",
+    "frontend/src/pages/AlertDetails/AlertHeader/AlertHeader.tsx",
+    "frontend/src/pages/AlertDetails/hooks.tsx",
+    "frontend/src/providers/Alert.tsx"
+   ],
+   "teach_at": "frontend/src/container/CreateAlertV2/CreateAlertHeader/CreateAlertHeader.tsx:9"
+  },
+  {
+   "issue": 8997,
+   "pr": 11218,
+   "merged": "2026-05-21T08:47:33Z",
+   "title": "[authn] add option to completely disable authentication for internal deployments",
+   "q_title": "[authn] add option to completely disable authentication for internal deployments",
+   "q_400": "[authn] add option to completely disable authentication for internal deployments\nSigNoz's authentication system causes operational pain in internal environments where auth is unnecessary. We need a simple option to completely disable authentication. - **#6197** - Trusted Header Authentication (still requires auth headers) - **#5137** - Disable password login after SSO (enforces auth, opposite dire",
+   "q_body": "SigNoz's authentication system causes operational pain in internal environments where auth is unnecessary. We need a simple option to completely disable authentication. - **#6197** - Trusted Header Authentication (still requires auth headers) - **#5137** - Disable password login after SSO (enforces auth, opposite direction) - **#1188** - External SSO support (closed, moved to enterprise) This requ",
+   "gold": [
+    "frontend/src/AppRoutes/index.tsx",
+    "frontend/src/api/index.ts",
+    "frontend/src/container/Home/Home.tsx",
+    "frontend/src/container/MySettings/UserInfo/index.tsx",
+    "frontend/src/container/OnboardingV2Container/AddDataSource/AddDataSource.tsx",
+    "frontend/src/container/OrganizationSettings/AuthDomain/index.tsx",
+    "frontend/src/container/SideNav/SideNav.styles.scss",
+    "frontend/src/container/SideNav/SideNav.tsx",
+    "frontend/src/container/SideNav/menuItems.tsx",
+    "frontend/src/pages/Settings/Settings.tsx",
+    "frontend/src/providers/App/App.tsx",
+    "frontend/src/providers/App/types.ts"
+   ],
+   "teach_at": "frontend/src/AppRoutes/index.tsx:59"
+  },
+  {
+   "issue": 8938,
+   "pr": 11186,
+   "merged": "2026-05-25T13:47:48Z",
+   "title": "Set maintenance window based on metric key and value",
+   "q_title": "Set maintenance window based on metric key and value",
+   "q_400": "Set maintenance window based on metric key and value\nI would like to be able to set a maintenance/downtime window that only applies to certain conditions based on metric values. None I.e, I would like a maintenance to only apply when for instance `host.name` == `my.host.com`.",
+   "q_body": "I would like to be able to set a maintenance/downtime window that only applies to certain conditions based on metric values. None I.e, I would like a maintenance to only apply when for instance `host.name` == `my.host.com`.",
+   "gold": [
+    "frontend/src/container/PlannedDowntime/PlannedDowntimeForm.tsx",
+    "pkg/alertmanager/nfmanager/rulebasednotification/provider.go",
+    "pkg/signoz/provider.go"
+   ],
+   "teach_at": "frontend/src/container/PlannedDowntime/PlannedDowntimeForm.tsx:1"
+  },
+  {
+   "issue": 9244,
+   "pr": 11272,
+   "merged": "2026-05-25T17:15:48Z",
+   "title": "Planned Maintaince we shouldn't allow with empty rules",
+   "q_title": "Planned Maintaince we shouldn't allow with empty rules",
+   "q_400": "Planned Maintaince we shouldn't allow with empty rules\n",
+   "q_body": "",
+   "gold": [
+    "frontend/src/container/PlannedDowntime/PlannedDowntime.styles.scss",
+    "frontend/src/container/PlannedDowntime/PlannedDowntimeForm.tsx",
+    "frontend/src/container/PlannedDowntime/PlannedDowntimeList.tsx"
+   ],
+   "teach_at": "frontend/src/container/PlannedDowntime/PlannedDowntime.styles.scss:81"
+  },
+  {
+   "issue": 8965,
+   "pr": 11394,
+   "merged": "2026-05-26T10:05:23Z",
+   "title": "trace-based time range filtering for log queries",
+   "q_title": "trace-based time range filtering for log queries",
+   "q_400": "trace-based time range filtering for log queries\nCurrently, when searching for spans related to a specific trace, the system automatically adjusts the query's time range to match the trace's start and end timestamps. This same optimisation could be applied to log queries with trace_id in filters? Would implementing this trace-based time range filtering for logs provide performance benefits or othe",
+   "q_body": "Currently, when searching for spans related to a specific trace, the system automatically adjusts the query's time range to match the trace's start and end timestamps. This same optimisation could be applied to log queries with trace_id in filters? Would implementing this trace-based time range filtering for logs provide performance benefits or other improvements?",
+   "gold": [
+    "pkg/querier/builder_query.go",
+    "pkg/telemetrytraces/trace_time_range.go"
+   ],
+   "teach_at": "pkg/querier/builder_query.go:19"
+  },
+  {
+   "issue": 7928,
+   "pr": 11277,
+   "merged": "2026-05-29T13:01:56Z",
+   "title": "Alerts - Triggered Alerts - Not paginated",
+   "q_title": "Alerts - Triggered Alerts - Not paginated",
+   "q_400": "Alerts - Triggered Alerts - Not paginated\n",
+   "q_body": "",
+   "gold": [
+    "frontend/src/container/ListAlertRules/AlertsEmptyState/AlertInfoCard.tsx",
+    "frontend/src/container/ListAlertRules/AlertsEmptyState/AlertsEmptyState.styles.scss",
+    "frontend/src/container/ListAlertRules/AlertsEmptyState/AlertsEmptyState.tsx",
+    "frontend/src/container/ListAlertRules/AlertsEmptyState/InfoLinkText.tsx",
+    "frontend/src/container/ListAlertRules/DeleteAlert.tsx",
+    "frontend/src/container/ListAlertRules/ListAlert.tsx",
+    "frontend/src/container/ListAlertRules/TableComponents/Status.tsx",
+    "frontend/src/container/ListAlertRules/ToggleAlertState.tsx",
+    "frontend/src/container/ListAlertRules/index.tsx",
+    "frontend/src/container/ListAlertRules/styles.ts",
+    "frontend/src/container/ListAlertRules/utils.ts",
+    "frontend/src/container/TriggeredAlerts/Filter.tsx",
+    "frontend/src/container/TriggeredAlerts/FilteredTable/ExapandableRow.tsx",
+    "frontend/src/container/TriggeredAlerts/FilteredTable/TableRow.tsx",
+    "frontend/src/container/TriggeredAlerts/FilteredTable/index.tsx",
+    "frontend/src/container/TriggeredAlerts/FilteredTable/styles.ts",
+    "frontend/src/container/TriggeredAlerts/NoFilterTable.tsx",
+    "frontend/src/container/TriggeredAlerts/TableComponents/AlertStatus.tsx",
+    "frontend/src/container/TriggeredAlerts/TriggeredAlert.tsx",
+    "frontend/src/container/TriggeredAlerts/index.tsx",
+    "frontend/src/container/TriggeredAlerts/styles.ts",
+    "frontend/src/container/TriggeredAlerts/utils.ts",
+    "frontend/src/pages/AlertList/index.tsx",
+    "frontend/src/utils/timeUtils.ts"
+   ],
+   "teach_at": "frontend/src/container/ListAlertRules/AlertsEmptyState/AlertInfoCard.tsx:2"
+  },
+  {
+   "issue": 11240,
+   "pr": 11270,
+   "merged": "2026-06-03T16:54:51Z",
+   "title": "[bug] the query is not getting updated after deleting the dashboard variables in APM metrics dashboard",
+   "q_title": "[bug] the query is not getting updated after deleting the dashboard variables in APM metrics dashboard",
+   "q_400": "[bug] the query is not getting updated after deleting the dashboard variables in APM metrics dashboard\nthe query is not getting updated after deleting the dashboard variables in APM metrics dashboard , this breaks the panels *Please describe.* *If this affects the front-end, screenshots would be of great help.* https://github.com/user-attachments/assets/f4ee768d-6008-48d7-bba2-f142eaef55e0 the que",
+   "q_body": "the query is not getting updated after deleting the dashboard variables in APM metrics dashboard , this breaks the panels *Please describe.* *If this affects the front-end, screenshots would be of great help.* https://github.com/user-attachments/assets/f4ee768d-6008-48d7-bba2-f142eaef55e0 the query should get updated according and along the deletion of the variable deletion 1. go to APM Metrics Da",
+   "gold": [
+    "frontend/src/components/QueryBuilderV2/utils.ts"
+   ],
+   "teach_at": "frontend/src/components/QueryBuilderV2/utils.ts:721"
+  },
+  {
+   "issue": 6939,
+   "pr": 11219,
+   "merged": "2026-06-10T17:44:10Z",
+   "title": "Allow sorting by dashboard name",
+   "q_title": "Allow sorting by dashboard name",
+   "q_400": "Allow sorting by dashboard name\nWe only support last created, updated as of now",
+   "q_body": "We only support last created, updated as of now",
+   "gold": [
+    "pkg/modules/dashboard/dashboard.go",
+    "pkg/modules/dashboard/impldashboard/store.go",
+    "pkg/signoz/module.go",
+    "pkg/signoz/provider.go"
+   ],
+   "teach_at": "pkg/modules/dashboard/dashboard.go:61"
+  },
+  {
+   "issue": 11454,
+   "pr": 11596,
+   "merged": "2026-06-10T20:52:53Z",
+   "title": "SigNoz version display not always present",
+   "q_title": "SigNoz version display not always present",
+   "q_400": "SigNoz version display not always present\nThe SigNoz version display sometimes does not appear. See thread below for details. It's unclear how to reproduce this. The following notes are from the initial report which presumed that the version display was simply gone permanently. I expect that, when using the left menu, I can either immediately see the version of SigNoz I'm using or can see it withi",
+   "q_body": "The SigNoz version display sometimes does not appear. See thread below for details. It's unclear how to reproduce this. The following notes are from the initial report which presumed that the version display was simply gone permanently. I expect that, when using the left menu, I can either immediately see the version of SigNoz I'm using or can see it within a click or two on something obvious. 1. ",
+   "gold": [
+    "frontend/src/container/SideNav/SideNav.styles.scss",
+    "frontend/src/container/SideNav/SideNav.tsx"
+   ],
+   "teach_at": "frontend/src/container/SideNav/SideNav.styles.scss:119"
+  },
+  {
+   "issue": 8210,
+   "pr": 11643,
+   "merged": "2026-06-11T13:00:29Z",
+   "title": "Enable pinning / favoriting dashboards",
+   "q_title": "Enable pinning / favoriting dashboards",
+   "q_400": "Enable pinning / favoriting dashboards\nUsers should be able to pin / favorite dashboards in dashboards listing page. - Pinned dashboards are moved to the pinned section similar to all dashboards section (check screenshot) Use the preference framework. * <img width=\"669\" height=\"422\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/94a88419-5c9d-43cb-9a5c-068edf96d7c8\" />",
+   "q_body": "Users should be able to pin / favorite dashboards in dashboards listing page. - Pinned dashboards are moved to the pinned section similar to all dashboards section (check screenshot) Use the preference framework. * <img width=\"669\" height=\"422\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/94a88419-5c9d-43cb-9a5c-068edf96d7c8\" />",
+   "gold": [
+    "pkg/modules/dashboard/dashboard.go",
+    "pkg/modules/dashboard/impldashboard/store.go",
+    "pkg/modules/user/user.go",
+    "pkg/signoz/module.go",
+    "pkg/signoz/provider.go"
+   ],
+   "teach_at": "pkg/modules/dashboard/dashboard.go:73"
+  },
+  {
+   "issue": 8844,
+   "pr": 11593,
+   "merged": "2026-06-12T12:48:26Z",
+   "title": "[Bug] Pie Chart with ClickHouse Query only works if aggregation alias is `__result_[n]`",
+   "q_title": "[Bug] Pie Chart with ClickHouse Query only works if aggregation alias is `__result_[n]`",
+   "q_400": "[Bug] Pie Chart with ClickHouse Query only works if aggregation alias is `__result_[n]`\nWhen creating a Pie Chart panel using a ClickHouse Query, the chart shows \"No Data\" unless the aggregation column is explicitly named `__result_0`. Example: \u2705 Works ```sql SELECT response_status_code, count() AS __result_0 FROM signoz_traces.distributed_signoz_index_v3 GROUP BY response_status_code ``` \u274c Fails ",
+   "q_body": "When creating a Pie Chart panel using a ClickHouse Query, the chart shows \"No Data\" unless the aggregation column is explicitly named `__result_0`. Example: \u2705 Works ```sql SELECT response_status_code, count() AS __result_0 FROM signoz_traces.distributed_signoz_index_v3 GROUP BY response_status_code ``` \u274c Fails ```sql SELECT response_status_code, count() AS total_requests FROM signoz_traces.distrib",
+   "gold": [
+    "pkg/querier/consume.go"
+   ],
+   "teach_at": "pkg/querier/consume.go:62"
+  },
+  {
+   "issue": 10735,
+   "pr": 11465,
+   "merged": "2026-06-17T08:41:38Z",
+   "title": "Saved views for dashboards",
+   "q_title": "Saved views for dashboards",
+   "q_400": "Saved views for dashboards\nA dashboard can have multiple variables, and for various use cases, having different values for those variables can be required. Selecting those values one by one each time can get cumbersome. A user should be save pre-defined variable selections as a quick way to toggle the view for the different use cases. These selections can be saved as Saved Views/Presets/any other ",
+   "q_body": "A dashboard can have multiple variables, and for various use cases, having different values for those variables can be required. Selecting those values one by one each time can get cumbersome. A user should be save pre-defined variable selections as a quick way to toggle the view for the different use cases. These selections can be saved as Saved Views/Presets/any other name that makes sense.",
+   "gold": [
+    "pkg/modules/dashboard/dashboard.go",
+    "pkg/modules/dashboard/impldashboard/store.go",
+    "pkg/signoz/provider.go"
+   ],
+   "teach_at": "pkg/modules/dashboard/dashboard.go:80"
+  },
+  {
+   "issue": 11814,
+   "pr": 11794,
+   "merged": "2026-06-22T08:40:11Z",
+   "title": "Regression: table panel collapses multi-column ClickHouse query to a single value (Query Builder v5 / new table component)",
+   "q_title": "Regression: table panel collapses multi-column ClickHouse query to a single value (Query Builder v5 / new table component)",
+   "q_400": "Regression: table panel collapses multi-column ClickHouse query to a single value (Query Builder v5 / new table component)\nA dashboard Table panel backed by a custom ClickHouse query used to render each aliased SELECT column as its own table column. After the new table component / QB v5 reached our Cloud org (~mid\u2011June 2026) - the panel now shows the query name (A) for each column - renders the sa",
+   "q_body": "A dashboard Table panel backed by a custom ClickHouse query used to render each aliased SELECT column as its own table column. After the new table component / QB v5 reached our Cloud org (~mid\u2011June 2026) - the panel now shows the query name (A) for each column - renders the same value across all columns (in that row) - string columns survive and named correctly. `SELECT ... AS \"col1\", ... \"col2\"` ",
+   "gold": [
+    "frontend/src/api/v5/queryRange/convertV5Response.ts"
+   ],
+   "teach_at": "frontend/src/api/v5/queryRange/convertV5Response.ts:15"
+  },
+  {
+   "issue": 11804,
+   "pr": 11826,
+   "merged": "2026-06-24T20:20:14Z",
+   "title": "[UI]: Finder In JSON Tab of Log Details Has Tooltip Issues",
+   "q_title": "[UI]: Finder In JSON Tab of Log Details Has Tooltip Issues",
+   "q_400": "[UI]: Finder In JSON Tab of Log Details Has Tooltip Issues\nHi. First off, really good product. Now on to the bug: <img width=\"1093\" height=\"939\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/5403bf21-c9bd-4733-8f8a-c45764f4ff10\" /> In this image, I'm hovering over the up button, and it has a tooltip, but i can only see the bottom of it because it is getting cut off. This happens with",
+   "q_body": "Hi. First off, really good product. Now on to the bug: <img width=\"1093\" height=\"939\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/5403bf21-c9bd-4733-8f8a-c45764f4ff10\" /> In this image, I'm hovering over the up button, and it has a tooltip, but i can only see the bottom of it because it is getting cut off. This happens with others too. With the X button, it actually goes into a rer",
+   "gold": [
+    "frontend/src/styles.scss"
+   ],
+   "teach_at": "frontend/src/styles.scss:794"
+  },
+  {
+   "issue": 11847,
+   "pr": 11848,
+   "merged": "2026-06-26T12:31:51Z",
+   "title": "[Clickhouse Query] Keyboard shortcuts are triggered when typing into the query editor",
+   "q_title": "[Clickhouse Query] Keyboard shortcuts are triggered when typing into the query editor",
+   "q_400": "[Clickhouse Query] Keyboard shortcuts are triggered when typing into the query editor\nReported at https://github.com/SigNoz/signoz/issues/11799 Shift + D to capitalize the query, not to go to dashboards. 1. Go to /alerts/new 2. Select any type 3. Go to clickhouse query editor and hit `shift + d` * **Signoz version**: v0.129.0 * **Browser version**: Chrome * **Your OS and version**: Linux * **Your ",
+   "q_body": "Reported at https://github.com/SigNoz/signoz/issues/11799 Shift + D to capitalize the query, not to go to dashboards. 1. Go to /alerts/new 2. Select any type 3. Go to clickhouse query editor and hit `shift + d` * **Signoz version**: v0.129.0 * **Browser version**: Chrome * **Your OS and version**: Linux * **Your CPU Architecture**(ARM/Intel): ARM",
+   "gold": [
+    "frontend/src/hooks/hotkeys/useKeyboardHotkeys.tsx"
+   ],
+   "teach_at": "frontend/src/hooks/hotkeys/useKeyboardHotkeys.tsx:84"
+  },
+  {
+   "issue": 11807,
+   "pr": 11812,
+   "merged": "2026-06-26T14:08:26Z",
+   "title": "[UI]: Pagination UI in Metrics Explorer Hides The Last Entry",
+   "q_title": "[UI]: Pagination UI in Metrics Explorer Hides The Last Entry",
+   "q_400": "[UI]: Pagination UI in Metrics Explorer Hides The Last Entry\nSee this image: <img width=\"1534\" height=\"1023\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/1e17edfd-a15a-4513-8fc7-c5d0168e0665\" /> You might not see in the image, but the pagination ui at the bottom is hiding one metric. In the image, the last entry is **otelcol_receiver_failed_metric_points**, but if you see the image ",
+   "q_body": "See this image: <img width=\"1534\" height=\"1023\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/1e17edfd-a15a-4513-8fc7-c5d0168e0665\" /> You might not see in the image, but the pagination ui at the bottom is hiding one metric. In the image, the last entry is **otelcol_receiver_failed_metric_points**, but if you see the image below which i took by scrolling more than needed, you will se",
+   "gold": [
+    "frontend/src/container/MetricsExplorer/Summary/Summary.styles.scss"
+   ],
+   "teach_at": "frontend/src/container/MetricsExplorer/Summary/Summary.styles.scss:58"
+  },
+  {
+   "issue": 11709,
+   "pr": 11800,
+   "merged": "2026-06-29T11:28:27Z",
+   "title": "Logs filtered by trace_id are silently dropped when they occur after the trace's recorded end time",
+   "q_title": "Logs filtered by trace_id are silently dropped when they occur after the trace's recorded end time",
+   "q_400": "Logs filtered by trace_id are silently dropped when they occur after the trace's recorded end time\nFiltering logs by `trace_id` in Logs Explorer returns fewer logs than the trace actually has. Lines that carry the correct `trace_id` but whose `timestamp` is **after the trace's recorded end** are silently dropped, no matter what time range is selected. This looks like a side effect of the trace-bas",
+   "q_body": "Filtering logs by `trace_id` in Logs Explorer returns fewer logs than the trace actually has. Lines that carry the correct `trace_id` but whose `timestamp` is **after the trace's recorded end** are silently dropped, no matter what time range is selected. This looks like a side effect of the trace-based time-range optimization for log queries (#8965 / #11394): a `trace_id` filter clamps the query w",
+   "gold": [
+    "conf/example.yaml",
+    "pkg/querier/builder_query.go",
+    "pkg/querier/config.go",
+    "pkg/querier/querier.go",
+    "pkg/querier/signozquerier/provider.go"
+   ],
+   "teach_at": "conf/example.yaml:141"
+  },
+  {
+   "issue": 11889,
+   "pr": 11890,
+   "merged": "2026-06-29T15:11:59Z",
+   "title": "[pkg/http] render.Error() missing Content-Type: application/json header",
+   "q_title": "[pkg/http] render.Error() missing Content-Type: application/json header",
+   "q_400": "[pkg/http] render.Error() missing Content-Type: application/json header\n`render.Error()` in `pkg/http/render/render.go` writes a JSON body but never sets the `Content-Type: application/json` response header. The sibling function `render.Success()` correctly sets this header on line 42, but `Error()` does not. ```go // Success() \u2014 line 42: sets header \u2713 rw.Header().Set(\"Content-Type\", \"application/",
+   "q_body": "`render.Error()` in `pkg/http/render/render.go` writes a JSON body but never sets the `Content-Type: application/json` response header. The sibling function `render.Success()` correctly sets this header on line 42, but `Error()` does not. ```go // Success() \u2014 line 42: sets header \u2713 rw.Header().Set(\"Content-Type\", \"application/json\") rw.WriteHeader(httpCode) _, _ = rw.Write(body) // Error() \u2014 missi",
+   "gold": [
+    "pkg/http/render/render.go"
+   ],
+   "teach_at": "pkg/http/render/render.go:130"
+  },
+  {
+   "issue": 11830,
+   "pr": 12117,
+   "merged": "2026-07-14T18:08:09Z",
+   "title": "[security] cross-organization IDOR on alert rules (read/edit/delete by UUID, no org scoping)",
+   "q_title": "[security] cross-organization IDOR on alert rules (read/edit/delete by UUID, no org scoping)",
+   "q_400": "[security] cross-organization IDOR on alert rules (read/edit/delete by UUID, no org scoping)\n(I've reported the following cross-org IDOR via email on 13 June 2026 with no response) The rule store predicates (pkg/ruler/rulestore/sqlrulestore/rule.go) filter on `id` only: GetStoredRule (~105), EditRule (~54), DeleteRule (~70) never include `org_id`, though StorableRule has an OrgID column. The manag",
+   "q_body": "(I've reported the following cross-org IDOR via email on 13 June 2026 with no response) The rule store predicates (pkg/ruler/rulestore/sqlrulestore/rule.go) filter on `id` only: GetStoredRule (~105), EditRule (~54), DeleteRule (~70) never include `org_id`, though StorableRule has an OrgID column. The manager (pkg/query-service/rules/manager.go) fetches/mutates by the URL UUID only, and ViewAccess/",
+   "gold": [
+    "pkg/query-service/rules/manager.go",
+    "pkg/ruler/rulestore/rulestoretest/rule.go",
+    "pkg/ruler/rulestore/sqlrulestore/rule.go",
+    "pkg/types/ruletypes/rule.go"
+   ],
+   "teach_at": "pkg/query-service/rules/manager.go:357"
+  },
+  {
+   "issue": 5291,
+   "pr": 12137,
+   "merged": "2026-07-16T22:18:47Z",
+   "title": "(task) Pre-populate the alert condition based on the selected `Reduce To` and `Thresholds`",
+   "q_title": "(task) Pre-populate the alert condition based on the selected `Reduce To` and `Thresholds`",
+   "q_400": "(task) Pre-populate the alert condition based on the selected `Reduce To` and `Thresholds`\nWe allow users to create an alert directly from the value panel. When they do, they're redirected to a new alert creation page with their query builder state fully preserved. The default alert condition is set to _**A**_ is _**above**_ the threshold _**at least once**_ in the last 5 minutes. However, we can ",
+   "q_body": "We allow users to create an alert directly from the value panel. When they do, they're redirected to a new alert creation page with their query builder state fully preserved. The default alert condition is set to _**A**_ is _**above**_ the threshold _**at least once**_ in the last 5 minutes. However, we can improve this by better auto-populating the alert condition. To make it easier for users, we",
+   "gold": [
+    "frontend/src/constants/query.ts",
+    "frontend/src/container/CreateAlertV2/context/index.tsx",
+    "frontend/src/container/CreateAlertV2/utils.tsx",
+    "frontend/src/container/IngestionSettings/MultiIngestionSettings.tsx"
+   ],
+   "teach_at": "frontend/src/constants/query.ts:57"
+  },
+  {
+   "issue": 132,
+   "pr": 12164,
+   "merged": "2026-07-19T20:02:55Z",
+   "title": "[bug][signoz_rule] Invalid Attribute Value Match with import {} &  tofu plan -generate-config-out=generated_resources.tf",
+   "q_title": "[bug][signoz_rule] Invalid Attribute Value Match with import {} &  tofu plan -generate-config-out=generated_resources.tf",
+   "q_400": "[bug][signoz_rule] Invalid Attribute Value Match with import {} &  tofu plan -generate-config-out=generated_resources.tf\n`$ cat rule.tf` import { id = \"019f7472-086a-7d4d-b09a-2961688dea6f\" to = signoz_rule.node_readiness } `$ tofu plan -generate-config-out=generated_resources.tf ` \u2502 Error: Invalid Attribute Value Match \u2502 \u2502 with signoz_rule.node_readiness, \u2502 on generated_resources.tf line 1: \u2502 (so",
+   "q_body": "`$ cat rule.tf` import { id = \"019f7472-086a-7d4d-b09a-2961688dea6f\" to = signoz_rule.node_readiness } `$ tofu plan -generate-config-out=generated_resources.tf ` \u2502 Error: Invalid Attribute Value Match \u2502 \u2502 with signoz_rule.node_readiness, \u2502 on generated_resources.tf line 1: \u2502 (source code not available) \u2502 \u2502 Attribute condition.composite_query.queries[0].builder_query.spec.metrics.aggregations[0].te",
+   "gold": [
+    "pkg/types/metrictypes/metrictypes.go",
+    "pkg/types/querybuildertypes/querybuildertypesv5/builder_query.go",
+    "pkg/types/telemetrytypes/source.go"
+   ],
+   "teach_at": "pkg/types/metrictypes/metrictypes.go:74"
+  },
+  {
+   "issue": 11746,
+   "pr": 12172,
+   "merged": "2026-07-21T10:39:38Z",
+   "title": "[security] open redirect via unvalidated oAuth state url leads to token exfiltration",
+   "q_title": "[security] open redirect via unvalidated oAuth state url leads to token exfiltration",
+   "q_400": "[security] open redirect via unvalidated oAuth state url leads to token exfiltration\n(emails sent to security@signoz.io on 23 May and 6 June with no response) There's a potential vulnerability in the SSO authentication flow that allows an unauthenticated attacker to steal session tokens from any user on an instance with Google OAuth, SAML, or OIDC configured. The unauthenticated `GET /api/v2/sessi",
+   "q_body": "(emails sent to security@signoz.io on 23 May and 6 June with no response) There's a potential vulnerability in the SSO authentication flow that allows an unauthenticated attacker to steal session tokens from any user on an instance with Google OAuth, SAML, or OIDC configured. The unauthenticated `GET /api/v2/sessions/context` endpoint accepts a `ref` parameter that is embedded directly into the OA",
+   "gold": [
+    "conf/example.yaml",
+    "pkg/modules/session/implsession/module.go",
+    "pkg/signoz/module.go"
+   ],
+   "teach_at": "conf/example.yaml:9"
+  },
+  {
+   "issue": 9512,
+   "pr": 12246,
+   "merged": "2026-07-23T08:56:50Z",
+   "title": "Show warning when number panel has more than one query enabled",
+   "q_title": "Show warning when number panel has more than one query enabled",
+   "q_400": "Show warning when number panel has more than one query enabled\nIt has been observed that users create a formula query for the number panel but forget to disable the other queries. This results in showing the value of A, which confuses.",
+   "q_body": "It has been observed that users create a formula query for the number panel but forget to disable the other queries. This results in showing the value of A, which confuses.",
+   "gold": [
+    "frontend/src/components/QueryBuilderV2/utils.ts"
+   ],
+   "teach_at": "frontend/src/components/QueryBuilderV2/utils.ts:176"
+  },
+  {
+   "issue": 12350,
+   "pr": 12360,
+   "merged": "2026-08-01T11:19:23Z",
+   "title": "[iaac] Rules OpenAPI enum omits above_or_equal / below_or_equal, blocking signoz_rule adoption of existing rules",
+   "q_title": "[iaac] Rules OpenAPI enum omits above_or_equal / below_or_equal, blocking signoz_rule adoption of existing rules",
+   "q_400": "[iaac] Rules OpenAPI enum omits above_or_equal / below_or_equal, blocking signoz_rule adoption of existing rules\n[`CompareOperator.Enum()`](https://github.com/SigNoz/signoz/blob/8fb5703eb1c7e57d1fa2d96b4b420241a9834f64/pkg/types/ruletypes/compare.go#L45-L55) in `pkg/types/ruletypes/compare.go` leaves two operators commented out: ```go func (CompareOperator) Enum() []any { return []any{ ValueIsAbov",
+   "q_body": "[`CompareOperator.Enum()`](https://github.com/SigNoz/signoz/blob/8fb5703eb1c7e57d1fa2d96b4b420241a9834f64/pkg/types/ruletypes/compare.go#L45-L55) in `pkg/types/ruletypes/compare.go` leaves two operators commented out: ```go func (CompareOperator) Enum() []any { return []any{ ValueIsAboveLiteral, ValueIsBelowLiteral, ValueIsEqLiteral, ValueIsNotEqLiteral, // ValueAboveOrEqLiteral, // ValueBelowOrEq",
+   "gold": [
+    "frontend/src/container/CreateAlertV2/AlertCondition/ThresholdItem.tsx",
+    "frontend/src/container/CreateAlertV2/AlertCondition/utils.tsx",
+    "frontend/src/container/CreateAlertV2/context/constants.ts",
+    "frontend/src/container/CreateAlertV2/context/types.ts"
+   ],
+   "teach_at": "frontend/src/container/CreateAlertV2/AlertCondition/ThresholdItem.tsx:66"
+  },
+  {
+   "issue": 11325,
+   "pr": 12328,
+   "merged": "2026-08-03T08:43:01Z",
+   "title": "(task) Dashboard contextLinks URL templates don't substitute per-row groupBy values on table panel aggregate-click",
+   "q_title": "(task) Dashboard contextLinks URL templates don't substitute per-row groupBy values on table panel aggregate-click",
+   "q_400": "(task) Dashboard contextLinks URL templates don't substitute per-row groupBy values on table panel aggregate-click\nOn a dashboard Query Builder **table** panel with a `contextLinks` configuration like: ```json { \"contextLinks\": { \"linksData\": [ { \"label\": \"Open trace\", \"url\": \"/trace/{{trace_id}}?spanId={{span_id}}&levelUp=0&levelDown=0\", \"id\": \"...\" } ] } } ``` and a query that groups by `trace_i",
+   "q_body": "On a dashboard Query Builder **table** panel with a `contextLinks` configuration like: ```json { \"contextLinks\": { \"linksData\": [ { \"label\": \"Open trace\", \"url\": \"/trace/{{trace_id}}?spanId={{span_id}}&levelUp=0&levelDown=0\", \"id\": \"...\" } ] } } ``` and a query that groups by `trace_id`, `span_id`, clicking the aggregate-column drilldown menu item navigates to the URL with the template placeholder",
+   "gold": [
+    "frontend/src/hooks/dashboard/useContextVariables.tsx"
+   ],
+   "teach_at": "frontend/src/hooks/dashboard/useContextVariables.tsx:223"
+  },
+  {
+   "issue": 12390,
+   "pr": 12500,
+   "merged": "2026-08-11T04:38:10Z",
+   "title": "Can't delete a Legacy tagged dashboard",
+   "q_title": "Can't delete a Legacy tagged dashboard",
+   "q_400": "Can't delete a Legacy tagged dashboard\nWhen deleting a Dashboard that is tagged as Legacy, an error is shown and can't be deleted. <img width=\"517\" height=\"215\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/7f42380f-e7ef-4f20-b4e5-ecb3167a0d65\" /> Log from when the Dashboard was tried to be migrated: {\"timestamp\":\"2026-07-30T13:42:03.486152515Z\",\"level\":\"WARN\",\"msg\":\"failed to conver",
+   "q_body": "When deleting a Dashboard that is tagged as Legacy, an error is shown and can't be deleted. <img width=\"517\" height=\"215\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/7f42380f-e7ef-4f20-b4e5-ecb3167a0d65\" /> Log from when the Dashboard was tried to be migrated: {\"timestamp\":\"2026-07-30T13:42:03.486152515Z\",\"level\":\"WARN\",\"msg\":\"failed to convert dashboard from v1 to v2\",\"org_id\":\"01",
+   "gold": [
+    "pkg/types/dashboardtypes/dashboard.go"
+   ],
+   "teach_at": "pkg/types/dashboardtypes/dashboard.go:201"
+  },
+  {
+   "issue": 12355,
+   "pr": 13085,
+   "merged": "2026-10-12T12:20:17Z",
+   "title": "Logs Explorer ignores `orderBy` from the `compositeQuery` URL param \u2014 list view always opens with `timestamp:desc`",
+   "q_title": "Logs Explorer ignores `orderBy` from the `compositeQuery` URL param \u2014 list view always opens with `timestamp:desc`",
+   "q_400": "Logs Explorer ignores `orderBy` from the `compositeQuery` URL param \u2014 list view always opens with `timestamp:desc`\nWe generate deep links into the Logs Explorer following the [Create Logs URL for Explorer page](https://signoz.io/docs/logs-management/logs-api/logs-url-for-explorer-page/) doc, with `orderBy: [{\"columnName\": \"timestamp\", \"order\": \"asc\"}]` inside the (twice-encoded) `compositeQuery` p",
+   "q_body": "We generate deep links into the Logs Explorer following the [Create Logs URL for Explorer page](https://signoz.io/docs/logs-management/logs-api/logs-url-for-explorer-page/) doc, with `orderBy: [{\"columnName\": \"timestamp\", \"order\": \"asc\"}]` inside the (twice-encoded) `compositeQuery` param. The explorer honors the filters and the time range from the URL, but the list view always renders newest-firs",
+   "gold": [
+    "frontend/src/container/LogsExplorerViews/LogsActionsContainer.tsx",
+    "frontend/src/container/LogsExplorerViews/index.tsx",
+    "frontend/src/container/TracesExplorer/ListView/index.tsx",
+    "frontend/src/hooks/useHandleExplorerTabChange.ts",
+    "frontend/src/providers/QueryBuilder.tsx",
+    "frontend/src/utils/explorerUtils.ts"
+   ],
+   "teach_at": "frontend/src/container/LogsExplorerViews/LogsActionsContainer.tsx:16"
+  }
+ ]
+}

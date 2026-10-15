@@ -1,0 +1,1022 @@
+[
+ {
+  "pr": 9916,
+  "pr_title": "[INFRA-1039] fix(deployments): find the latest release when the GitHub API returns compact JSON",
+  "merged": "2026-10-01T09:51:24Z",
+  "merge": "e6a08668df4a7211b9519fd6dae79e180aec1ed9",
+  "issue": 8841,
+  "title": "[bug]: docker setup additional space causes latest release to not get found by curl",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nUsing the docker steps and downloading the setup.sh script, running on Windows 11 fails.  Noticing the VERSION is not set at all.\n\n### Steps to reproduce\n\n1. Go to https://developers.plane.so/self-hosting/methods/docker-compose\n2. Follow the instructions\n3. Running the setup.sh file doesn't show effective pulling of docker components\n4. Checking existing version fails [curl]\n\n! deployments/cli/community/install.sh\n- Space after \"tag_name:\" \n\n(https://github.com/makeplane/plane/blob/c3a9f997899fbd18b91d25b45ec45c93c689ba55/deployments/cli/community/install.sh#L60)\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.2.3",
+  "files": [
+   "deployments/cli/community/install.sh",
+   "deployments/swarm/community/swarm.sh"
+  ]
+ },
+ {
+  "pr": 9717,
+  "pr_title": "fix(api): expand=updated_by returns the user, and null relations stay null",
+  "merged": "2026-09-29T11:34:32Z",
+  "merge": "4d3767910d6a797444afa571957b223fc75abcb8",
+  "issue": 4639,
+  "title": "[bug]: Plane API: expand query parameter does not work with \"updated_by\" on \"projects\"",
+  "body": "### Is there an existing issue for this?\n\n- [X] I have searched the existing issues\n\n### Current behavior\n\nWhen I fetch all projects with \r\n\r\n```js\r\nfetch('https://api.plane.so/api/v1/workspaces/{slug}/projects/', {\r\n query: { expand: \"created_by,updated_by,project_lead\" },\r\n})\r\n```\r\n\r\nAll is working good except for \"updated_by\".\r\nHere is an extract of the result:\r\n\r\n![image](https://github.com/makeplane/plane/assets/64729974/e4e507a4-feb9-4e43-93c8-8304be74d354)\r\n\r\nAs you can see, \"created_by\" expands well but not \"udapted_by\".\n\n### Steps to reproduce\n\n1) Create a fetch query with property expand: \"created_by,updated_by,project_lead\"\r\n2) Fetch all projects with the query\r\n3) You cannot get \"updated_by\" to be expanded\n\n### Environment\n\nProduction\n\n### Browser\n\nNone\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv0.19.0-dev",
+  "files": [
+   "apps/api/plane/api/serializers/base.py",
+   "apps/api/plane/app/serializers/base.py",
+   "apps/api/plane/tests/contract/api/conftest.py",
+   "apps/api/plane/tests/contract/api/test_projects.py",
+   "apps/api/plane/tests/unit/serializers/test_expand.py",
+   "apps/api/plane/utils/openapi/parameters.py"
+  ]
+ },
+ {
+  "pr": 9862,
+  "pr_title": "fix(web): stop 401 redirect reload loop on session expiry",
+  "merged": "2026-09-23T18:38:42Z",
+  "merge": "2bc8649ee7bcbccba6140fd6eeb97f32c1f96f55",
+  "issue": 9861,
+  "title": "[bug]: Expired session causes endless reload loop / error boundary instead of the sign-in screen",
+  "body": "### Current Behavior\n\nWhen the session cookie expires while the web app is open, the user is not returned to the sign-in screen. Depending on timing they either land on an error boundary (\"Looks like something went wrong\") or the page keeps reloading.\n\n### Steps to Reproduce\n\n1. Sign in, keep the tab open until the session expires (or invalidate the server-side session).\n2. Interact with the app (e.g. open a work items list): the request returns 401.\n3. The axios response interceptor in `apps/web/core/services/api.service.ts` runs `window.location.replace(\"/?next_path=<currentPath>\")`.\n4. The entry page `\"/\"` mounts and fires its own current-user request; that request 401s too.\n5. The interceptor runs again \u2014 now `currentPath` is `\"/\"`, so it replaces `\"/\"` with `\"/?next_path=/\"`, reloading the entry page in an endless loop. The `NON_AUTHENTICATED` branch of `AuthenticationWrapper` never gets a stable chance to render the sign-in form.\n\n### Root Cause\n\nThe 401 interceptor redirects unconditionally, including for requests made by the entry page itself, producing a self-referential replace loop on `\"/\"`.\n\n### Suggested Fix\n\nSkip the redirect when `window.location.pathname` is already `\"/\"`. A PR follows with the one-line guard.\n\n### Environment\n\n- Self-hosted v1.4.2 built from source.\n",
+  "files": [
+   "apps/web/core/services/api.service.ts"
+  ]
+ },
+ {
+  "pr": 9865,
+  "pr_title": "fix: update email.py license header",
+  "merged": "2026-09-22T20:52:21Z",
+  "merge": "3e44777e6c35283b6335b283d7becadc451491fd",
+  "issue": 9595,
+  "title": "apps/api/plane/utils/email.py carries a commercial license header in an AGPL-3.0 repository",
+  "body": "`apps/api/plane/utils/email.py` is the only file in `apps/api/plane/utils/` whose header does not say `AGPL-3.0-only`. It says:\n\n```python\n# SPDX-FileCopyrightText: 2023-present Plane Software, Inc.\n# SPDX-License-Identifier: LicenseRef-Plane-Commercial\n#\n# Licensed under the Plane Commercial License (the \"License\");\n# you may not use this file except in compliance with the License.\n# You may obtain a copy of the License at\n# https://plane.so/legals/eula\n#\n# DO NOT remove or modify this notice.\n# NOTICE: Proprietary and confidential. Unauthorized use or distribution is prohibited.\n```\n\nThis looks unintentional, and I think it is worth a quick check.\n\n## Why it looks like a template slip\n\n**The repository is AGPL.** `LICENSE.txt` is the GNU AGPL v3, and `COPYRIGHT.txt` reads:\n\n```\nCopyright (c) 2023-present Plane Software, Inc. and contributors\nSPDX-License-Identifier: AGPL-3.0-only\n```\n\n**The file lives in core, not in an enterprise directory.** `apps/api/plane/utils/` is ordinary shared code, and the module itself is a helper that turns an HTML email template into plain text.\n\n**It is the only exception in its directory.** Every other `.py` file under `apps/api/plane/utils/` carries the AGPL header.\n\n**It arrived with the header already in place**, in f0dcf66167 (\"[WEB-5917] fix: generate clean plain text from HTML email template\", #8535). That same commit updated eight files under `apps/api/plane/bgtasks/`, and all of them carry the AGPL header.\n\n**`addlicense` would not correct this.** `COPYRIGHT_CHECK.md` documents the check you run:\n\n```bash\naddlicense --check -f COPYRIGHT.txt -ignore \"**/migrations/**\" $(git ls-files '*.py')\n```\n\n`addlicense` adds a header where none exists, but it leaves an existing one alone. A file that arrives with a different header therefore passes unnoticed.\n\n## Why it matters to people outside the team\n\nSelf-hosters, packagers and anyone forking the repository read these headers to decide what they may redistribute. As it stands, one file in the default installation says redistribution is prohibited, while the repository it ships in is AGPL and requires the complete corresponding source to be available. Removing the file is not an option either, since the application does not run without it.\n\nThat leaves no clean reading, which is why I am asking rather than guessing.\n\n## Suggested fix\n\nIf the file is meant to be AGPL like the rest of core, replacing the header with the standard one would resolve it.\n\nIf it is genuinely meant to be under the commercial license, a short note in the docs would help, so that self-hosters know which parts of a default installation they may pass on.\n\nHappy to open a PR for the header change if that is the direction you want.\n",
+  "files": [
+   "apps/api/plane/utils/email.py"
+  ]
+ },
+ {
+  "pr": 9032,
+  "pr_title": "fix(i18n/ko): correct '\ubc84\ub2e4\uc6b4' \u2192 '\ubc88\ub2e4\uc6b4' (Burndown) in Korean translations",
+  "merged": "2026-09-18T12:20:58Z",
+  "merge": "2b114206e773a21a66fee230e97fce9809832c7e",
+  "issue": 9030,
+  "title": "[bug]: i18n(ko) typo \"\ubc84\ub2e4\uc6b4\" should be \"\ubc88\ub2e4\uc6b4\" (Burndown) \u2014 5 occurrences",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nThe Korean (`ko`) locale renders \"Burndown\" as **\"\ubc84\ub2e4\uc6b4\"**, which is missing the `\u3134` (n) consonant. The correct Korean loanword for \"Burndown\" is **\"\ubc88\ub2e4\uc6b4\"** (or **\"\ubc88 \ub2e4\uc6b4\"** with a space).\n\nThe typo appears in **5 keys** in `packages/i18n/src/locales/ko/translations.ts`:\n\n| Line | Key | Current value |\n|------|-----|---------------|\n| 289 | `compare_burndowns` | `\"\ubc84\ub2e4\uc6b4 \ube44\uad50\"` |\n| 290 | `compare_burndowns_description` | `\"\uac01 \ud300\uc758 \uc131\uacfc\ub97c \ubaa8\ub2c8\ud130\ub9c1\ud558\uace0 \uac01 \uc8fc\uae30\uc758 \ubc84\ub2e4\uc6b4 \ubcf4\uace0\uc11c\ub97c \ud655\uc778\ud569\ub2c8\ub2e4.\"` |\n| 2030 | `chart` | `\"\ubc84\ub2e4\uc6b4 \ucc28\ud2b8\"` |\n| 2033 | `issue_burndown` | `\"\uc791\uc5c5 \ud56d\ubaa9 \ubc84\ub2e4\uc6b4\"` |\n| 2368 | `title` (cycles empty state) | `\"\uc8fc\uae30\uc5d0 \uc791\uc5c5 \ud56d\ubaa9\uc744 \ucd94\uac00\ud558\uc5ec \ubc84\ub2e4\uc6b4 \ucc28\ud2b8\ub97c \ud655\uc778\ud558\uc138\uc694.\"` |\n\n**Suggested fix** \u2014 replace every `\ubc84\ub2e4\uc6b4` with `\ubc88\ub2e4\uc6b4`:\n\n```diff\n- compare_burndowns: \"\ubc84\ub2e4\uc6b4 \ube44\uad50\",\n+ compare_burndowns: \"\ubc88\ub2e4\uc6b4 \ube44\uad50\",\n- compare_burndowns_description: \"\uac01 \ud300\uc758 \uc131\uacfc\ub97c \ubaa8\ub2c8\ud130\ub9c1\ud558\uace0 \uac01 \uc8fc\uae30\uc758 \ubc84\ub2e4\uc6b4 \ubcf4\uace0\uc11c\ub97c \ud655\uc778\ud569\ub2c8\ub2e4.\",\n+ compare_burndowns_description: \"\uac01 \ud300\uc758 \uc131\uacfc\ub97c \ubaa8\ub2c8\ud130\ub9c1\ud558\uace0 \uac01 \uc8fc\uae30\uc758 \ubc88\ub2e4\uc6b4 \ubcf4\uace0\uc11c\ub97c \ud655\uc778\ud569\ub2c8\ub2e4.\",\n- chart: \"\ubc84\ub2e4\uc6b4 \ucc28\ud2b8\",\n+ chart: \"\ubc88\ub2e4\uc6b4 \ucc28\ud2b8\",\n- issue_burndown: \"\uc791\uc5c5 \ud56d\ubaa9 \ubc84\ub2e4\uc6b4\",\n+ issue_burndown: \"\uc791\uc5c5 \ud56d\ubaa9 \ubc88\ub2e4\uc6b4\",\n- title: \"\uc8fc\uae30\uc5d0 \uc791\uc5c5 \ud56d\ubaa9\uc744 \ucd94\uac00\ud558\uc5ec \ubc84\ub2e4\uc6b4 \ucc28\ud2b8\ub97c \ud655\uc778\ud558\uc138\uc694.\",\n+ title: \"\uc8fc\uae30\uc5d0 \uc791\uc5c5 \ud56d\ubaa9\uc744 \ucd94\uac00\ud558\uc5ec \ubc88\ub2e4\uc6b4 \ucc28\ud2b8\ub97c \ud655\uc778\ud558\uc138\uc694.\",\n```\n\nOther locales (`en`, `ja`, `zh-CN`) translate the same keys correctly. Only the `ko` entries have the typo.\n\n### Steps to reproduce\n\n1. Set the user language to **\ud55c\uad6d\uc5b4 (Korean)** in profile settings.\n2. Open any workspace and navigate to **Cycles** (\uc8fc\uae30).\n3. Open an empty cycle, or visit the cycle comparison page.\n4. Observe \"\ubc84\ub2e4\uc6b4\" in chart labels, comparison cards, and empty-state messages.\n\n### Environment\n\nProduction\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.4.1 (plane-ce Helm chart)\n",
+  "files": [
+   "packages/i18n/src/locales/ko/common.json",
+   "packages/i18n/src/locales/ko/cycle.json",
+   "packages/i18n/src/locales/ko/project.json"
+  ]
+ },
+ {
+  "pr": 9804,
+  "pr_title": "fix(web): show sub-work items on the parent in local",
+  "merged": "2026-09-17T16:58:25Z",
+  "merge": "b4940447688e40f2b888f2f175821d160f82e462",
+  "issue": 9612,
+  "title": "[bug]: Sub-item is not showing in ticket in local",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nIn local development after I added sub-item-issue into parent-issue. It is not appearing under collapsible-button.\n\nPossible cause:\nplane/apps/web/core/components/issues/issue-detail-widgets/sub-issues/content.tsx\n\nline:154\nsubIssueHelpers.issue_visibility.includes(parentIssueId)\n\nAfter removing this piece of code it is working and showing sub-issues.\n\n\n\n### Steps to reproduce\n\n1. Run it in local\n2. Add any ticket to parent ticket\n3. Parent is not showing sub tickets\n\nAdded video:\n\nhttps://github.com/user-attachments/assets/fd56de25-01f7-4e02-a77b-92859c2c7546\n\n### Environment\n\nDeploy preview\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nLocal\n\n### Version\n\nv1.4.1",
+  "files": [
+   "apps/web/core/components/issues/issue-detail-widgets/sub-issues/content.tsx"
+  ]
+ },
+ {
+  "pr": 9841,
+  "pr_title": "fix(api): decode HTML entities in plain-text email bodies",
+  "merged": "2026-09-16T19:40:31Z",
+  "merge": "297c3fdf2a059208f33fa70d8e5f0135d17edc6c",
+  "issue": 9497,
+  "title": "Bug: Workspace invitation plain-text fallback link contains escaped query separators",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\n```markdown\nWorkspace invitation emails include a fallback text link under \u201cIf the button doesn\u2019t work, copy and paste this link into your browser\u201d.\n\nIn the generated plain-text email body, the URL query separators are HTML-escaped as `&amp;` instead of plain `&`.\n\nExample:\n\n```text\nhttps://example.com/workspace-invitations/?invitation_id=<id>&amp;slug=<slug>&amp;token=<token>\n```\n\nWhen this visible fallback link is copied and opened in a browser, the frontend receives query parameters like `amp;slug` and `amp;token` instead of `slug` and `token`.\n\nAs a result, the workspace invitation page stays on the loading screen and no request is made to `/api/workspaces/<slug>/invitations/<invitation_id>/`.\n\nI searched existing issues for `&amp;slug`, `workspace-invitations amp;`, and `copy and paste this link invitation`, but did not find this exact issue.\n```\n\n### Steps to reproduce\n\n1. Run Plane self-hosted with SMTP enabled.\n2. Invite a user to a workspace.\n3. Open the received workspace invitation email.\n4. Copy the visible fallback URL from \"If the button doesn't work, copy and paste this link into your browser\".\n5. Paste that URL into a browser.\n6. The invitation page stays on the loading screen.\n\nExpected behavior:\n\nThe copyable/plain-text fallback URL should contain plain query separators:\n\n    https://example.com/workspace-invitations/?invitation_id=<id>&slug=<slug>&token=<token>\n\nOpening the copied fallback link should load the invitation details and allow the invitee to accept or decline the workspace invitation.\n\nAdditional investigation:\n\nThe workspace invitation task appears to build the raw URL correctly:\n\n    relative_link = (\n        f\"/workspace-invitations/?invitation_id={workspace_member_invite.id}&slug={workspace.slug}&token={token}\"\n    )\n    abs_url = str(current_site) + relative_link\n\nThe workspace invitation email template then renders `{{abs_url}}` in HTML. HTML escaping is expected there, especially inside `href` attributes.\n\nHowever, the plain-text email body is generated from the already-rendered HTML:\n\n    html_content = render_to_string(\"emails/invitations/workspace_invitation.html\", context)\n    text_content = generate_plain_text_from_html(html_content)\n\nThe current `generate_plain_text_from_html()` implementation strips tags but does not decode HTML entities, so `&amp;` remains in the plain-text output.\n\nThis seems related to PR #8535:\nhttps://github.com/makeplane/plane/pull/8535\n\nPossible fix: decode HTML entities when generating the plain-text email body, for example by applying `html.unescape()` after stripping HTML tags.\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.3.1",
+  "files": [
+   "apps/api/plane/db/management/commands/test_email.py",
+   "apps/api/plane/tests/unit/utils/test_email.py",
+   "apps/api/plane/utils/email.py"
+  ]
+ },
+ {
+  "pr": 9840,
+  "pr_title": "chore: remove legacy blue Plane branding assets",
+  "merged": "2026-09-15T20:24:32Z",
+  "merge": "661b50b4698361def79915c91729640d2a7d3ab5",
+  "issue": 9838,
+  "title": "\ud83d\udee0\ufe0f Improvement: Update legacy Plane branding assets",
+  "body": "## Summary\n\nWhile going through the Plane repository, I noticed that several branding\nassets still use the previous blue Plane logo, while the current Plane\nbranding uses the newer black/white identity.\n\nThe legacy assets appear across both the Web and Space applications.\n\n### Examples\n\n#### Space\n\n- `apps/space/app/assets/plane-logo.svg`\n- `apps/space/app/assets/plane-logos/black-horizontal-with-blue-logo.png`\n- `apps/space/app/assets/plane-logos/blue-without-text.png`\n- `apps/space/app/assets/plane-logos/blue-without-text-new.png`\n- `apps/space/app/assets/plane-logos/white-horizontal-with-blue-logo.png`\n\n#### Web\n\n- `apps/web/app/assets/plane-logos/black-horizontal-with-blue-logo.png`\n- `apps/web/app/assets/plane-logos/blue-without-text.png`\n- `apps/web/app/assets/plane-logos/white-horizontal-with-blue-logo.png`\n- `apps/web/public/plane-logos/plane-mobile-pwa.png`\n\n### Expected\n\nThe branding assets should be consistent with the current Plane brand identity.\n\n### Question\n\nI'm not sure which current logo variant should be used for each of these\nuse cases. In particular, some locations may require the standalone Plane\nmark, while others may require the full Plane wordmark.\n\nCould you also point me to the official/current logo assets that should be\nused for these updates? I don't want to recreate or source the assets\nindependently if there is an official set already available.\n\nOnce the preferred variants and source assets are confirmed, I'd be happy\nto prepare a PR to update the affected assets.\n",
+  "files": [
+   "apps/admin/public/site.webmanifest.json",
+   "apps/space/app/assets/plane-logo.svg",
+   "apps/space/app/assets/plane-logos/black-horizontal-with-blue-logo.png",
+   "apps/space/app/assets/plane-logos/blue-without-text-new.png",
+   "apps/space/app/assets/plane-logos/blue-without-text.png",
+   "apps/space/app/assets/plane-logos/white-horizontal-with-blue-logo.png",
+   "apps/space/app/assets/plane-logos/white-horizontal.svg",
+   "apps/space/public/site.webmanifest.json",
+   "apps/web/app/assets/plane-logos/black-horizontal-with-blue-logo.png",
+   "apps/web/app/assets/plane-logos/blue-without-text.png",
+   "apps/web/app/assets/plane-logos/white-horizontal-with-blue-logo.png",
+   "apps/web/app/assets/plane-logos/white-horizontal.svg",
+   "apps/web/public/plane-logos/plane-mobile-pwa.png",
+   "apps/web/public/site.webmanifest.json"
+  ]
+ },
+ {
+  "pr": 9763,
+  "pr_title": "fix(api): avoid re-crawling issue link on update when url is unchanged",
+  "merged": "2026-09-07T20:03:55Z",
+  "merge": "1fec307f91003df96351557af32ce87891a3678a",
+  "issue": 9674,
+  "title": "[bug]: Issue link `metadata` is always overwritten on update \u2014 `crawl_work_item_link_title` runs unconditionally in `partial_update`",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\n#### What happens\n\n`PATCH`ing an issue link's `metadata` succeeds (200, and the response echoes what was sent), but the\nvalue is replaced a second or two later. The background crawler runs on **every** update \u2014 even when\nthe `url` did not change \u2014 and assigns the whole `metadata` field from what it scraped.\n\n```\nPATCH .../issues/{issue}/issue-links/{link}/   {\"metadata\": {}}\n  -> 200, response metadata = {}\n  -> re-read immediately:  metadata.title = None\n  -> re-read after ~2s:    metadata.title = \"\u2026\"   (back to the crawled value)\n```\n\n**Expected:** a `metadata` value the caller sent explicitly is kept, and a link whose `url` did not\nchange is not re-crawled.\n\n**Actual:** `metadata` is always replaced by the crawl result. There is no way to clear or override\nit, and no setting to opt out.\n\n#### Cause\n\n`apps/api/plane/app/views/issue/link.py` \u2014 `partial_update`:\n\n```python\nserializer = IssueLinkSerializer(issue_link, data=request.data, partial=True)\nif serializer.is_valid():\n    serializer.save()\n    crawl_work_item_link_title.delay(serializer.data.get(\"id\"), serializer.data.get(\"url\"))\n```\n\nThe task is dispatched with no condition. And in\n`apps/api/plane/bgtasks/work_item_link_task.py` the task assigns the field wholesale:\n\n```python\nissue_link.metadata = meta_data\nissue_link.save()\n```\n\nSo any caller-supplied `metadata` is discarded on the next update, whatever field was actually\nbeing edited.\n\n#### Suggested fix\n\n`partial_update` already loads `issue_link` before saving, so the previous URL is available:\n\n```diff\n     def partial_update(self, request, slug, project_id, issue_id, pk):\n         issue_link = IssueLink.objects.get(workspace__slug=slug, project_id=project_id, issue_id=issue_id, pk=pk)\n         requested_data = json.dumps(request.data, cls=DjangoJSONEncoder)\n         current_instance = json.dumps(IssueLinkSerializer(issue_link).data, cls=DjangoJSONEncoder)\n+        previous_url = issue_link.url\n \n         serializer = IssueLinkSerializer(issue_link, data=request.data, partial=True)\n         if serializer.is_valid():\n             serializer.save()\n-            crawl_work_item_link_title.delay(serializer.data.get(\"id\"), serializer.data.get(\"url\"))\n+            if serializer.data.get(\"url\") != previous_url:\n+                crawl_work_item_link_title.delay(serializer.data.get(\"id\"), serializer.data.get(\"url\"))\n```\n\n`create` should keep crawling unconditionally \u2014 that is the case where there is nothing to preserve.\n\n#### Why it matters\n\n- **A successful write silently does not stick.** The API returns 200 with the new value, so a\n  client has no way to tell that it will be reverted. We only found it by re-reading twice.\n- **No opt-out exists.** We checked the environment-variable reference end to end; the only\n  link-related variable is `IFRAMELY_REPLICAS`, which is a replica count, and that service is not\n  part of the community `docker-compose.yaml` at all. There is no conditional in the code either.\n- **Unnecessary outbound requests.** Editing a link's display title re-fetches a URL that did not\n  change \u2014 confirmed by watching `updated_at` change a second time after a title-only PATCH. Every\n  such fetch is an outbound request from the worker and, however well guarded by `validate_url_ip`,\n  an SSRF surface that did not need to be touched.\n- **The crawled title is often not useful.** For links pointing at Plane's own work items, the\n  crawler (BeautifulSoup, no JS) only sees the SPA shell, so every such link ends up labelled\n  `Plane | Simple, extensible, open-source project management tool.` The caller cannot replace it\n  with something meaningful.\n\nThe `title` field is not affected \u2014 a caller-set display title survives. It is only `metadata`.\n\nChecked against v1.4.1; the same code path is unchanged in v1.4.2.\n\n\n### Steps to reproduce\n\nReproducible through the API alone \u2014 no UI steps needed.\n\n1. Add a link to any work item and let the crawler fill `metadata`.\n2. Clear it: `PATCH /api/workspaces/{slug}/projects/{project}/issues/{issue}/issue-links/{link}/`\n   with `{\"metadata\": {}}` \u2192 200, and the response body shows `metadata: {}`.\n3. Read the link back immediately \u2192 `metadata` is empty.\n4. Read it again after ~2-3 seconds \u2192 the crawled value is back.\n\nThe same happens when the edited field has nothing to do with the URL:\n\n5. `PATCH` the link with only `{\"title\": \"<any display name>\"}`, leaving `url` unchanged.\n6. Watch `updated_at`: it changes once for the PATCH, then **a second time about a second later** \u2014\n   that is the crawl task saving the row again.\n\n> **A note for step 6**, because it cost us a wrong conclusion first: the crawl can finish in well\n> under a second, so a single \"immediately after\" read may already be the post-crawl state and make\n> it look like nothing happened. Poll `updated_at` once a second rather than sampling twice. We\n> validated the method with a positive control \u2014 the `metadata` PATCH in steps 2-4, where the crawl\n> is known to run, does produce the second `updated_at` change.\n\n\n### Environment\n\nProduction\n\n### Browser\n\nOther\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.4.1",
+  "files": [
+   "apps/api/plane/api/views/issue.py",
+   "apps/api/plane/app/views/issue/link.py",
+   "apps/api/plane/tests/unit/views/test_issue_link.py"
+  ]
+ },
+ {
+  "pr": 9200,
+  "pr_title": "[GIT-221] fix(cycle): guard against no end_date when archiving cycle",
+  "merged": "2026-09-02T17:56:09Z",
+  "merge": "da1a7ab85012d16836459a10dd92ec55eb739c69",
+  "issue": 9169,
+  "title": "Archiving a Cycle with No End Date Crashes with TypeError",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nTypeError: '>=' not supported between instances of 'NoneType' and 'datetime.datetime'.\n\nFile: apps/api/plane/api/views/cycle.py, line 762\n\n### Steps to reproduce\n\n1. Create a cycle without setting an end date\n2. Attempt to archive that cycle\n3. See 500 error\n\n### Environment\n\nProduction\n\n### Browser\n\nNone\n\n### Variant\n\nCloud\n\n### Version\n\nv0.17.0-dev",
+  "files": [
+   "apps/api/plane/api/views/cycle.py",
+   "apps/api/plane/app/views/cycle/archive.py"
+  ]
+ },
+ {
+  "pr": 9526,
+  "pr_title": "fix(api): validate assignees/labels in IssueSerializer instead of silently dropping invalid ids",
+  "merged": "2026-09-02T17:55:39Z",
+  "merge": "aacfaac7532e4697f9ac3cbb512e6dde6c42f5da",
+  "issue": 9517,
+  "title": "\ud83d\udc1b Bug: Work item create/update via API silently drops assignees who aren't active project members (returns 200/201, no error)",
+  "body": "### Describe the bug\n\nCreating or updating a work item through the API with an `assignees` list returns success even when some or all of those ids aren't active project members with role >= 15. The invalid ids are quietly filtered out \u2014 no error, nothing in the response saying the assignment was rejected. We hit this twice in production automation; both times the API reported success and the work item just came back unassigned, so we didn't find out until someone noticed the work item had no owner.\n\nWhat makes it surprising is that the same serializer *does* raise a ValidationError for an invalid `state` or `parent`. Assignees (and labels) are the odd ones out.\n\n### To reproduce\n\n1. Project P, and a user U who is in the workspace but not a member of P. A project Guest (role 5) works too, since the filter is `role__gte=15`.\n2. `POST /api/v1/workspaces/<slug>/projects/<P>/issues/` with `{\"name\": \"test\", \"assignees\": [\"<U-id>\"]}`\n3. Response is `201` with `\"assignees\": []`.\n4. Same on `PATCH` of an existing work item: `200`, assignees unchanged.\n\n### Where\n\n`apps/api/plane/api/serializers/issue.py`, `IssueSerializer.validate()` (around L106-113 on `3985693`) \u2014 the queryset narrows the submitted list rather than validating it, so non-matching ids are dropped:\n\n```python\n# Validate assignees are from project\nif data.get(\"assignees\", []):\n    data[\"assignees\"] = ProjectMember.objects.filter(\n        project_id=self.context.get(\"project_id\"),\n        is_active=True,\n        role__gte=15,\n        member_id__in=data[\"assignees\"],\n    ).values_list(\"member_id\", flat=True)\n```\n\n`labels` just below does the same, and `apps/api/plane/app/serializers/issue.py` has the same shape for `assignee_ids`.\n\nRoles are `((20, \"Admin\"), (15, \"Member\"), (5, \"Guest\"))` (`apps/api/plane/db/models/project.py:21`), so `role__gte=15` means a project Guest is silently dropped as well, not just a non-member.\n\n### Expected behavior\n\nEither raise a ValidationError naming the ids that aren't assignable (consistent with how state and parent are handled), or surface the rejected ids in the response. Silent is the hard part \u2014 an automated caller has no way to tell its assignment didn't take.\n\nHappy to put up a PR if that's useful \u2014 I'd just want your call on direction first, since raising is the more consistent fix but it's a behaviour change for existing callers. Thanks!\n",
+  "files": [
+   "apps/api/plane/api/serializers/issue.py",
+   "apps/api/plane/tests/contract/api/test_issue_assignee_label_validation.py",
+   "apps/api/plane/tests/unit/serializers/test_issue_serializer_api.py"
+  ]
+ },
+ {
+  "pr": 9715,
+  "pr_title": "fix(i18n): correct broken German translations",
+  "merged": "2026-08-31T11:39:18Z",
+  "merge": "bc2fce4f1b3286118dc4632b952d57629ccc6232",
+  "issue": 9643,
+  "title": "[bug]: German Translation is in several cases wrong or break the UI",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\n### Words that dont exist\nFor example this word is very prominent but does not exist in the German language.\n<img width=\"423\" height=\"64\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/7058c8d9-094b-4408-b352-5c734b01d8bc\" />\n\n### Same word for two different items\n<img width=\"521\" height=\"509\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/9f497e7b-8537-47ed-99b4-ed132c7bab3f\" />\n\n### Longer words that break the UI\n<img width=\"162\" height=\"474\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/e5b3ea22-d6c0-4fb0-8b7a-fbfa49b5e21b\" />\n\n\n\n\n### Steps to reproduce\n\n1. Change Language to German\n2. Inspect the Navigation Sidebar on the left \"Einstellungen\"\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nCloud\n\n### Version\n\nlatest (Webapp does not show the actual release number)",
+  "files": [
+   "packages/i18n/src/locales/de/common.json",
+   "packages/i18n/src/locales/de/power-k.json"
+  ]
+ },
+ {
+  "pr": 9521,
+  "pr_title": "fix(web): trailing slash on workspace notification list API",
+  "merged": "2026-08-03T17:45:55Z",
+  "merge": "194266581c7fd6f0807c4565ffa651702789febe",
+  "issue": 9489,
+  "title": "[bug]: Notification list endpoint 404s due to missing trailing slash in frontend service call",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\n### Describe the bug\n\nThe workspace inbox shows the correct unread notification count (badge), but the actual notification list never loads \u2014 the inbox stays on the empty-state illustration even though notifications exist.\n\n### Root cause\n\n`WorkspaceNotificationService.list()` in `packages/services/src/workspace/notification.service.ts` builds its request URL without a trailing slash:\n\n```ts\nasync list(workspaceSlug, params) {\n  return this.get(`/api/workspaces/${workspaceSlug}/users/notifications`, { params })\n  ...\n}\n```\n\nEvery sibling method in the same file (`getUnreadCount`, `update`, `markAsRead`, `archive`, `markAllAsRead`) correctly appends a trailing slash \u2014 only `.list()` omits it.\n\nThe backend only registers this route with a trailing slash:\n\n```python\n# apps/api/plane/app/urls/notification.py\npath(\n    \"workspaces/<str:slug>/users/notifications/\",\n    NotificationViewSet.as_view({\"get\": \"list\"}),\n    name=\"notifications\",\n),\n```\n\nSo the request 404s at the Django routing layer. In our self-hosted deployment (Traefik reverse proxy), this upstream 404 surfaces to the browser as a 500, which obscured the real cause until we checked the API pod logs directly.\n\n### Confirmed affected versions\n\n- v1.2.0\n- v1.3.1\n- `preview` branch (current HEAD as of 2026-07-28) \u2014 bug is still present\n\n### Steps to reproduce\n\n### Steps to reproduce\n\n1. Have User A mention/comment-tag User B on a work item\n2. As User B, open the workspace inbox\n3. Inbox badge shows unread count correctly\n4. Notification list panel remains empty; network tab shows a failed request to `/api/workspaces/{slug}/users/notifications?...` (no trailing slash)\n\n### Expected behavior\n\nThe notification list request should include the trailing slash (matching every other method in the same service file), or the backend should register both slash and non-slash variants.\n\n### Suggested fix\n\nOne-line change in `packages/services/src/workspace/notification.service.ts`:\n\n```diff\n- return this.get(`/api/workspaces/${workspaceSlug}/users/notifications`, { params })\n+ return this.get(`/api/workspaces/${workspaceSlug}/users/notifications/`, { params })\n```\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.2.0",
+  "files": [
+   "apps/web/core/services/workspace-notification.service.ts",
+   "packages/services/src/workspace/notification.service.ts"
+  ]
+ },
+ {
+  "pr": 9303,
+  "pr_title": "[GIT-243]fix: InstanceConfiguration not created for some keys",
+  "merged": "2026-07-29T14:03:03Z",
+  "merge": "4a671ac79792108715ba778af6b8e6a1fd541fef",
+  "issue": 9221,
+  "title": "Bug - google login not working - Community Edition",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\n<img width=\"2576\" height=\"210\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/acd8df95-cc98-4e60-8566-f4352e5827fa\" />\n\n### Steps to reproduce\n\n1. setup the google login and save \n2. Try to enable the google login \n3. Notice says \"Google Login is active now\"\nBut toggle did not turn on and its not available in the login screen as well\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.3.1",
+  "files": [
+   "apps/api/plane/license/management/commands/configure_instance.py",
+   "apps/api/plane/utils/instance_config_variables/core.py"
+  ]
+ },
+ {
+  "pr": 9151,
+  "pr_title": "fix: strip control characters from sanitized filenames",
+  "merged": "2026-07-28T12:22:46Z",
+  "merge": "49c4da6d4b1f32e07131d6ed49958f9fce2ff4fa",
+  "issue": 9127,
+  "title": "[Security/Medium] Filename Sanitization Does Not Strip Control Characters",
+  "body": "## Description\n\nThe sanitize_filename() function in apps/api/plane/utils/path_validator.py does not strip control characters (e.g., tab, newline, carriage return) from user-provided filenames. This function is used when generating S3 object keys for file uploads.\n\n## Steps to Reproduce\n\n1. Send a POST request to asset upload endpoint with a filename containing control characters\n2. The filename with control characters will be used directly in the S3 object key\n\n## Impact\n\nControl characters in S3 object keys can cause storage inconsistencies, display issues in AWS console, API compatibility problems, and obfuscate filenames in logs making security investigations difficult.\n\n## Affected Code\n\napps/api/plane/utils/path_validator.py line 16: filename = filename.replace(\"\\x00\", \"\") - only strips null bytes, not other control characters\n\n## Suggested Fix\n\nAdd a line to strip all control characters:\n\nfilename = \"\".join(char for char in filename if not (ord(char) < 32 or ord(char) == 127))\n\nThis removes ASCII control characters (0-31 and 127) while preserving printable characters and Unicode.\n\n## Environment\n\n- Version: Latest\n- Python: 3.11+\n- Django: 4.2+",
+  "files": [
+   "apps/api/plane/utils/path_validator.py"
+  ]
+ },
+ {
+  "pr": 9307,
+  "pr_title": "\ud83d\udc1b Bug: Issues created or updated via REST API send no notifications or emails",
+  "merged": "2026-07-07T20:21:15Z",
+  "merge": "d5dda5d41cd1d7425e8bea1a372d0f520bbafaf2",
+  "issue": 9306,
+  "title": "\ud83d\udc1b Bug: Issues created or updated via REST API send no notifications or emails",
+  "body": "### Is there an existing issue for this?\n\n- [X] I have searched the existing issues\n\n### Current behavior\n\nCreating, updating, or assigning an issue through the REST API (`/api/v1/...`)\ngenerates no notification \u2014 assignees and subscribers get no in-app notification\nand no email. The same actions in the web UI work, and SMTP is fine (OTP and\nweb-UI emails arrive), so the notification pipeline itself is healthy. Only issue\ncreate and update over the API are affected; comments, attachments, and relations\nover the API do notify.\n\nCause: `issue_activity` dispatches notifications only when called with\n`notification=True` (default is `False`, in\n`apps/api/plane/bgtasks/issue_activities_task.py`). In\n`apps/api/plane/api/views/issue.py`, issue create (`IssueListCreateAPIEndpoint`,\nPOST) and update (`IssueDetailAPIEndpoint`, PATCH/PUT) call\n`issue_activity.delay(...)` without `notification=True`, so `notifications.delay(...)`\nnever runs. The web app views (`apps/api/plane/app/views/issue/base.py`) pass it;\nin the same API file attachments and relations pass it, but issue create/update\ndo not.\n\nThis is the same pattern as the webhook bug #8054 (fixed by #8055). Impact: any\nteam using the REST API, integrations, or the official `plane-mcp-server` gets no\nassignment/update notifications, while the pipeline is healthy.\n\nExpected: REST API create/update/assign should notify assignees and subscribers,\nlike the web UI. Fix: pass `notification=True` on those two `issue_activity.delay(...)`\ncalls in `apps/api/plane/api/views/issue.py`.\n\n### Steps to reproduce\n\n1. SMTP configured; user B is an active project member with email notifications on.\n2. With user A's API key: `PATCH /api/v1/workspaces/{slug}/projects/{project_id}/issues/{issue_id}/` with `{\"assignees\": [\"<user B id>\"]}` (or create an issue assigned to B).\n3. Result: user B gets no notification and no email; no new rows in `notifications` / `email_notification_logs`. Worker logs show `issue_activity` ran but no `notifications` task was dispatched.\n4. Do the same assignment in the web UI \u2192 user B is notified. Confirms it is API-path only.\n\n### Environment\n\nProduction\n\n### Browser\n\nOther\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.3.1 (Community); also present on the current default branch\n",
+  "files": [
+   "apps/api/plane/api/views/issue.py",
+   "apps/api/plane/tests/contract/api/test_issue_notifications.py"
+  ]
+ },
+ {
+  "pr": 9279,
+  "pr_title": "fix: scope workspace user preference filter to current user",
+  "merged": "2026-06-20T22:01:06Z",
+  "merge": "4a0746b45eb7c6737209822dd8e91f5d777ba28b",
+  "issue": 9260,
+  "title": "[bug]: Sidebar pin/unpin not persisted \u2014 WorkspaceUserPreference PATCH missing user filter",
+  "body": "## Current behavior\nSidebar pin/unpin changes return 200 OK but are not saved for the requesting user. After page refresh, pins revert to previous state.\n\n## Root cause\nIn `plane/app/views/workspace/user_preference.py`, the `patch` method filters preferences without scoping to `request.user`:\n\n```python\n# v1.3.1 \u2014 missing user filter\npreference = WorkspaceUserPreference.objects.filter(\n    key=key, workspace__slug=slug\n).first()\n```\n\nIn a workspace with multiple members, this returns the first matching record regardless of user \u2014 so the wrong user's preference gets updated.\n\n## Fix\nAdd `user=request.user` to the filter:\n\n```python\npreference = WorkspaceUserPreference.objects.filter(\n    key=key, workspace__slug=slug, user=request.user\n).first()\n```\n\n## Steps to reproduce\n1. Self-host Plane v1.3.1 with Docker\n2. Create a workspace with 2+ members\n3. Log in as any user\n4. Pin a sidebar item (e.g. Analytics, Archives)\n5. Refresh the page \u2192 pin reverts\n\n## Verified\n- DB shows `is_pinned: False` after PATCH despite 200 OK response\n- Adding `user=request.user` to the filter fixes the issue permanently\n\n## Version\nv1.3.1 (self-hosted Docker)",
+  "files": [
+   "apps/api/plane/app/views/workspace/user_preference.py",
+   "apps/api/plane/tests/contract/app/test_workspace_user_preference_app.py"
+  ]
+ },
+ {
+  "pr": 9262,
+  "pr_title": "fix: Use APP_DOMAIN env var for bot user email",
+  "merged": "2026-06-20T21:33:14Z",
+  "merge": "64da8dc9312fc454ed01e5c98703376b2638c501",
+  "issue": 9251,
+  "title": "[bug]: `plan.so` is hardcoded into bot user email",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen Plane creates the initial bot user called `Plane`, it sets it's email to `bot_user_{workspace_slug}@plane.so`, which is incorrect as `plane.so` is not the domain of our self-hosted instance.\n\n### Steps to reproduce\n\nRun Plane on your own infrastructure and create a workspace, then check the DB.\n\n### Suggested fix\n\nPlane would need to know it's own domain, the environment variable configuration system you have already understands `APP_DOMAIN`, if you plumb that through into the `api` django application, that could be easily used for generating the emails. I'd do this myself, but I don't know the codebase that well and it's not a blocker so I'm not feeling like spending too much time on this (when someone else can do this in 5 minutes).\n\n### Environment\n\nProduction\n\n### Browser\n\nMozilla Firefox\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.3.1",
+  "files": [
+   "apps/api/plane/bgtasks/workspace_seed_task.py"
+  ]
+ },
+ {
+  "pr": 9263,
+  "pr_title": "fix: Require at least one alphanumeric char in workspace name",
+  "merged": "2026-06-20T11:23:15Z",
+  "merge": "0f1f4d5c253afef64492bcaa74880b597184b27b",
+  "issue": 9255,
+  "title": "[bug]: [bug]: Workspace name field accepts symbol-only input (e.g. \"-_________-\") despite active character validation",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nThe **Workspace name** field (Workspace Settings \u2192 General) validates character composition in real time \u2014 entering a disallowed character (e.g. a comma) is immediately rejected with the message *\"Workspace name can only contain letters, numbers, spaces, hyphens, and underscores.\"* This confirms the field has active validation logic, not just a passive character filter on submit.\n\nHowever, this validation only checks character *type*, not character *content*. A workspace name consisting entirely of hyphens, underscores, and/or spaces \u2014 with zero letters or numbers \u2014 passes validation and is saved successfully. This produces a non-descriptive workspace name (e.g. `-_________-`) that persists across the UI: settings header, sidebar, and workspace switcher.\n\n### Steps to reproduce\n\n\n1. Go to **Workspace Settings \u2192 General**\n2. In the **Workspace name** field, enter a string with no alphanumeric characters, e.g. `-_________-`\n3. Click **Update workspace**\n\n<img width=\"1680\" height=\"1050\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/c0512e34-cc6f-4eeb-99a8-5fbdbb598760\" />\n\n### Environment\n\nProduction\n\n### Browser\n\nSafari\n\n### Variant\n\nCloud\n\n### Version\n\nLatest",
+  "files": [
+   "packages/utils/src/validation.ts"
+  ]
+ },
+ {
+  "pr": 9059,
+  "pr_title": "fix: handle error message for special characters in Identifier of Project",
+  "merged": "2026-06-03T11:56:19Z",
+  "merge": "4280c4d1b131c209f9fc60b2f43276d32ce39064",
+  "issue": 8969,
+  "title": "Project creation silently fails with React crash when name/identifier contains special characters",
+  "body": "### Describe the bug\n  Creating a project with a special character (e.g. `+`) in the **Project name** field causes the API to return `400 Bad\n  Request`, but the frontend does not surface a field-level validation message. Instead, the React app crashes with minified\n  errors #418 and #423, and the user is left with no feedback about what went wrong.\n\n  ### Steps to reproduce\n  1. Self-host Plane (community edition, `stable` images) behind a reverse proxy.\n  2. Sign in, create a workspace.\n  3. Click **Create Project**.\n  4. Enter a project name containing `+` (e.g. `Foo + Bar`).\n  5. Pick any valid identifier and submit.\n\n  ### Expected behavior\n  - Inline validation error on the **Name** (or **Identifier**) field telling the user which characters are not allowed.\n  - No console crash; form remains interactive so the user can correct the input.\n\n  ### Actual behavior\n  - `POST /api/workspaces/{slug}/projects/` returns `400` (duration ~40 ms \u2014 serializer rejection).\n  - Frontend logs:\n    Uncaught Error: Minified React error #418\n    Uncaught Error: Minified React error #423\n    ...\n    store-context-*.js  Failed to create project from project store\n  - The error toast (if any) does not indicate which field is invalid.\n  - Removing the special character from the name allows the project to be created normally.\n\n  ### Environment\n  - Plane version: `stable` (self-hosted, `makeplane/plane-*:stable`, pulled 2026-04-28)\n  - Deployment: docker-compose (CLI community), ARM64 (Raspberry Pi 5)\n  - Browser: Chrome 147 on Linux\n  - Reverse proxy: bundled `plane-proxy` (Caddy) \u2192 external nginx \u2192 Cloudflare Tunnel\n\n  ### Suggested fix\n  - Catch the 400 response in the project-creation store and map serializer errors to per-field messages on the form.\n  - Alternatively, validate the allowed character set client-side before submission so users get immediate feedback.\n\n  ### Additional context\n  The same pattern likely affects any field whose validation is enforced only server-side. Workaround: keep names and\n  identifiers strictly alphanumeric.",
+  "files": [
+   "apps/web/ce/components/projects/create/root.tsx",
+   "apps/web/core/components/project/form.tsx"
+  ]
+ },
+ {
+  "pr": 9179,
+  "pr_title": "[GIT-213] fix: return HTTP response from dispatch() exception handler",
+  "merged": "2026-06-01T09:33:22Z",
+  "merge": "011328c7930044d00f6095fbd954f25c23831154",
+  "issue": 9157,
+  "title": "dispatch() Returns Exception Object Instead of HTTP Response in BaseAPIView",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I make any API request that triggers an unhandled exception, the server crashes the response pipeline instead of returning a structured error response and I see the error message attached below:\n\nTypeError: 'Exception' object is not a valid HTTP response\n\nWhat I expect is a properly formatted JSON error response with an appropriate HTTP status code.\n\nFile: apps/api/plane/api/views/base.py, line 126\n\n### Steps to reproduce\n\n1. Make any API request that raises an unhandled server-side exception\n2. Observe that the response pipeline crashes instead of returning a clean error JSON\n3. See malformed 500 with no structured body\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nCloud\n\n### Version\n\nv0.17.0-dev",
+  "files": [
+   "apps/api/plane/api/views/base.py",
+   "apps/api/plane/app/views/base.py",
+   "apps/api/plane/license/api/views/base.py",
+   "apps/api/plane/space/views/base.py",
+   "apps/api/plane/tests/unit/views/__init__.py",
+   "apps/api/plane/tests/unit/views/test_base_dispatch.py"
+  ]
+ },
+ {
+  "pr": 9137,
+  "pr_title": "fix(web): add Safari fallback for requestIdleCallback",
+  "merged": "2026-05-28T18:26:46Z",
+  "merge": "f14451a5de3b8e4283d35ff11190d79292491a7c",
+  "issue": 9134,
+  "title": "[bug]: Opening a project crashes in Safari/iOS \u2014 window.requestIdleCallback is not a function (gantt-layout-loader, unguarded)",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\n### Current behavior\n\nOn a self-hosted v1.3.1 instance, opening any **project layout view** in **Safari (macOS) and Safari (iOS)** immediately trips the React error\nboundary (\"\ud83d\udea7 Looks like something went wrong!\"). Login, the projects list, and individual work-item peek/detail drawers all work \u2014 only the project layout view crashes.\n\nThe Network tab shows **zero failed requests**; this is a pure client-side JS exception. Captured console error:\n\n```\n    TypeError: window.requestIdleCallback is not a function.\n      (In 'window.requestIdleCallback(()=>{h.current &&\n(S.current=`${h.current.offsetHeight}px`)})',\n       'window.requestIdleCallback' is undefined)\n      (anonymous function) \u2014 gantt-layout-loader-<hash>.js:1:5524\n    \u2192 React Router caught the following error during render\n    \u2192 componentDidCatch \u2014 chunk-<hash>.js\n```\n\n### Root cause\n\nThe `gantt-layout-loader` chunk calls `window.requestIdleCallback(...)` with no feature-detection and no polyfill. Safari does not ship `requestIdleCallback` by default on any version \u2014 it is gated behind a WebKit feature flag (WebKit bug 164193, still open; see caniuse). The call therefore throws a `TypeError` in Safari/iOS, which bubbles through the React Router render and trips the error boundary. The project layout view pulls in this chunk; the work-item drawer does not, which is why the drawer still renders.\n\nChrome and Firefox are unaffected because both have shipped `requestIdleCallback` for years.\n\n### Expected behavior\n\nThe project layout view renders in Safari/iOS, as it does in Chrome/Firefox.\n\n### Suggested fix\n\nGuard the call or ship a polyfill. Minimal feature-detect:\n```\n    (window.requestIdleCallback || ((cb) => setTimeout(() =>\n      cb({ didTimeout: false, timeRemaining: () => 50 }), 1)))(callback);\n```\n\nor register a global `requestIdleCallback`/`cancelIdleCallback` shim during app bootstrap so all call sites are covered. This is a common Safari-compat shim (e.g. the aFarkas/requestIdleCallback polyfill).\n\n### Workaround\n\nEnable the WebKit `requestIdleCallback` feature flag per device (macOS: Develop \u2192 Feature Flags; iOS: Settings \u2192 Apps \u2192 Safari \u2192 Advanced \u2192 Feature Flags). Confirmed to resolve the crash, but it is a per-device manual toggle and not viable at scale.\n\n### Steps to reproduce\n\n1. Self-host v1.3.1 (Community Edition).\n2. Open the instance in Safari on macOS or iOS (default settings \u2014 i.e. without the experimental `requestIdleCallback` WebKit flag enabled).\n3. Click into any project.  Console shows `TypeError: window.requestIdleCallback is not a function`.\n\n### Environment\n\nProduction\n\n### Browser\n\nSafari\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.3.1 CE",
+  "files": [
+   "apps/web/app/entry.client.tsx",
+   "apps/web/core/lib/idle-task.ts",
+   "apps/web/core/lib/polyfills/index.ts"
+  ]
+ },
+ {
+  "pr": 9099,
+  "pr_title": "fix(aio): use JSON array double quotes in VOLUME instruction",
+  "merged": "2026-05-21T11:24:57Z",
+  "merge": "039d582fbb904ef0d1d3d6b6e1c9fef9696beb13",
+  "issue": 9098,
+  "title": "\ud83d\udc1b Bug: AIO community Dockerfile VOLUME uses single quotes, breaks container recreate on Docker 29.5.0",
+  "body": "### Summary\n\n`deployments/aio/community/Dockerfile` line 62 declares the `VOLUME` instruction with **single quotes**:\n\n```dockerfile\nVOLUME ['/app/data', '/app/logs']\n```\n\nDocker's JSON (exec) form requires **double quotes**. With single quotes Docker does not parse it as a JSON array; it falls back to the shell form and treats the bracket/comma tokens as literal volume paths. The resulting image declares two anonymous volumes with malformed, non-absolute destinations:\n\n```\n$ docker image inspect makeplane/plane-aio-community:stable --format '{{json .Config.Volumes}}'\n{\"/app/logs]\":{},\"[/app/data,\":{}}\n\n$ docker history --no-trunc makeplane/plane-aio-community:stable | grep VOLUME\nVOLUME [[/app/data, /app/logs]]\n```\n\n### Impact\n\nDocker Engine tolerated these non-absolute anonymous volume paths **at container create time** until **Engine 29.5.0** (released 2026-05-14), which now validates and rejects them:\n\n```\nError response from daemon: invalid mount config for type \"volume\":\ninvalid mount path: '[/app/data,' mount path must be absolute\n```\n\nEffect on `plane-aio-community`:\n- Existing containers keep running (start of an already-created container is still tolerated).\n- **Any recreation fails**: `docker compose up -d --force-recreate`, `docker compose pull && up -d`, or recreate after an image bump. The AIO instance becomes non-upgradeable on Docker \u2265 29.5.0.\n\n### Reproduction\n\n```bash\ndocker pull makeplane/plane-aio-community:stable\ndocker run -d --name plane-test makeplane/plane-aio-community:stable\ndocker rm -f plane-test\n# On Docker Engine 29.5.0:\ndocker create --name plane-test makeplane/plane-aio-community:stable\n# -> Error response from daemon: invalid mount config for type \"volume\":\n#    invalid mount path: '[/app/data,' mount path must be absolute\n```\n\n### Environment\n\n- Image: `makeplane/plane-aio-community:stable` (and every tag back to `v0.28.0` \u2014 the defect is long-standing, only newly surfaced by Docker behavior)\n- Docker Engine: 29.5.0\n- Affected file: `deployments/aio/community/Dockerfile:62` (present on both `preview` and `master`)\n\n### Suggested fix\n\nUse the valid JSON array form with double quotes:\n\n```dockerfile\nVOLUME [\"/app/data\", \"/app/logs\"]\n```\n\nOne-line fix submitted as a PR.",
+  "files": [
+   "deployments/aio/community/Dockerfile"
+  ]
+ },
+ {
+  "pr": 8935,
+  "pr_title": "fix(nginx): correct real_ip_header typo X-Forward-For \u2192 X-Forwarded-For",
+  "merged": "2026-05-05T08:21:12Z",
+  "merge": "ff21e53f5a75fbe4686d5974f9f4840ef5d3deb1",
+  "issue": 8934,
+  "title": "[bug]: real_ip_header directive has typo X-Forward-For instead of X-Forwarded-For in nginx configs",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nAll three nginx config files (`apps/web`, `apps/admin`, `apps/space`) have a typo in the `real_ip_header` directive:\n\n```nginx\nreal_ip_header X-Forward-For;   \u2190 wrong (not a real HTTP header)\n```\n\n`X-Forward-For` does not exist as an HTTP header. The correct standard header is `X-Forwarded-For`. Because of this typo, Nginx never replaces `$remote_addr` with the actual client IP, so rate limiting (`limit_req_zone $binary_remote_addr`) and IP logging always see the proxy/load balancer IP instead of the real client IP.\n\n### Steps to reproduce\n\n1. Deploy Plane behind a proxy or CDN (e.g. AWS ELB, Cloudflare)\n2. Check the IP seen by the application \u2014 it will be the proxy IP, not the real client IP\n3. Rate limiting (`limit_req_zone`) applies per-proxy instead of per-client, making it ineffective\n\n### Environment\n\nSelf-hosted (Docker)\n\n### Browser\n\nN/A\n\n### Variant\n\nCommunity Edition / All\n\n### Version\n\nAll",
+  "files": [
+   "apps/admin/nginx/nginx.conf",
+   "apps/space/nginx/nginx.conf",
+   "apps/web/nginx/nginx.conf"
+  ]
+ },
+ {
+  "pr": 8840,
+  "pr_title": "fix: filter out soft-deleted states from API endpoints",
+  "merged": "2026-04-28T20:31:46Z",
+  "merge": "db1c5b95138e8bf641208bfae00e9e07e1cc0295",
+  "issue": 8829,
+  "title": "[bug]: Soft-deleted states returned by workspace and project state endpoints, causing deleted states to reappear in UI",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen a custom project state is deleted, it is correctly soft-deleted in the database (deleted_at is set). However, two API endpoints do not filter on `deleted_at__isnull=True`, so they return soft-deleted states alongside active ones. The frontend populates its state store from these endpoints, causing deleted states to reappear after navigating away and back to the page even though the delete appeared to succeed in the UI.\n\n### Steps to reproduce\n\n1. Go to Project Settings \u2192 States\n2. Create a custom state (e.g. \"Rainy Day\")\n3. Delete it. It disappears from the view\n4. Navigate away (e.g. to the board view) and navigate back to Settings \u2192 States\n5. \"Rainy Day\" reappears\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nstable v1.2.3",
+  "files": [
+   "apps/api/plane/app/views/issue/base.py"
+  ]
+ },
+ {
+  "pr": 8744,
+  "pr_title": "fix: strip whitespace from instance configuration values",
+  "merged": "2026-04-08T10:36:53Z",
+  "merge": "77c4b9c77462d15d5a105a55ae1ad438bfb0e5c0",
+  "issue": 8737,
+  "title": "\ud83d\udc1b Bug: OAuth login fails when instance configuration values have trailing whitespace",
+  "body": "## Description\n\nWhen configuring OAuth credentials (e.g. GitHub Client ID) through the God Mode admin UI, any leading/trailing whitespace in the pasted value is persisted to the database as-is. This causes the OAuth redirect URL to include a URL-encoded space (`%20`) in the `client_id` parameter, which makes the identity provider return a 404.\n\nThis is easy to trigger \u2014 simply copy-pasting a Client ID from a web page often picks up a trailing space.\n\n## Steps to reproduce\n\n1. Self-host Plane v1.2.3 (also present on `preview` branch)\n2. Go to God Mode \u2192 Authentication \u2192 GitHub \u2192 Configure\n3. Paste a GitHub OAuth Client ID with a trailing space (e.g. `Ov23li2Dep2t79q18nxD `)\n4. Save and enable GitHub SSO\n5. Click \"Login with GitHub\" on the login page\n6. The redirect URL contains `client_id=Ov23li2Dep2t79q18nxD%20`\n7. GitHub returns a 404\n\n## Expected behavior\n\nConfiguration values should be stripped of leading/trailing whitespace before being persisted to the database.\n\n## Actual behavior\n\nWhitespace is saved verbatim, breaking OAuth flows and potentially any other credential that is sensitive to extra characters.\n\n## Root cause\n\n`InstanceConfigurationEndpoint.patch()` in `apps/api/plane/license/api/views/configuration.py` saves the raw value from `request.data` without calling `.strip()`:\n\n```python\nvalue = request.data.get(configuration.key, configuration.value)\n```\n\n## Affected\n\nAll OAuth providers (GitHub, Google, GitLab, Gitea) and likely any credential field saved via the instance configuration endpoint.\n\n## Environment\n\n- Plane version: v1.2.3 (also present on current `preview` branch)\n- Deployment: Self-hosted Docker Compose",
+  "files": [
+   "apps/api/plane/license/api/views/configuration.py"
+  ]
+ },
+ {
+  "pr": 8790,
+  "pr_title": "fix: update Twitter icon and links to X",
+  "merged": "2026-04-07T10:04:54Z",
+  "merge": "7c2fc2dd7f8f02ce16cac3f126871c98b614773f",
+  "issue": 8785,
+  "title": "change the twitter icon to X",
+  "body": "<img width=\"1845\" height=\"67\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/80c448af-02ee-4aae-b2c5-2a299a55fe2c\" />\nChange the twitter icon to X and the link as well",
+  "files": [
+   "README.md",
+   "apps/api/templates/emails/invitations/project_invitation.html",
+   "apps/api/templates/emails/notifications/issue-updates.html",
+   "apps/api/templates/emails/notifications/webhook-deactivate.html",
+   "apps/api/templates/emails/user/email_updated.html",
+   "apps/api/templates/emails/user/user_activation.html",
+   "apps/api/templates/emails/user/user_deactivation.html"
+  ]
+ },
+ {
+  "pr": 8813,
+  "pr_title": "fix: tsdown watch",
+  "merged": "2026-03-27T10:29:55Z",
+  "merge": "97b4abd69313d3f7d2f3cf63cf69139a917557cd",
+  "issue": 8791,
+  "title": "[bug]: tsdown --watch cleans dist/ on startup causing race condition in dev mode",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen running `pnpm dev`, the `dev` tasks for all packages use `tsdown --watch`, which cleans the `dist/` directory on startup. Since turbo's `dev` task depends on `^build` to pre-populate `dist/`, the clean step wipes those outputs before the apps (admin, space, live) can resolve them.                                                                   \n                                                                                                                                                                                    \nThis causes errors like:                                                                                                                                                        \n\nFailed to resolve entry for package \"@plane/utils\". The package may have incorrect main/module/exports specified in its package.json.\n\nand:                                                                                                                                                                              \n\nError [ERR_MODULE_NOT_FOUND]: Cannot find module '.../node_modules/@plane/logger/dist/index.mjs'\n\nThe turbo pipeline runs `^build` before `dev`, populating `dist/`. But `tsdown --watch` (the `dev` script) cleans `dist/` as its first action, creating a window where apps try to import from empty `dist/` directories.\n\n## Suggested fix                                                                                                                                                                  \n                                                                                                                                                                                  \n  Add `--no-clean` to all `tsdown --watch` dev scripts in `packages/*/package.json` and `apps/live/package.json`:                                                                   \n                                                                                                                                                                                  \n  ```diff                                                                                                                                                                           \n  - \"dev\": \"tsdown --watch\",                                                                                                                                                      \n  + \"dev\": \"tsdown --watch --no-clean\",                                                                                                                                             \n   \n  The build script still cleans (tsdown default), so production builds remain unaffected. Only the watch mode skips cleaning, relying on ^build outputs already being in place.  \n\n### Steps to reproduce\n\n 1. `pnpm clean` (or `git pull` that invalidates turbo cache)                                                                                                                      \n  2. `pnpm dev`\n  3. admin, space, and live apps fail to start\n\n\nAffected packages                                                                                                                                                                 \n                                                                                                                                                                                  \nAll 12 packages + apps/live (13 files total).                                                                                                                                     \n                                                                                                                                                                                \nEnvironment                                                                                                                                                                       \n                                                                                                                                                                                \n- Node: v22.22.1                                                                                                                                                                \n- tsdown: v0.16.0                                                                                                                                                               \n- turbo: v2.8.12                                                                                                                                                                  \n- macOS\n\n### Environment\n\nProduction\n\n### Browser\n\nMozilla Firefox\n\n### Variant\n\nLocal\n\n### Version\n\nv1.2.0",
+  "files": [
+   "apps/live/package.json",
+   "package.json",
+   "packages/constants/package.json",
+   "packages/decorators/package.json",
+   "packages/editor/package.json",
+   "packages/hooks/package.json",
+   "packages/hooks/tsdown.config.ts",
+   "packages/i18n/package.json",
+   "packages/i18n/tsdown.config.ts",
+   "packages/logger/package.json",
+   "packages/propel/package.json",
+   "packages/services/package.json",
+   "packages/services/tsdown.config.ts",
+   "packages/shared-state/package.json",
+   "packages/shared-state/tsdown.config.ts",
+   "packages/tailwind-config/package.json",
+   "packages/types/package.json",
+   "packages/ui/package.json",
+   "packages/ui/tsdown.config.ts",
+   "packages/utils/package.json",
+   "packages/utils/tsdown.config.ts",
+   "pnpm-lock.yaml"
+  ]
+ },
+ {
+  "pr": 8792,
+  "pr_title": "fix: add missing model_activity.delay() for API-driven issue webhooks",
+  "merged": "2026-03-25T08:01:16Z",
+  "merge": "d94a26945198a5f5a026420fe4ff6ac2acc7ba46",
+  "issue": 6746,
+  "title": "[bug]: webhook not triggered when created the task via API",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I create/update the issue via API, it doesn't trigger the webhook.\n\n### Steps to reproduce\n\nmake an API call to create issue endpoint\n\n### Environment\n\nProduction\n\n### Browser\n\nNone\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv0.25.2",
+  "files": [
+   "apps/api/plane/api/views/issue.py"
+  ]
+ },
+ {
+  "pr": 8682,
+  "pr_title": "fix: disable react-in-jsx-scope rule in oxlint config",
+  "merged": "2026-03-04T08:06:44Z",
+  "merge": "be8836642a654207c9e0ac2a813403ca716ea754",
+  "issue": 8681,
+  "title": "[bug]: oxlint pre-commit hook fails on all JSX files \u2014 missing react-in-jsx-scope: off",
+  "body": "### Is there an existing issue for this?\n\nNo.\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nAfter PR #8677 (replace eslint with oxlint), **any commit that touches a JSX/TSX file fails** the pre-commit hook:\n\n```\n\u2716 pnpm exec oxlint --fix --deny-warnings:\n\n  ! eslint-plugin-react(react-in-jsx-scope): `React` must be in scope when using JSX.\n```\n\nThis blocks all local development commits on JSX files.\n\n### Expected behavior\n\nCommits should succeed. React 17+ uses the automatic JSX runtime, so `import React` is not required and the `react-in-jsx-scope` rule should be disabled.\n\n### Root cause\n\n`.oxlintrc.json` enables the `react` plugin with `correctness: warn`, which activates `react-in-jsx-scope`. The `lint-staged` config runs `oxlint --fix --deny-warnings`, promoting all warnings to errors.\n\nThe previous ESLint config had `react/react-in-jsx-scope: off`, but this was not carried over to `.oxlintrc.json`.\n\n### Steps to reproduce\n\n1. Fresh clone, `pnpm install`\n2. Edit any `.tsx` file containing JSX\n3. `git commit` \u2192 pre-commit hook fails\n\nMinimal reproduction:\n\n```bash\npnpm exec oxlint --fix --deny-warnings apps/web/app/root.tsx\n# exits 1 with react-in-jsx-scope warning\n```\n\n### Suggested fix\n\nAdd to `.oxlintrc.json` rules:\n\n```json\n\"react/react-in-jsx-scope\": \"off\"\n```\n\n### Environment\n\n- oxlint 1.51.0\n- Node 22\n- macOS / Linux\n- Introduced in PR #8677",
+  "files": [
+   ".oxlintrc.json"
+  ]
+ },
+ {
+  "pr": 8595,
+  "pr_title": "[WEB-6060] fix: module percentage calculation",
+  "merged": "2026-01-29T09:18:43Z",
+  "merge": "b8d3b3c5eb63b5241e3d75460b16f1e22cff758d",
+  "issue": 8583,
+  "title": "[bug]: Inconsistent module completion percentages",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I go to the `modules` page, I see a module completion percentage of 2%. If I click on the module and then the browser `back` button, I instead see 6%. Reloading the page makes it show 2% again.\n\n### Steps to reproduce\n\n1. Go to `Modules`\n2. Look at the module completion percentage (Does not vary when it is 0)\n3. Click on the module\n4. Click `back` on the browser\n5. Look at the module completion percentage again\n6. Reload the page\n7. Look at the module completion percentage again\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv2.2.1",
+  "files": [
+   "apps/api/plane/app/views/workspace/module.py"
+  ]
+ },
+ {
+  "pr": 8524,
+  "pr_title": "[GIT-45] fix: allow markdown file attachments",
+  "merged": "2026-01-23T08:08:48Z",
+  "merge": "57806f9bd50bba3659466eae6edf3ff9adaced89",
+  "issue": 8519,
+  "title": "[bug]: cannot attach markdown file",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\n## How to replicate\n\nWhen I try to attach .md file to my work items, I get the following error:\n\n{\n    \"error\": \"Invalid file type.\",\n    \"status\": false\n}\n\n## Job-to-be-done\nI don't want to write the whole architecture right in the epic \u2013 this way my LLM coding agent will spend tokens every time it refers to the task via MCP. It would be way easier for me to upload markdown to an epic so my claude code can refer to it only when stuck instead of reading it every time\n\n### Steps to reproduce\n\n1. Go to work item page\n2. Click on \"attach file\"\n3. Upload .md file\n\n### Environment\n\nProduction\n\n### Browser\n\nOther\n\n### Variant\n\nCloud\n\n### Version\n\nLatest at the time of issue creation",
+  "files": [
+   "apps/api/plane/settings/common.py",
+   "packages/editor/src/core/constants/config.ts"
+  ]
+ },
+ {
+  "pr": 8457,
+  "pr_title": "[WEB-5815] chore: removed the deleted states",
+  "merged": "2025-12-26T14:58:33Z",
+  "merge": "3241693d6dddc14e13507abef79bbbce4e481156",
+  "issue": 8444,
+  "title": "[bug]: Can't delete custom project states",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I delete a workflow state from a project in a workspace, it disappears from the list, but when I refresh the page, the deleted state reappears.\n\nWhat should happen is the workflow state gets deleted and does not reappear on subsequent page refreshes.\n\nI believe the state is merely getting removed from the web UI when deleted, but is not actually getting deleted on the backend.\n\n\n\n### Steps to reproduce\n\nPlane Community Edition v1.2.0 deployed using Helm chart v1.4.1\n\n1. Go to a project where the current user is an admin.\n2. Open project settings > states.\n3. Create a new state in any category.\n4. Delete the state (state will disappear from web UI)\n\nDevTools Network Tab:\nDELETE <instance_url>/api/workspaces/<my_workspace>/projects/e2264f72-c655-496c-8305-90ed3a259943/states/3a2cbc28-f3c5-4d30-8c4c-c1e0d1fb5f01/\n\nProject ID and State ID in API request are correct.\n\nReturns HTTP 204 with no response content.\n\n5. Refresh the page (state will reappear and was not deleted)\n\nMakes an API request to /api/workspaces/<my_workspace>/projects/e2264f72-c655-496c-8305-90ed3a259943/states/\n\nResponse object includes all project states, including the states that were supposed to be deleted.\n\n### Environment\n\nProduction\n\n### Browser\n\nMozilla Firefox\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.2.0",
+  "files": [
+   "apps/api/plane/db/models/issue.py",
+   "apps/api/plane/db/models/state.py"
+  ]
+ },
+ {
+  "pr": 8340,
+  "pr_title": "[WEB-5666] chore: set project timezone same as workspace timezone in project",
+  "merged": "2025-12-16T15:16:53Z",
+  "merge": "df710e00dcdac9b148e9a4638c6735f13f3d3a37",
+  "issue": 8224,
+  "title": "[feature]: Option to change the default initial timezone of newly created projects.",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Summary\n\nAn option on workspace level to change the default initial timezone of newly created projects.\n\n### Why should this be worked on?\n\nThere seems to be no way to change the default initial timezone of a newly created project. The timezone is always initially set to UTC. Each time I create a project, I go into its settings to change the timezone manually.",
+  "files": [
+   "apps/api/plane/api/serializers/project.py",
+   "apps/api/plane/api/views/project.py",
+   "apps/api/plane/app/serializers/project.py",
+   "apps/api/plane/db/models/project.py"
+  ]
+ },
+ {
+  "pr": 8298,
+  "pr_title": "[WEB-4440] fix: Fix duplicate sequence when creating multiple workitems in rapid succession",
+  "merged": "2025-12-10T17:50:41Z",
+  "merge": "647813a6ab5d777f7357335159e3cfdcbecd6347",
+  "issue": 8192,
+  "title": "[bug]: Race condition causes duplicate sequence_id when creating issues concurrently via API",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\n<img width=\"1392\" height=\"1616\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/3fb7fcfb-ae22-4116-a2a5-957f9d1e8c75\" />\n\nWhen I create multiple issues concurrently via the Plane API (MCP integration), the `sequence_id` field gets duplicated across different issues. This causes:\n\n1. Multiple issues share the same readable identifier (e.g., two issues both have MITRA-4)\n2. The `get_issue_using_readable_identifier` API endpoint returns a 500 error for affected identifiers\n3. The issue list in the UI shows duplicate sequence numbers\n\nExample from my project (29 issues created):\n- sequence_id 4: 2 issues (should be unique)\n- sequence_id 14: 2 issues\n- sequence_id 15: 2 issues\n- sequence_id 17: 2 issues\n- sequence_id 18: 2 issues\n- sequence_id 22: 2 issues\n\nWhat I expect is each issue should have a unique, auto-incrementing sequence_id that becomes the readable identifier (PROJECT-1, PROJECT-2, etc.).\n\n### Steps to reproduce\n\n1. Use the Plane API to create multiple issues in parallel (e.g., 5 concurrent POST requests to /api/v1/workspaces/{workspace}/projects/{project}/issues/)\n2. Check the created issues' sequence_id values\n3. Observe that some issues share the same sequence_id\n4. Try to fetch an issue with a duplicated sequence_id using GET /api/v1/workspaces/{workspace}/projects/{project}/issues/?identifier={sequence_id}\n5. See 500 Internal Server Error\n\n### Environment\n\nProduction\n\n### Browser\n\nOther\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.1.0",
+  "files": [
+   "apps/api/plane/db/models/issue.py"
+  ]
+ },
+ {
+  "pr": 8260,
+  "pr_title": "[WEB-5594] feat: enhance authentication method handling in member columns and introduce new login medium labels",
+  "merged": "2025-12-08T12:55:48Z",
+  "merge": "7659997b534595513a803f1d19f11e7440de2b73",
+  "issue": 8170,
+  "title": "[bug]: Incorrect capitalization of GitHub in useMemberColumns",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\n<img width=\"148\" height=\"87\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/46073927-fb50-4746-a14f-0eca7bc83caf\" />\n\nCorrect capitalization is \"GitHub\", not \"Github\"\n\nhttps://github.com/makeplane/plane/blob/preview/apps/web/ce/components/workspace/settings/useMemberColumns.tsx#L107-L114\n\n### Steps to reproduce\n\n1. Sign into your Plane account using GitHub\n2. Observe the \"Authentication\" column value in  /[workspace]/settings/members\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nCloud\n\n### Version\n\nLatest\n<img width=\"187\" height=\"76\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/efdec46c-7100-4682-a8ea-f8cd71e27ecc\" />",
+  "files": [
+   "apps/web/ce/components/workspace/settings/useMemberColumns.tsx",
+   "packages/constants/src/auth/core.ts",
+   "packages/constants/src/auth/extended.ts",
+   "packages/constants/src/auth/index.ts",
+   "packages/types/src/instance/auth-ee.ts",
+   "packages/types/src/instance/auth.ts",
+   "packages/types/src/instance/base.ts",
+   "packages/types/src/instance/index.ts",
+   "packages/types/src/users.ts",
+   "packages/types/src/workspace.ts"
+  ]
+ },
+ {
+  "pr": 8081,
+  "pr_title": "fix: escape slashes in environment variable values during update",
+  "merged": "2025-11-11T12:22:03Z",
+  "merge": "6ba15545d9cf35d483f5a86606c2b82869813456",
+  "issue": 8011,
+  "title": "[bug]: Variabe value gets reset to default on Upgrade",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nThe following variables get reset with the mentioned values.\n\nAWS_S3_ENDPOINT_URL=http://plane-minio:9000\nAMQP_URL=\nDATABASE_URL=\n\n### Steps to reproduce\n\nYou should already have existing Plane running. Make sure to backup the old folder.\n\n1. ./setup.sh\n2. Run Upgrade\n3. diff between plane.env of current and old directory\n\n### Environment\n\nProduction\n\n### Browser\n\nNone\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.1.0",
+  "files": [
+   "deployments/cli/community/install.sh"
+  ]
+ },
+ {
+  "pr": 7978,
+  "pr_title": "[WEB-5158] chore: calendar startofweek alignment fix and code refactoring",
+  "merged": "2025-10-23T08:29:29Z",
+  "merge": "38cdf756a5b456cd2817768adb330884a0c9ca76",
+  "issue": 7974,
+  "title": "[bug]: \u041d\u0435 \u0432\u0435\u0440\u043d\u043e\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u044f",
+  "body": "### Is there an existing issue for this?\n\n- [ ] I have searched the existing issues\n\n### Current behavior\n\n**\u041d\u0435 \u0432\u0435\u0440\u043d\u043e\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u044f**\n\n\u0415\u0441\u043b\u0438 \u0432 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u0435 \u0432\u043a\u043b\u044e\u0447\u0438\u0442\u044c `Month layout` \u0438 `Show weekends`, \u0442\u043e \u0432\u043e\u0441\u043a\u0440\u0435\u0441\u0435\u043d\u044c\u0435 \u0441\u044a\u0435\u0437\u0436\u0430\u0435\u0442 \u043d\u0430 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0443\u044e \u043d\u0435\u0434\u0435\u043b\u044e, \u0447\u0442\u043e \u043d\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e \u0438 \u043d\u0435 \u043b\u043e\u0433\u0438\u0447\u043d\u043e.\n\n\u0414\u0435\u043c\u043e\u043d\u0441\u0442\u0440\u0430\u0446\u0438\u044f \u043f\u0440\u043e\u0431\u043b\u0435\u043c\u044b:\n<img width=\"1639\" height=\"950\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/a0dcdec0-0c2b-4177-b28d-6fe96d640e07\" />\n\u0414\u043e\u043b\u0436\u043d\u043e \u0438\u0434\u0442\u0438 \u0442\u0430\u043a:\n13, 14, 15, 16, 17, 18, **19 (\u0430 \u043d\u0435 12)**\n\n\u041f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e\u0435 \u0438 \u043b\u043e\u0433\u0438\u0447\u043d\u043e\u0435 \u043e\u0442\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435 \u0432 \u0420\u043e\u0441\u0441\u0438\u0438 \u0438 \u0421\u041d\u0413 \u0432\u044b\u0433\u043b\u044f\u0434\u0438\u0442 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u043c \u043e\u0431\u0440\u0430\u0437\u043e\u043c:\n<img width=\"1642\" height=\"933\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/9c7e9707-77d2-443b-bf22-382e7690b27b\" />\n\n### Steps to reproduce\n\n\u0415\u0441\u043b\u0438 \u0432 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u0435 \u0432\u043a\u043b\u044e\u0447\u0438\u0442\u044c `Month layout` \u0438 `Show weekends`, \u0442\u043e \u0432\u043e\u0441\u043a\u0440\u0435\u0441\u0435\u043d\u044c\u0435 \u0441\u044a\u0435\u0437\u0436\u0430\u0435\u0442 \u043d\u0430 \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0443\u044e \u043d\u0435\u0434\u0435\u043b\u044e, \u0447\u0442\u043e \u043d\u0435 \u043f\u0440\u0430\u0432\u0438\u043b\u044c\u043d\u043e \u0438 \u043d\u0435 \u043b\u043e\u0433\u0438\u0447\u043d\u043e.\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nCloud\n\n### Version\n\nLatest",
+  "files": [
+   "apps/web/core/store/issue/issue_calendar_view.store.ts",
+   "apps/web/core/store/issue/root.store.ts",
+   "packages/utils/src/calendar.ts"
+  ]
+ },
+ {
+  "pr": 7842,
+  "pr_title": "[WIKI-694] chore: added summary endpoint for pages",
+  "merged": "2025-09-23T13:12:54Z",
+  "merge": "0ed49a6989cc40053c5d1ebf90eb5770ecff2685",
+  "issue": 7829,
+  "title": "[bug]: project page doesn't show public, private and archived tabs on refresh",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen clicked on pages menu of a project, the pages route loads but the tabs for public, private and archived pages is not shown. \n\n### Steps to reproduce\n\n- In the side bar, open the menu list under a project.\n- select the pages option.\n- the tabs appear for a quick flash and then dissappears\n\n[\n\n<img width=\"1486\" height=\"859\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/e9323beb-97c7-4661-938a-6fc3aed74b47\" />\n\n](url)\n\n### Environment\n\nProduction\n\n### Browser\n\nOther\n\n### Variant\n\nCloud\n\n### Version\n\nlatest",
+  "files": [
+   "apps/api/plane/app/urls/page.py",
+   "apps/api/plane/app/views/page/base.py"
+  ]
+ },
+ {
+  "pr": 7775,
+  "pr_title": "[WEB-4875] fix: unsubscribed work items on workspace subscribed work item filter",
+  "merged": "2025-09-11T12:22:51Z",
+  "merge": "8ee665f49149105d68028541823af4a4f7a7be03",
+  "issue": 7751,
+  "title": "[bug]: unsubscribed work items showing up in workspace subscribed view",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I unsubscribe from a work item, it still shows up in my (default) workspace subscribed items view.\n\n### Steps to reproduce\n\n1. Go to any work item\n2. Click \"unsubscribe\"\n3. Observe the \"unsubscribed successfully\" toast\n4. Go to workspace -> views -> subscribed\n5. Observe the unsubscribed item in the list\n\n### Environment\n\nProduction\n\n### Browser\n\nMozilla Firefox\n\n### Variant\n\nSelf-hosted\n\n### Version\n\n0.28.0",
+  "files": [
+   "apps/api/plane/utils/issue_filters.py"
+  ]
+ },
+ {
+  "pr": 7699,
+  "pr_title": "[WEB-4834] fix: range date picker weekStartsOn",
+  "merged": "2025-09-02T12:32:10Z",
+  "merge": "779a96acb8bc819f65662cee5a2239b3aedf7a63",
+  "issue": 7690,
+  "title": "[bug]: Start of the week setting isn't respected",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nI set the first day of the week to be Monday and in some places like the new cycle modal it still starts with Sunday.\n\n<img width=\"923\" height=\"293\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/16e04065-db3f-453f-abb5-9bcd58a1fab9\" />\n\n<img width=\"703\" height=\"391\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/505db584-6f6b-43ad-8c0a-af501e3b9e8a\" />\n\n### Steps to reproduce\n\n1. Set the first day of the week to Monday\n2. Click \"Add cycle\"\n3. Open the date picker\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv0.28.0",
+  "files": [
+   "apps/web/core/components/dropdowns/date-range.tsx"
+  ]
+ },
+ {
+  "pr": 7635,
+  "pr_title": "[WEB-4746] fix: position peek view relative to app layout",
+  "merged": "2025-08-24T20:02:15Z",
+  "merge": "599ff2eec436e3d35b009891e7783ca3cb690fb3",
+  "issue": 7616,
+  "title": "[bug]: No option to close Analytics of a project",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen we visit a project and click on Analytics button, there is no close analytics button. And when we try to click on a work item, it is not getting closed. We have to refresh the browser or change to another section and come back. \nTested on both Firefox and Chrome\n\n### Steps to reproduce\n\n1. Go to a project\n2. click on analytics\n3. click outside analytics section\n\n### Environment\n\nProduction\n\n### Browser\n\nMozilla Firefox\n\n### Variant\n\nCloud\n\n### Version\n\nv0.28.0\n\n\n<img width=\"1437\" height=\"956\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/37cee0ab-5ee8-4e16-8b92-e52c49be4d24\" />",
+  "files": [
+   "apps/web/core/components/analytics/work-items/modal/index.tsx",
+   "apps/web/core/components/issues/peek-overview/view.tsx"
+  ]
+ },
+ {
+  "pr": 7532,
+  "pr_title": "[WEB-4628] chore: return 200 response for work item comment",
+  "merged": "2025-08-04T09:57:06Z",
+  "merge": "7cec92113f091c8fa2cd540dbffb38d0ecf4e7ab",
+  "issue": 7505,
+  "title": "[bug]: API Call [POST COMMENTS] Gets Error 400 - But it is Woking",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWe are having some problems with the PLANE API.\n\nWhat is happening: The API response is sending us an error, and we are trying to repeat the request. But it is a bug on Plane\u2019s side. Even with an error, the updates are being made in Plane.\n\n### Steps to reproduce\n\nTry to create a comment in a Issue, you should get \n400 - \"{\\\"error\\\":\\\"The required key does not exist.\\\"}\"\n\nBut the comment will the in the Issue.\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nCloud\n\n### Version\n\nLatest",
+  "files": [
+   "apps/api/plane/api/views/issue.py"
+  ]
+ },
+ {
+  "pr": 7521,
+  "pr_title": "fix: enable email notification by default for new users",
+  "merged": "2025-07-31T07:32:42Z",
+  "merge": "99f9337f35660ca900e4ed59b56ce96e87dc5aca",
+  "issue": 5381,
+  "title": "[feature]: Option to enable Email notification to all new users by default?",
+  "body": "### Is there an existing issue for this?\n\n- [X] I have searched the existing issues\n\n### Summary\n\nWe have email notification system while the notification actually need end users to enable by themselves if I'm not understanding it wrong, and there seems to be no option to enable that to all users by default? Since new users might not always remember to check what's going on from the web interface, and might not remember to enable the email notifications by themselves from our experience. So sometimes there might be a missed update.\n\n### Why should this be worked on?\n\nMake it easier for self-hosted deployment to turn on email notifications for everyone by default.",
+  "files": [
+   "apps/api/plane/db/models/user.py"
+  ]
+ },
+ {
+  "pr": 7337,
+  "pr_title": "[WEB-4442] fix: removed the deleted labels from webhook payload",
+  "merged": "2025-07-18T14:38:01Z",
+  "merge": "a75ae71ff0864f32f495419d79cd2d9dc9a9bdaf",
+  "issue": 7243,
+  "title": "[bug]: Assigned labels get re-appended when adding new ones",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I update a work item and add a new label, the JSON body doesn't re-create \"labels\" but instead appends them all over again, causing duplicates. \n\n![Image](https://github.com/user-attachments/assets/6bbf6ee1-d431-4d1f-b4b6-5c95efc320db)\n\nThis is after adding \"design\" label to a work item containing \"code\" label.\n\n![Image](https://github.com/user-attachments/assets/7d5c37b8-6db5-4545-8194-3b4c945a06dc)\n\nThis is after adding \"art\" to the same work item. \n\n![Image](https://github.com/user-attachments/assets/eb74baa4-5d2a-4b07-a3b5-ed5ef5c5d270)\n\n### Steps to reproduce\n\n1. Assign a label to a work item\n2. Let it save\n3. Assign another label in addition to the first one\n4. Let it save\n5. Repeat\n\n### Environment\n\nProduction\n\n### Browser\n\nNone\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv0.26.0",
+  "files": [
+   "apps/api/plane/api/serializers/issue.py",
+   "apps/api/plane/bgtasks/webhook_task.py"
+  ]
+ },
+ {
+  "pr": 7437,
+  "pr_title": "[WEB-4528] fix: calendar options interactions",
+  "merged": "2025-07-18T08:55:08Z",
+  "merge": "1ad792b4bb4650ea4a0f3437a6ad90c6f0426195",
+  "issue": 7432,
+  "title": "[bug]: Unable to view weekends for teamspace calendars",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I use the calendar view for work items in a teamspace, I can't view items scheduled over the weekend as the `Show weekends` toggle doesn't work. \n\n### Steps to reproduce\n\n1. Go to a teamspace.\n2. Click work items.\n3. Open the calendar view.\n4. Click `Options` and click the `Show weekends` toggle.\n\n### Environment\n\nProduction\n\n### Browser\n\nMozilla Firefox\n\n### Variant\n\nCloud\n\n### Version\n\n??",
+  "files": [
+   "apps/web/core/components/issues/issue-layouts/calendar/dropdowns/options-dropdown.tsx"
+  ]
+ },
+ {
+  "pr": 7423,
+  "pr_title": "[WEB-4520] chore: changed the serializer for cycle issues",
+  "merged": "2025-07-17T07:23:04Z",
+  "merge": "ef0e3dca128a36a49e34949ce732e96d3a34b2d5",
+  "issue": 7372,
+  "title": "[bug]: 500 - Internal Server Error In List Cycle Issues API",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I try to send a request to [Plane API - List Cycle Issues](https://developers.plane.so/api-reference/cycle-issue/list-cycle-issues?playground=open) using:\n\n```bash\ncurl --request GET \\\n  --url https://api.plane.so/api/v1/workspaces/{{WORKSPACE_SLUG}}/projects/{{PROJECT_ID}}/cycles/{{CYCLE_ID}}/cycle-issues/ \\\n  --header 'x-api-key: {{API_KEY}}'\n```\n\nThe request to get cycle details works fine, but when trying to get the list of cycle issues, I receive a 500 response:\n\n```\n{\"error\":\"Something went wrong, please try again later\"}\n```\n\n### Steps to reproduce\n\n1. Go to [Plane API - List Cycle Issues](https://developers.plane.so/api-reference/cycle-issue/list-cycle-issues?playground=open)\n2. Send request to get the list of cycle issues\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nCloud\n\n### Version\n\nv1",
+  "files": [
+   "apps/api/plane/api/views/cycle.py"
+  ]
+ },
+ {
+  "pr": 7336,
+  "pr_title": "[WEB-1643] chore: support cyrillic characters in subject",
+  "merged": "2025-07-15T19:34:59Z",
+  "merge": "3224122df083c0be9bd08078c7d747500df20e54",
+  "issue": 5037,
+  "title": "[bug]: Cyrillic characters in email notifications",
+  "body": "### Is there an existing issue for this?\r\n\r\n- [X] I have searched the existing issues\r\n\r\n### Current behavior\r\n\r\nEmail notifications from the Plane display only Latin characters in the subject line when the task title contains Cyrillic characters. The Cyrillic characters are missing in the subject line but are displayed correctly in the email body.\r\n\r\n### Steps to reproduce\r\n\r\n- Create a new task with a title that includes Cyrillic characters (e.g., \"\u0422\u0435\u0441\u0442\u043e\u0432\u0430\u044f TEST \u0437\u0430\u0434\u0430\u0447\u0430\").\r\n- Assign the task to a user or update the task to trigger an email notification\r\n- Check the received email's subject line and body\r\n\r\n\r\n![\u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435](https://github.com/makeplane/plane/assets/95131920/01f83b21-eaa5-431b-861b-2c8f7bb8f375)\r\n\r\n\r\n### Environment\r\n\r\nProduction\r\n\r\n### Browser\r\n\r\nMozilla Firefox\r\n\r\n### Variant\r\n\r\nSelf-hosted\r\n\r\n### Version\r\n\r\nPlane One v1.2.0",
+  "files": [
+   "apps/api/plane/bgtasks/email_notification_task.py"
+  ]
+ },
+ {
+  "pr": 7370,
+  "pr_title": "feat : added Kabul to the list of timezones",
+  "merged": "2025-07-12T14:00:39Z",
+  "merge": "a3714c8e3edc290e257ff7d6bea895ec83b2cfbe",
+  "issue": 7369,
+  "title": "[feature]:  Add Asia/Kabul To The List Of Timezones",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Summary\n\nThe Asia/Kabul timezone (UTC+4:30) is currently missing from the list of available timezones in Plane. This timezone is essential for users in Afghanistan, and its absence may hinder accurate scheduling and planning for users in that region.\n\nPlease add support for the Asia/Kabul timezone in the timezone dropdown or configuration settings to ensure inclusive and accurate functionality for all users.\n\n### Why should this be worked on?\n\nIts necessary for users in Afghanistan, for better scheduling.",
+  "files": [
+   "apps/api/plane/app/views/timezone/base.py"
+  ]
+ },
+ {
+  "pr": 7381,
+  "pr_title": "fix: packages dev command failing due to missing dependency mapping",
+  "merged": "2025-07-10T09:56:43Z",
+  "merge": "1cb49cacaee6b7b8cb8ee5da48672a5d59ffb27d",
+  "issue": 7373,
+  "title": "[bug]: yarn dev broken with command not found errors",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I do `yarn dev` after `yarn install`, I see the error message:\n\n```\n@plane/logger:dev: command not found: tsup\n@plane/types:build: command not found: tsc\n```\n\nand the command exited (127).\n\n### Steps to reproduce\n\n1. Run `./setup.sh` to install dependencies.\n2. Run `yarn dev` to replicate the issue.\n\n### Environment\n\nDeploy preview\n\n### Browser\n\nNone\n\n### Variant\n\nLocal\n\n### Version\n\npreview",
+  "files": [
+   "packages/logger/package.json",
+   "packages/types/package.json",
+   "packages/ui/package.json"
+  ]
+ },
+ {
+  "pr": 7368,
+  "pr_title": "[INFRA-206] fix: update build context and dockerfile paths in build.yml in deploy/selfhost",
+  "merged": "2025-07-09T10:30:17Z",
+  "merge": "853423608c884f38fedbf6cf66672528f29dce45",
+  "issue": 7365,
+  "title": "[bug]: deploy/selfhost/build.yml refers to non-existing directories",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nhttps://github.com/makeplane/plane/blob/preview/deploy/selfhost/build.yml is not updated correctly after refactoring, partially completing the apps directory renaming.\n\n### Steps to reproduce\n\nCould not build images with `cp deploy/selfhost/build.yml build.yml && docker compose -f build.yml build`.\n\n### Environment\n\nDeploy preview\n\n### Browser\n\nNone\n\n### Variant\n\nSelf-hosted\n\n### Version\n\npreview",
+  "files": [
+   "deploy/selfhost/build.yml"
+  ]
+ },
+ {
+  "pr": 7357,
+  "pr_title": "[WIKI-510] feat: enhance issue description input with unsaved changes tracking",
+  "merged": "2025-07-08T09:28:41Z",
+  "merge": "13ab0624d0e2363d8f960020d1de85793ce540b3",
+  "issue": 7133,
+  "title": "[bug]: Work item title modifications not saved if sidebar is closed directly",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I try to modify a task item on the task items page, if I modify the item title and click outside of the sidebar to close it, the changes are lost and nowhere to be found.\n\n### Steps to reproduce\n\n1. Go to task items page\n2. Modify an existing task's title without losing focus to the text field\n3. Click outside of the sidebar to close it\n\n### Environment\n\nProduction\n\n### Browser\n\nMozilla Firefox\n\n### Variant\n\nCloud\n\n### Version\n\nCloud",
+  "files": [
+   "apps/web/core/components/issues/description-input.tsx"
+  ]
+ },
+ {
+  "pr": 7331,
+  "pr_title": "[WEB-4435] bug: trigger event for work item comment",
+  "merged": "2025-07-03T09:36:12Z",
+  "merge": "59919d3874b8f9abf64b3fc3988d9f3a1677b2c2",
+  "issue": 7327,
+  "title": "[bug]: Webhook for \"Work item comments\" is not firing after upgrade",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nEnvironment:\n\nPlane Version: v0.27.0\n\nDeployment: Self-Hosted using the official docker-compose.yml\n\nSetup: Fresh installation after experiencing the same issue on an upgraded instance.\n\nProblem Description:\nAfter a recent upgrade (and subsequent fresh installation) to version v0.27.0, the webhook event for \"Work item comments\" has completely stopped functioning. While other webhook events, such as for creating or updating \"Work items,\" are firing correctly, the specific event for new comments is never triggered.\n\nThis appears to be a regression bug, as this functionality was working correctly in previous versions. This prevents any automation or integration that relies on detecting new comments on work items.\n\n### Steps to reproduce\n\nNavigate to Workspace Settings -> Webhooks.\n\nCreate a new webhook and point it to a valid, publicly reachable URL (e.g., an n8n test webhook URL or any other endpoint logger).\n\nIn the webhook configuration, select \"Select individual events\".\n\nEnable the event for \"Work item comments\".\n\nSave the webhook configuration.\n\nGo to any project and post a new comment on any work item.\n\nExpected Behavior:\nA POST request with the comment payload should be sent to the configured webhook URL immediately after the comment is submitted.\n\nActual Behavior:\nNo request is ever sent to the webhook URL. The endpoint receives no data. The functionality is completely broken.\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nLocal\n\n### Version\n\nv0.27.0",
+  "files": [
+   "apps/server/plane/api/views/issue.py",
+   "apps/server/plane/app/views/issue/comment.py"
+  ]
+ },
+ {
+  "pr": 7252,
+  "pr_title": "feat(tests): Add comprehensive test suite for the Project API",
+  "merged": "2025-07-02T19:10:43Z",
+  "merge": "600063992150edef0f2aece7ef23aa5a95cda9ff",
+  "issue": 7229,
+  "title": "[feature]: [tests] Proposal to add test coverage for backend API endpoints",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Summary\n\nDuring a deep-dive to understand the codebase, I noticed that the backend test suite has an architecture in place but contains several empty test files for core API modules, such as test_issue.py and test_project.py. This proposal is to begin methodically adding test coverage to these modules, following the established \"outside-in\" testing philosophy and leveraging the existing base classes like AuthenticatedAPITest to ensure consistency.\n\n### Why should this be worked on?\n\nBolstering the test suite for these core features is a high-impact way to improve the project's long-term health. By starting to pay down this testing-related technical debt, we can make the entire application more stable and robust. As a contributor looking to help, I would appreciate any guidance on which API endpoints would be the most valuable to start with. I'm ready to begin with a small, focused Pull Request on a single endpoint to demonstrate the approach.",
+  "files": [
+   "apiserver/plane/tests/conftest.py",
+   "apiserver/plane/tests/contract/app/test_project_app.py"
+  ]
+ },
+ {
+  "pr": 7063,
+  "pr_title": "[WIKI-465] fix : Add new node on click of doc end",
+  "merged": "2025-06-19T11:47:56Z",
+  "merge": "24e57009af2dc54702d2ca0bc858b6c3f0f3ec39",
+  "issue": 6876,
+  "title": "[bug]: unnecessary new line on click at the end of a document",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nwhile editing a \"Page\" in any project, clicking anywhere below the last line sometimes causes the editor to insert an additional blank line.\n\na few points that make this feel less like \"intended behaviour\" and more like a bug:\n\n- the \"grab handle\" visible to the left of the line before clicking does not shift down to the new line when the cursor appears.\n- this does not happen if the cursor is currently on any other empty line, even if that line is much further up the page.\n\nbased on the typical behaviour of other editors, I would expect clicking anywhere below existing document content would simply move my cursor to the end of that content, not create a new line below it..\n\n### Steps to reproduce\n\nsimplest reproduction:\n \n1. create a new page in any project\n2. add some placeholder text\n3. click anywhere below the content - **new line created**\n\nmore complex reproduction:\n\n1. create a new page in any project\n2. add 2 paragraphs of placeholder text\n3. move cursor to the end of the first paragraph and press \"Enter\"\n4. click anywhere below the content - **no new line created**\n5. move cursor to either first or second paragraph\n6. click anywhere below the content - **new line created**\n7. move cursor to first empty line below last paragraph\n8. click anywhere below the content - **no new line created**\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nCloud\n\n### Version\n\nv0.25.3",
+  "files": [
+   "packages/editor/src/core/components/editors/editor-container.tsx"
+  ]
+ },
+ {
+  "pr": 7104,
+  "pr_title": "[WEB-4146] fix: AI environment variables configuration in GodMode",
+  "merged": "2025-05-23T09:36:58Z",
+  "merge": "6216ad77f443793ec08bb80eb287b83ba28f1546",
+  "issue": 7097,
+  "title": "[bug]: It doesn't save the API Key value of AI feature",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen entering the API Key and clicking save, the system does not retain the value.\nIt doesn't save the API Key value in v0.26.0, v0.25.3 , but it does in version 0.24.0.\n![Image](https://github.com/user-attachments/assets/404b3780-5e29-4da6-99f1-f579c9e40bc6)\n\n\n### Steps to reproduce\n\n1. Go to the '/god-mode'\n2. Click on 'Artificial Intelligence'\n3. Input API Key value and click 'Save changes'\n4. Click other menu and click on 'Artificial Intelligence' again\n5. The API Key value disappears\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv0.26.0",
+  "files": [
+   "admin/app/ai/form.tsx",
+   "apiserver/plane/license/api/views/instance.py",
+   "packages/types/src/instance/ai.d.ts",
+   "packages/types/src/instance/base.d.ts",
+   "web/core/components/issues/issue-modal/components/description-editor.tsx"
+  ]
+ },
+ {
+  "pr": 7002,
+  "pr_title": "[WEB-3987] chore: project export funtionality enhancement",
+  "merged": "2025-05-09T15:39:14Z",
+  "merge": "13c46e0fdf660cc0439a4f9610baa2f0aba3a7a0",
+  "issue": 7028,
+  "title": "[bug]: Exported file shows irrelevant \"none\" text in Created By column",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen exporting data from the Plane app, the \"Created By\" column in the exported file incorrectly shows the value \"none\" along with the Created by user name.\n\n### Steps to reproduce\n\nGo to the Plane app and navigate to any workspace-Settings option.\n\nExport the task list using the \"Export\" or \"Download\" option.\n\nOpen the exported file (CSV or Excel).\n\nObserve the \"Created By\" column \u2014 some tasks show \"none\" along with user's name \n\n![Image](https://github.com/user-attachments/assets/559ab900-5973-4add-9ffc-f6e59610c34f)\n\n\n\n### Environment\n\nProduction\n\n### Browser\n\nNone\n\n### Variant\n\nCloud\n\n### Version\n\nNot known",
+  "files": [
+   "apiserver/plane/bgtasks/export_task.py"
+  ]
+ },
+ {
+  "pr": 6951,
+  "pr_title": "[WEB-3926] chore: removed the duplicated webhook task and updated the webhook task to handle exceptions correctly",
+  "merged": "2025-04-29T08:34:01Z",
+  "merge": "baabb8266958d0ab61b6c6fd271dcf4831417a98",
+  "issue": 6848,
+  "title": "[bug]: event updates trigger multiple webhook calls",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I update the state of a issue in any of my projects, multiple (usually 3) events trigger Webhook calls.  this makes handling the webhooks difficult (and expensive if using something like n8n).\n\nWhat should happen is when the work item state changes that should be a singular event.  Also, it would be nice if a webhook could be for a single project, not all encompassing.  Although have one main Webhook for all events is nice to have.\n\nI am attaching a screenshot of one of my webhooks for referebce\n\n<img width=\"942\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/c3277bc1-a4c3-46e0-9245-8b70736e2773\" />\n\n\n### Steps to reproduce\n\n1. Have an endpoint prepared to handle the Webhook\n2. Configure the Webhook to fire on Work Items individual event\n3. Change the state of a work item issue from one to another - such as \"Backlog\" to \"In Progress\"\n4. monitor the Webhook to see the events being fired off\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nCloud\n\n### Version\n\nlatest",
+  "files": [
+   "apiserver/plane/bgtasks/issue_activities_task.py",
+   "apiserver/plane/bgtasks/webhook_task.py"
+  ]
+ },
+ {
+  "pr": 6975,
+  "pr_title": "[WEB-3953] fix: issue description assets upload when project id is switched",
+  "merged": "2025-04-25T08:57:40Z",
+  "merge": "546217f09b6ce640f6a7944d500bf8c7e102b644",
+  "issue": 6961,
+  "title": "[bug]: Error loading image in Work Item description",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I open a work item with an image that was previously added to the description of the work item I cannot see the image. Instead I see \"Error loading image\". The image previously appeared successfully. \n\n<img width=\"642\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/7f6d567d-b4f3-4960-923a-d36a96418cb2\" />\n\nImages are stored in AWS S3. Minio is not being used.\n\nQuery of the postgres database `file_assets` table filtered by Work Item UUID like so:\n<img width=\"715\" alt=\"Image\" src=\"https://github.com/user-attachments/assets/c8d84c2f-c84f-4f4b-8421-f0e46a44356b\" />\n\n1 result returned of `entity_type = ISSUE_DESCRIPTION`. \n\nNavigate to AWS S3 bucket and open directory and file indicated in the `asset` field returned by the SQL query. The image is present and successfully able to download and view from S3 directly. \n\n`plane-app-api` container shows corresponding logs: \n\n`WARNING 2025-04-24 01:57:28,043 log 420652 140253665377080 Not Found: /api/assets/v2/workspaces/vast/projects/1466dd80-3b3e-4663-96c8-d8996febba00/a24654aa-8a0a-4ab1-8a09-03c2a20f9930/  `\n\n### Steps to reproduce\n\n1. Go to the Work Item where this error occurs\n2. Observe \"Error Loading Image\" error message.\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv1.8.3",
+  "files": [
+   "apiserver/plane/app/views/asset/v2.py",
+   "web/core/components/issues/issue-modal/base.tsx"
+  ]
+ },
+ {
+  "pr": 6941,
+  "pr_title": "[WEB-3918] fix: api tokens is_active",
+  "merged": "2025-04-23T19:58:29Z",
+  "merge": "2bbaaed3ea199d11194e74e49b523179dba6f25a",
+  "issue": 6925,
+  "title": "[bug]: Incorrect Badge Status for Expired API Tokens",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\n- The badge should dynamically reflect the actual status of the token.\n- If the token has expired, it should show `Expired` instead of `Active`.\n\n### Steps to reproduce\n\n1. Go to project setting.\n2. Click on API Tokens.\n3. Generate a new API token.\n4. Let the token expire (either by waiting for its expiration time or setting a short expiry during generation).\n5. Observe the status badge next to the token title.\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nCloud\n\n### Version\n\nv0.25.3",
+  "files": [
+   "apiserver/plane/app/serializers/api.py",
+   "web/core/components/api-token/modal/create-token-modal.tsx",
+   "web/core/components/api-token/modal/form.tsx",
+   "web/core/components/api-token/modal/generated-token-details.tsx",
+   "web/core/components/api-token/token-list-item.tsx"
+  ]
+ },
+ {
+  "pr": 6931,
+  "pr_title": "[WEB-3860] chore: added deleted filter in the grouper",
+  "merged": "2025-04-15T12:12:45Z",
+  "merge": "608da1465c4d28e800136b238bc410023c6a06b7",
+  "issue": 6929,
+  "title": "[bug]: Assignee not removed when grouping Work Items by Assignees",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen grouping Work Items by Assignees, removing an assignee from a task does not update the board correctly. The task still appears under the removed assignee\u2019s group even after refreshing the page. Only when opening the task does the UI correctly reflect that the assignee has been removed \u2014 likely because it re-fetches the data from the API.\n\n### Steps to reproduce\n\n1. Open Work Items\n2. Set \u201cGroup by\u201d to Assignees\n3. Add multiple assignees to a task\n4. Remove one of the assignees\n5. Observe that the task still appears under the removed assignee\u2019s group\n6. Refresh the page \u2014 the task is still incorrectly grouped\n7. Open the task \u2014 the correct assignee state is shown\n\n### Environment\n\nProduction\n\n### Browser\n\nNone\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv0.25.3",
+  "files": [
+   "apiserver/plane/space/utils/grouper.py",
+   "apiserver/plane/utils/grouper.py"
+  ]
+ },
+ {
+  "pr": 6841,
+  "pr_title": "feat: hide create account button on ENABLE_SIGNUP=0",
+  "merged": "2025-04-04T11:22:59Z",
+  "merge": "9c1b158291c2bb15a73d818a9597bc854afcbfc0",
+  "issue": 6824,
+  "title": "[feature]: Hide Upper Right button \"New to Plane? Create an account\" when env variable ENABLE_SIGNUP=0",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Summary\n\nModify the application behavior to hide the \"New to Plane? Create an account\" button located in the upper right corner of the login page when the environment variable ENABLE_SIGNUP=0.\n\nWhen `ENABLE_SIGNUP=0`, user self-registration should be hidden, and the button should not be visible or clickable to avoid confusion. If `ENABLE_SIGNUP` is unset or set to `1`, the button should function normally.\n\n### Why should this be worked on?\n\nIn many deployments, user registration needs to be controlled or disabled entirely \u2014 for example, in private, internal, or enterprise environments where accounts are created by administrators only. Exposing the \"Create an account\" option when sign-ups are disabled can confuse users or lead to errors.\nThis change provides better control over the sign-up flow and improves the user experience in restricted environments.",
+  "files": [
+   "web/app/accounts/forgot-password/page.tsx",
+   "web/app/page.tsx"
+  ]
+ },
+ {
+  "pr": 6836,
+  "pr_title": "[WEB-3700] chore: improve authentication redirections",
+  "merged": "2025-04-02T17:39:27Z",
+  "merge": "d9e3405f5ad3f2831ae97c9c55c805db914bbd48",
+  "issue": 6739,
+  "title": "[bug]: X-Forwarded-For and X-Real-IP are not respected",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nCurrently, existing code fetches the client IP with `REMOTE_ADDR` from the request metadata. This is incorrect behind a reverse proxy.\n\nCode exists to use X-Forwarded-For, but it is entirely unused.\nhttps://github.com/makeplane/plane/blob/9ee1d8cb03dc3ee061534e7a0acb18c6e1ae31d3/apiserver/plane/utils/ip_address.py#L1-L7\n\n### Steps to reproduce\n\n1. Log in on a correctly configured reverse proxied Plane instance\n2. Check `last_login_ip`; it will not match the sent X-Forwarded-For header\n\n### Environment\n\nProduction\n\n### Browser\n\nMozilla Firefox\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv0.25.1",
+  "files": [
+   "apiserver/plane/api/views/cycle.py",
+   "apiserver/plane/api/views/intake.py",
+   "apiserver/plane/api/views/issue.py",
+   "apiserver/plane/api/views/module.py",
+   "apiserver/plane/api/views/project.py",
+   "apiserver/plane/app/views/cycle/base.py",
+   "apiserver/plane/app/views/cycle/issue.py",
+   "apiserver/plane/app/views/intake/base.py",
+   "apiserver/plane/app/views/issue/archive.py",
+   "apiserver/plane/app/views/issue/attachment.py",
+   "apiserver/plane/app/views/issue/base.py",
+   "apiserver/plane/app/views/issue/comment.py",
+   "apiserver/plane/app/views/issue/link.py",
+   "apiserver/plane/app/views/issue/reaction.py",
+   "apiserver/plane/app/views/issue/relation.py",
+   "apiserver/plane/app/views/issue/sub_issue.py",
+   "apiserver/plane/app/views/module/base.py",
+   "apiserver/plane/app/views/module/issue.py",
+   "apiserver/plane/app/views/project/base.py",
+   "apiserver/plane/app/views/project/invite.py",
+   "apiserver/plane/app/views/workspace/draft.py",
+   "apiserver/plane/app/views/workspace/invite.py",
+   "apiserver/plane/authentication/adapter/base.py",
+   "apiserver/plane/authentication/utils/host.py",
+   "apiserver/plane/authentication/utils/login.py",
+   "apiserver/plane/authentication/views/app/email.py",
+   "apiserver/plane/authentication/views/app/github.py",
+   "apiserver/plane/authentication/views/app/gitlab.py",
+   "apiserver/plane/authentication/views/app/google.py",
+   "apiserver/plane/authentication/views/app/magic.py",
+   "apiserver/plane/authentication/views/app/password_management.py",
+   "apiserver/plane/authentication/views/space/email.py",
+   "apiserver/plane/authentication/views/space/github.py",
+   "apiserver/plane/authentication/views/space/gitlab.py",
+   "apiserver/plane/authentication/views/space/google.py",
+   "apiserver/plane/authentication/views/space/magic.py",
+   "apiserver/plane/authentication/views/space/password_management.py",
+   "apiserver/plane/authentication/views/space/signout.py",
+   "apiserver/plane/bgtasks/magic_link_code_task.py",
+   "apiserver/plane/license/api/views/admin.py",
+   "apiserver/plane/middleware/api_log_middleware.py",
+   "apiserver/plane/settings/common.py",
+   "apiserver/plane/utils/host.py",
+   "apiserver/plane/utils/path_validator.py",
+   "deploy/selfhost/docker-compose.yml"
+  ]
+ },
+ {
+  "pr": 6862,
+  "pr_title": "[WEB-3744] Append the deleted_at timestamp to workspace slug when it is deleted",
+  "merged": "2025-04-02T17:37:26Z",
+  "merge": "81fae36c2351e01e18d946b109fb30754e2c0df0",
+  "issue": 6849,
+  "title": "[bug]: Soft-deleted workspaces still prevent creation of new workspaces with same slug",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen attempting to create a new workspace with a slug that matches a soft-deleted workspace, the system incorrectly rejects the request with the error:\n\n> \"The workspace with the slug already exists\"\n\n![Image](https://github.com/user-attachments/assets/d1a79fc8-3c8f-4a19-8962-e66470908889)\n\n### Steps to reproduce\n\n1.Create a workspace with slug test-123.\n\n2.Delete the workspace (UI).\n\n3.Attempt to create a new workspace with the same slug test-123.\n\n4.Observe the erroneous conflict error.\n\n### Environment\n\nProduction\n\n### Browser\n\nNone\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv0.25.2",
+  "files": [
+   "apiserver/plane/db/management/commands/update_deleted_workspace_slug.py",
+   "apiserver/plane/db/models/workspace.py"
+  ]
+ },
+ {
+  "pr": 6833,
+  "pr_title": "docs: updated links in README.md file",
+  "merged": "2025-03-27T09:41:44Z",
+  "merge": "b19bca3b50cce02103ac911aa2b6c1055347be5e",
+  "issue": 6828,
+  "title": "[bug]: header links in README hijacked with links to malware?",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nThe links at the top of the README point to 'dub.sh', which is flagged as malicious by Malwarebytes:\n\n![Image](https://github.com/user-attachments/assets/6d616991-06fd-48dd-99d9-e8df4fc7f4ad)\n\nIndeed, visiting any dub.sh link produces this error:\n![Image](https://github.com/user-attachments/assets/4f9cf76b-464e-46b8-83ef-548ebcd2b33f)\n\n### Steps to reproduce\n\nReview any of the links indicated in the above included images.\n\n### Environment\n\nProduction\n\n### Browser\n\nNone\n\n### Variant\n\nCloud\n\n### Version\n\nall",
+  "files": [
+   "README.md"
+  ]
+ },
+ {
+  "pr": 6675,
+  "pr_title": "[PE-298] Fix: Copy markdown to clipboard",
+  "merged": "2025-03-24T07:02:11Z",
+  "merge": "6bafdb6dd8d1a8c1286d0746bd664d09dd2db9db",
+  "issue": 6766,
+  "title": "[bug]: Copying text from issue description carries unwanted HTML",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nIssue appeared when upgrading the self-hosted community edition from 0.24.0 to 0.25.2\n\n![Image](https://github.com/user-attachments/assets/032ccfd2-d980-42d4-a995-028427f815c0)\n\nWhen I select the text inside a cell and copy only the selection \"test string\"\n\nI get:\n\n```<table>\n<tbody><tr style=\"\"><td colspan=\"1\" rowspan=\"1\" colwidth=\"450\" style=\"background-color: null; color: null\"><p class=\"editor-paragraph-block\" style=\"text-align: left\">test string</p></td></tr></tbody>\n</table>\n```\n\nWhen I select the full cell by double clicking it, and copy\n\n![Image](https://github.com/user-attachments/assets/1c382937-6f94-47bc-9df0-14d7500dbf24)\n\nI get:\n\n`<p class=\"editor-paragraph-block\" style=\"text-align: left\"> test string </p>\n`\n\nand expected to get only \"test string\".\n\nThis behavior is a big problem in my workflow since I rely on copying lots of text from tables in plane issues to web forms. It is impossible to sanitize the text every time I need to copy a zip code or a phone number.\n\n### Steps to reproduce\n\n1. Create a new issue on plane community 0.25.2\n2. Create a table and add some text to any cell \"test string\"\n3. Select only the text and copy it\n4. Paste it on any test area outside plane (address bar, web form, text editor...)\n5. The result will be:\n```\n<table>\n<tbody><tr style=\"\"><td colspan=\"1\" rowspan=\"1\" colwidth=\"150\" style=\"background-color: null; color: null\"><p class=\"editor-paragraph-block\">teste</p></td></tr></tbody>\n</table>\n```\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv0.25.2",
+  "files": [
+   "packages/editor/src/core/extensions/clipboard.ts",
+   "packages/editor/src/core/extensions/extensions.tsx",
+   "packages/editor/src/core/extensions/index.ts",
+   "packages/editor/src/core/extensions/mentions/extension-config.ts",
+   "packages/editor/src/core/extensions/mentions/extension.tsx",
+   "packages/editor/src/core/extensions/read-only-extensions.tsx",
+   "packages/editor/src/core/extensions/table/table/table-controls.ts",
+   "packages/editor/src/core/types/mention.ts",
+   "space/core/components/editor/lite-text-read-only-editor.tsx",
+   "space/core/components/editor/rich-text-editor.tsx",
+   "space/core/components/editor/rich-text-read-only-editor.tsx",
+   "web/core/components/editor/lite-text-editor/lite-text-editor.tsx",
+   "web/core/components/editor/lite-text-editor/lite-text-read-only-editor.tsx",
+   "web/core/components/editor/rich-text-editor/rich-text-editor.tsx",
+   "web/core/components/editor/rich-text-editor/rich-text-read-only-editor.tsx",
+   "web/core/components/pages/editor/editor-body.tsx",
+   "web/core/components/pages/version/editor.tsx"
+  ]
+ },
+ {
+  "pr": 6762,
+  "pr_title": "[WEB-3545] feat: language translations",
+  "merged": "2025-03-18T08:05:47Z",
+  "merge": "e339b7ad8f7edc704af0ee4f18440b934fe5da48",
+  "issue": 6752,
+  "title": "[bug]: Missing translation (?)",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nThe title on the cycles page is missing \u2013 probably the translation key \"cycles.label\" is missing.\nI couldn't run the local development environment (webpack crashes) and didn't have time to fix it. I might find some time in the future to get it running and fix this bug.\n\n![Image](https://github.com/user-attachments/assets/c99dc453-db85-4bfc-b7c5-622835a951de)\n\nTitle definition: https://github.com/makeplane/plane/blob/d36c3acbf7cbf38ba1a9cc3fcec379f84ba75dcc/web/app/%5BworkspaceSlug%5D/(projects)/projects/(detail)/%5BprojectId%5D/cycles/(list)/page.tsx#L41\n\n### Steps to reproduce\n\n1. Go to https://app.plane.so/\n2. Select project\n3. Go to \"Cycles\"\n4. Look at page title\nSame in other languages (confirmed: French, Spanish, English)\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nCloud\n\n### Version\n\nLatest",
+  "files": [
+   "packages/i18n/src/constants/language.ts",
+   "packages/i18n/src/hooks/use-translation.ts",
+   "packages/i18n/src/locales/cs/translations.json",
+   "packages/i18n/src/locales/de/translations.json",
+   "packages/i18n/src/locales/ko/translations.json",
+   "packages/i18n/src/locales/pl/translations.json",
+   "packages/i18n/src/locales/sk/translations.json",
+   "packages/i18n/src/locales/ua/translations.json",
+   "packages/i18n/src/locales/zh-TW/translations.json",
+   "packages/i18n/src/store/index.ts",
+   "packages/i18n/src/types/language.ts",
+   "web/app/[workspaceSlug]/(projects)/projects/(detail)/[projectId]/cycles/(list)/page.tsx"
+  ]
+ },
+ {
+  "pr": 6720,
+  "pr_title": "fix: assignee validation when updating issues",
+  "merged": "2025-03-07T07:38:34Z",
+  "merge": "40c0bbcfb40ad57a391ae8c5dde90522d99f04dc",
+  "issue": 6718,
+  "title": "[bug]: Changing the state is removing assignee",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nWhen I change the state of any work item, it removes the assignee.\n\n### Steps to reproduce\n\n1. Go to Work Item.\n2. Change the state (Backlog -> todo\"\n3. Refresh page\n4. Assigned would be set as empty.\n\n![Image](https://github.com/user-attachments/assets/bb98b3fb-5642-476e-81db-d2a9953e8e4d)\n\n### Environment\n\nProduction\n\n### Browser\n\nGoogle Chrome\n\n### Variant\n\nCloud\n\n### Version\n\nv0.25.1",
+  "files": [
+   "apiserver/plane/app/serializers/issue.py",
+   "apiserver/plane/app/views/intake/base.py",
+   "apiserver/plane/app/views/issue/base.py",
+   "apiserver/plane/space/views/intake.py"
+  ]
+ },
+ {
+  "pr": 6663,
+  "pr_title": "[WEB-3449] chore: changed the logic from utc to project date conversion",
+  "merged": "2025-02-24T14:21:13Z",
+  "merge": "5f3d02606c200289229270a2435e08e9b965a057",
+  "issue": 6660,
+  "title": "[bug]: Cycle Date updating is malfunctioning.",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nAfter adding a cycle as a draft, Now I go to update the date of the cycle to 'Feb 24th', Which is tomorrow.\nAfter setting the date I realize that It automatically adds in a one-day buffer, so it's now set to Feb 23rd, Which is today, and now the cycle is active. \nI say okey, Let's update the date so it's for 'Feb 25th' (I take into account the 1 day buffer). \nWell, I can't seem to get a date range, Only can select one date and that's the end date. and any date I choose as the end date, The start date loses a day.\nThis is driving me crazy...\n\n![Image](https://github.com/user-attachments/assets/dc4fa443-64f3-4b53-8a4e-8e61abe8e606)\n\n### Steps to reproduce\n\n1. Go to the cycles view\n2. Add a new cycle without adding a date\n3. update that cycle start date with a new data (Tomorrow)\n4. Try to update the data again.\n\n### Environment\n\nProduction\n\n### Browser\n\nNone\n\n### Variant\n\nCloud\n\n### Version\n\nPlane App for Windows V1.5.1 / MacOS app V1.5.1",
+  "files": [
+   "apiserver/plane/utils/timezone_converter.py"
+  ]
+ },
+ {
+  "pr": 6614,
+  "pr_title": "fix: provide working telemetry documentation url",
+  "merged": "2025-02-17T08:11:13Z",
+  "merge": "31bba2926d49e70448beeb35388df517a849bfdc",
+  "issue": 6613,
+  "title": "[bug]: \"See more\" is a broken link for \"Allow Plane to anonymously collect usage events.\" on setup form",
+  "body": "### Is there an existing issue for this?\n\n- [x] I have searched the existing issues\n\n### Current behavior\n\nI think the correct url is https://developers.plane.so/self-hosting/telemetry, but that component currently points to https://docs.plane.so/telemetry, which 404s.\n\n### Steps to reproduce\n\n1. install self-host plane instance\n2. go to initial setup screen http://your_url/god-mode/\n3. verify that `Allow Plane to anonymously collect usage events. [See More](https://docs.plane.so/telemetry)` points to https://docs.plane.so/telemetry, which is a broken link\n\n### Environment\n\nProduction\n\n### Browser\n\nNone\n\n### Variant\n\nSelf-hosted\n\n### Version\n\nv0.24.1",
+  "files": [
+   "admin/core/components/instance/setup-form.tsx"
+  ]
+ }
+]

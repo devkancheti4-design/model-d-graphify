@@ -1,0 +1,130 @@
+{
+ "plane": {
+  "issues": 40,
+  "issue title": {
+   "code": "7 / 9 / 10",
+   "all": "7 / 9 / 10",
+   "graphify": "2 / 5 / 5",
+   "tokens": [
+    "801",
+    "774",
+    "1,529"
+   ]
+  },
+  "title + 400 characters": {
+   "code": "5 / 10 / 12",
+   "all": "5 / 10 / 12",
+   "graphify": "4 / 5 / 6",
+   "tokens": [
+    "880",
+    "857",
+    "1,573"
+   ]
+  },
+  "L1": {
+   "issues": 20,
+   "cold top-1/5": [
+    2,
+    4
+   ],
+   "after top-1/5": [
+    16,
+    16
+   ],
+   "led by learned code": 14
+  },
+  "L2": {
+   "all": [
+    20,
+    [
+     5,
+     5,
+     6
+    ],
+    [
+     4,
+     5,
+     6
+    ]
+   ],
+   "same area": [
+    5,
+    [
+     2,
+     2,
+     3
+    ],
+    [
+     2,
+     2,
+     3
+    ]
+   ]
+  },
+  "taught": "taught 16 question vectors onto code; 4 not placed (no path:line the workspace holds); learned law: the vector order, not yet active (16 examples)"
+ },
+ "signoz": {
+  "issues": 134,
+  "issue title": {
+   "code": "18 / 30 / 42",
+   "all": "14 / 24 / 35",
+   "graphify": "7 / 16 / 24",
+   "tokens": [
+    "734",
+    "697",
+    "1,695"
+   ]
+  },
+  "title + 400 characters": {
+   "code": "17 / 32 / 44",
+   "all": "15 / 25 / 33",
+   "graphify": "8 / 15 / 19",
+   "tokens": [
+    "817",
+    "739",
+    "1,704"
+   ]
+  },
+  "L1": {
+   "issues": 65,
+   "cold top-1/5": [
+    4,
+    18
+   ],
+   "after top-1/5": [
+    42,
+    46
+   ],
+   "led by learned code": 40
+  },
+  "L2": {
+   "all": [
+    67,
+    [
+     11,
+     17,
+     21
+    ],
+    [
+     6,
+     11,
+     19
+    ]
+   ],
+   "same area": [
+    17,
+    [
+     4,
+     5,
+     7
+    ],
+    [
+     4,
+     5,
+     6
+    ]
+   ]
+  },
+  "taught": "taught 58 question vectors onto code; 8 not placed (no path:line the workspace holds); learned law: the vector order, not yet active (58 examples)"
+ }
+}
